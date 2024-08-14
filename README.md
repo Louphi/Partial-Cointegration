@@ -33,11 +33,11 @@ Pour le tableau 5 et 6, nous utilisons le likelihood ratio test pour évaluer l�
  * Erreur quadratique moyenne (MSE) et estimation moyenne par rapport aux paramètres réels pour différentes tailles d'échantillons n et différents niveaux de σ_M, donc différents niveaux de R²_MR. *
 
 
-##### Résultat de l'auteur : 
+##### Résultats de l'auteur : 
 
 ![Table 3](images/Table3.png)
 
-##### Notre résultat :
+##### Nos résultats :
 
 ![Table 3](images/sigma_M_table.png)
 
@@ -51,11 +51,11 @@ Une autre remarque importante est le fait que les distributions de nos estimateu
 ### **Table 4**
   * Erreur quadratique moyenne (MSE) et estimation moyenne par rapport aux paramètres réels pour différentes tailles d'échantillons n et différents niveaux de ρ, donc différents niveaux de R²_MR et de demi-vie de retour à la moyenne. *
 
-##### Résultat de l'auteur : 
+##### Résultats de l'auteur : 
 
 ![Table 4](images/Table4.png)
 
-##### Notre résultat : 
+##### Nos résultats : 
 
 ![Table 4](images/rho_table.png)
 
@@ -67,11 +67,11 @@ Ce tableau nous permet de voir que les erreurs quadratiques moyens de nos estima
 ### **Table 5**
  *Power of likelihood ratio test with null hypothesis of ”random walk” for varying sample size n and different levels of σM , thus different levels of R2 .*
 
-##### Résultat de l'auteur : 
+##### Résultats de l'auteur : 
 
 ![Table 5](images/Table5.png)
 
-##### Notre résultat : 
+##### Nos résultats : 
 
 ![Table 5](images/power_sigma_M_table.png)
 
@@ -83,11 +83,11 @@ Tout d’abord, le tableau suivant démontre que lorsque σ_M = 0, et donc la s�
 ### **Table 6**
  *Power of likelihood ratio test with null hypothesis of ”random walk” for varying sample size n and different levels of ρ, thus different levels of R2 and half-life of mean-reversion.*
 
-##### Résultat de l'auteur : 
+##### Résultats de l'auteur : 
 
 ![Table 6](images/Table6.png)
 
-##### Notre résultat : 
+##### Nos résultats : 
 
 ![Table 6](images/power_rho_table.png)
 
