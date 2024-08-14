@@ -13,18 +13,6 @@ Table des matières:
     - [Table 5](#table-5)
     - [Table 6](#table-6)
     - [Conclusion simulation](#conclusion-simulation)
-- [Stratégie V1](#stratégie-v1)
-    - [Données](#données)
-    - [Spécification du modèle](#spécification-du-modèle)
-    - [Sélection des pairs](#sélection-des-pairs)
-    - [Règles de trading](#règles-de-trading)
-    - [Backtesting](#backtesting)
-    - [Résultats](#résultats)
-    - [Améliorations](#améliorations)
-
-- [Étude hypothèses du modèle (empiriquement)](#étude-hypothèses-du-modèle)
-
-
 
 ---
 ## Introduction
