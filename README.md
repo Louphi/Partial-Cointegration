@@ -110,30 +110,5 @@ Tout d’abord, le tableau suivant démontre que lorsque σ_M = 0, et donc la s�
 Les résultats suivants démontrent encore que lorsque la série est une marche aléatoire pure, le test d’hypothèse rejette incorrectement H0 environ 5% du temps. Sinon, nous remarquons que la puissance augmente rapidement au fur et à mesure que ρ diminue.
 
 ---
-### Conclusion simulation
 
 
-
----
-## Stratégie V1
-
-
-La stratégie V1 a pour but de tester le modèle étudié à des données empiriques. Dans le papier, ils utilisent les constituents du *SP500* selon leur industrie GICS1. Pour simplifier, nous utilisons les données du Nasdaq 100 de computstats.
-
-On peut y retrouver le powerpoint introduisant la stratégie à ce lien : [PCI Presentation](documentation/PrésentationPCI.pptx)
-
-
----
-
-### Données
-
-Les données journalières proviennent de compustats sur la période 1995-01 à 2023-06. Elles regroupent tous les compagnies ayant déjà appartenue à l'indice Nasdaq 100 dans cette interval de temps. Afin d'avoir le prix ajusté au close, le calcul suivant a dû être effectué : 
-
-```python
-stockData = pd.read_csv("/Users/sebastiencaron/Desktop/TradingClubHFT/Codes/Cointegration/data/compustatData.csv")
-stockData["adjClose"] = stockData["prccd"] / stockData["ajexdi"]
-stockData = stockData.iloc[:, [2, 3, 6]] # Keeps columns : date, ticker, adjClose
-stockData.columns = ["date", "ticker", "adjClose"]
-# Saved the file in .pkl format
-```
----
