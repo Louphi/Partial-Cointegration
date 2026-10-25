@@ -1,82 +1,56 @@
+"""Historical generator interface backed by explicit independent RNG streams."""
+
 import numpy as np
-from statsmodels.tsa.arima_process import arma_generate_sample
+from partial_cointegration import Parameters
+from partial_cointegration.simulation import simulate_pair
 
 
 class pci_generator:
-    def __init__(self, N : int, alpha: float, beta : float, rho : float, sigma_M : float, sigma_R : float, sigma_X: float):
+    def __init__(
+        self,
+        N,
+        alpha,
+        beta,
+        rho,
+        sigma_M,
+        sigma_R,
+        sigma_X,
+        *,
+        seed=0,
+        initialization="known",
+    ):
         self.N = N
-        self.alpha = alpha
-        self.beta = beta
-        self.rho = rho
-        self.sigma_M = sigma_M
-        self.sigma_R = sigma_R
+        self.parameters = Parameters(beta, rho, sigma_M, sigma_R, alpha)
         self.sigma_X = sigma_X
-
-
-    def f_generate_par(self):
-        '''
-        Generate PAR sample of length N with parameters rho, sigma_M, sigma_R
-
-        Parameters:
-        N (int): Length of the time series to generate.
-        rho (float): AR(1) coefficient / mean reversion coefficient.
-        sigma_M (float): white noise variance of mean reverting component .
-        sigma_R (float): white noise variance of random walk component.
-
-        Returns:
-        numpy.ndarray: A partial autoregressive time series
-        '''
-
-        ar_M = [1, -self.rho]
-        ar_R = [1, -1]
-        ma = [1]
-
-        M = arma_generate_sample(ar_M, ma, self.N, scale=self.sigma_M) # By default normal distribution
-        R = arma_generate_sample(ar_R, ma, self.N, scale=self.sigma_R) # By default normal distribution
-        S = M + R
-        return S, M, R
+        self.seed = seed
+        self.initialization = initialization
 
     def f_generate_pci(self):
-        '''
-        Generate two partially cointegrated time series of length N with given parameters, such that:
-            - X_2,t = alpha + beta * X_1,t + W_t
-            - W_t = M_t + R_t
-            - M_t = rho * M_t-1 + eps(M_t)
-            - R_t = R_t-1 + eps(R_t)
-            - eps(M_t) ∼ NID(0, sigma_M)
-            - eps(R_t) ∼ NID(0, sigma_R)
+        pair = simulate_pair(
+            self.N,
+            self.parameters,
+            seed=self.seed,
+            sigma_x=self.sigma_X,
+            initialization=self.initialization,
+        )
+        return pair.x, pair.y, pair.m + pair.r, pair.m, pair.r
 
-        Parameters:
-        N (int): Length of the time series to generate.
-        alpha (float): intercept
-        beta (float): cointegration coefficient.
-        rho (float): AR(1) coefficient / mean reversion coefficient.
-        sigma_M (float): white noise variance of mean reverting component .
-        sigma_R (float): white noise variance of random walk component.
-        sigma_X (float): white noise variance of X1.
+    def f_generate_par(self):
+        _, _, w, m, r = self.f_generate_pci()
+        return w, m, r
 
-        Returns:
-        tuple: A tuple containing two cointegrated time series, X1 and X2, which are numpy.ndarray.
-        '''
-
-        ret_X1 = self.sigma_X * np.random.randn(self.N)
-        X1 = 100 * np.exp(np.cumsum(ret_X1))  # generate X1
-        W, M, R = self.f_generate_par()  # generate PAR residual
-        X2 = self.alpha + self.beta * X1 + W  # compute X2
-
-        return X1, X2, W, M, R
-
-    def f_generate_trajectories(self, trajectory : int = 100):
-        simul = np.zeros((self.N, trajectory, 2))
-
-        # simul[:, i, 0] = X1, simul[:, i, 1] = X2
+    def f_generate_trajectories(self, trajectory=100):
+        if trajectory < 1:
+            raise ValueError("Need at least one trajectory")
+        out = np.empty((self.N, trajectory, 2))
         for i in range(trajectory):
-            simul[:, i, 0], simul[:, i, 1], _, _, _ = self.f_generate_pci()
-
-        return simul
-
-
-
-
-if __name__ == "__main__":
-    print('End')
+            seed = int(np.random.SeedSequence([self.seed, i]).generate_state(1)[0])
+            pair = simulate_pair(
+                self.N,
+                self.parameters,
+                seed=seed,
+                sigma_x=self.sigma_X,
+                initialization=self.initialization,
+            )
+            out[:, i, :] = np.column_stack([pair.x, pair.y])
+        return out

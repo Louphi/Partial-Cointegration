@@ -81,10 +81,9 @@ def filter_residuals(
             or not np.isfinite(covariance).all()
         ):
             raise ValueError("Invalid saved filter state")
-        if (
-            not np.allclose(covariance, covariance.T, atol=1e-12)
-            or np.linalg.eigvalsh(covariance).min() < -1e-10
-        ):
+        if not np.allclose(covariance, covariance.T, atol=1e-12) or np.linalg.eigvalsh(
+            covariance
+        ).min() < -1e-10 * max(1.0, float(np.linalg.norm(covariance))):
             raise ValueError("Saved covariance must be symmetric positive semidefinite")
         start = 0
     transition = np.diag([parameters.rho, 1.0])

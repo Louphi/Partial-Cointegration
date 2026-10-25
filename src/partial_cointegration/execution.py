@@ -258,7 +258,7 @@ def backtest_pairs(
             closing = bool(exits.loc[date, key])
             if active and closing:
                 pending[key] = (i, "exit", -positions[key].copy())
-            elif not active and opening and key not in pending:
+            elif not active and opening and not closing and key not in pending:
                 if not np.isfinite([row[x], row[y]]).all():
                     rejects.append(
                         {
@@ -325,6 +325,10 @@ def replay_vectorbt(result: LedgerResult, prices: Any) -> Any:
 
     if result.config.annual_borrow or (result.orders["kind"] == "settlement").any():
         raise ValueError("Engine replay cannot represent borrow or cash settlement")
+    if result.orders.duplicated(["fill_time", "security"]).any():
+        raise ValueError(
+            "Engine replay cannot net multiple same-bar fills without changing costs"
+        )
     securities = list(result.orders["security"].unique())
     if not securities:
         securities = list(prices.columns[:2])
