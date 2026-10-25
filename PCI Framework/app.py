@@ -7,7 +7,7 @@ from partial_cointegration import fit_pair, Parameters, FitError
 from partial_cointegration.simulation import simulate_pair
 from partial_cointegration.signals import score_components, decisions
 from partial_cointegration.execution import backtest_pairs, ExecutionConfig
-from PCIPipeline import Definition
+from partial_cointegration.data import validate_prices
 
 
 def run_streamlit_app():
@@ -31,11 +31,20 @@ def run_streamlit_app():
             )
             return
         try:
-            prices = Definition.f_load_adjPrice(Path(path))
+            file = Path(path)
+            if file.suffix.lower() == ".csv":
+                prices = validate_prices(pd.read_csv(file, index_col="date"))
+            elif file.suffix.lower() in (".parquet", ".pq"):
+                prices = validate_prices(pd.read_parquet(file))
+            else:
+                raise ValueError("Choose a CSV or parquet price file")
         except (ValueError, FileNotFoundError, KeyError) as exc:
             st.error(str(exc))
             return
     cols = list(prices.columns)
+    if len(prices) < 30:
+        st.error("Need at least 30 observations for formation and evaluation.")
+        return
     if len(cols) < 2:
         st.error("Need at least two security columns.")
         return

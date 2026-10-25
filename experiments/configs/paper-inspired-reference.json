@@ -1,0 +1,14 @@
+{
+  "name": "paper_inspired_reference",
+  "mode": "legacy",
+  "normalization": "formation",
+  "window": 30,
+  "entry": 1.0,
+  "exit": -0.5,
+  "keep": 20,
+  "ranking_fraction": 0.05,
+  "same_sector": true,
+  "seed": 20261025,
+  "fees": 0.0005,
+  "slippage": 0.0
+}

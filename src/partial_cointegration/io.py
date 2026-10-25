@@ -11,7 +11,7 @@ from .model import FilterState, Parameters, Mode, MODEL_VERSION
 
 
 def estimator_fingerprint() -> str:
-    """Conservative byte-level fingerprint of the estimator's numerical sources."""
+    """Numerical-source SHA with CRLF normalized to LF for portable checkouts."""
     folder = Path(__file__).parent
     files = [
         "model.py",
@@ -22,7 +22,7 @@ def estimator_fingerprint() -> str:
         "inference.py",
     ]
     return hashlib.sha256(
-        b"".join((folder / name).read_bytes() for name in files)
+        b"".join((folder / name).read_bytes().replace(b"\r\n", b"\n") for name in files)
     ).hexdigest()
 
 
@@ -38,6 +38,16 @@ def state_to_dict(state: FilterState) -> dict[str, Any]:
         "timestamp": state.timestamp,
         "version": state.version,
     }
+
+
+def package_fingerprint() -> str:
+    """Identify all package sources, including data, signal and ledger behavior."""
+    return hashlib.sha256(
+        b"".join(
+            file.name.encode() + b"\0" + file.read_bytes().replace(b"\r\n", b"\n")
+            for file in sorted(Path(__file__).parent.glob("*.py"))
+        )
+    ).hexdigest()
 
 
 def state_from_dict(value: dict[str, Any]) -> FilterState:
@@ -59,8 +69,9 @@ def state_from_dict(value: dict[str, Any]) -> FilterState:
 def load_current_report(path: str | Path) -> dict[str, Any]:
     """Load complete source-matched evidence; inspect statistical acceptance gates separately."""
     report: dict[str, Any] = json.loads(Path(path).read_text())
-    if report.get("source_hash") != estimator_fingerprint() or not report.get(
-        "full_design"
-    ):
+    if estimator_fingerprint() not in (
+        report.get("source_hash"),
+        report.get("canonical_source_hash"),
+    ) or not report.get("full_design"):
         raise ValueError("Scientific report is stale or only a pilot")
     return report
