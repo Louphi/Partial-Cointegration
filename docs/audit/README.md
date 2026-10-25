@@ -19,6 +19,8 @@ The smoke fits and reduced notebook calculation establish operability only. No 1
 
 ## Historical scope after implementation
 
+The subsequent repository cleanup removed superseded archives and baseline-only `tools/audit/` scripts from the current working tree. They remain available in the historical commits. The commands below must be run from the stated baseline checkout, not the cleaned current tree. See [cleanup.md](../cleanup.md) for the removal catalogue and restoration instructions.
+
 The commands below target the pre-correction production interfaces. To reproduce the audit itself, use a separate checkout of audit commit `bef2b7d` (its production sources match audited `1501aa6`). The audit probes deliberately expose old failures and are not the current regression suite. On the corrected branch use the root README's `pytest` and `experiments/validate.py` commands. Do not overwrite the historical evidence with corrected-model results.
 
 ## Re-run in a fresh environment

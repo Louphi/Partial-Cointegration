@@ -11,3 +11,12 @@ __pycache__/
 htmlcov/
 *.nbc
 *.nbi
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+build/
+dist/
+/Simulation/Outputs/
+/PCI Framework/data/data.pickle

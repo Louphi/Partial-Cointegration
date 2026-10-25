@@ -26,7 +26,7 @@ Scientific outputs must be regenerated. Keep original reports in Git history wit
 
 ## Installation and examples
 
-Install the package in Python 3.12 using the documented extras. The two active notebooks now import the package and contain small synthetic examples, with stale outputs cleared. Their full-kernel execution is recorded in `docs/results/notebook-app-verification.json`. Archives remain historical and are not supported as active APIs.
+Install the package in Python 3.12 using the documented extras. The two active notebooks now import the package and contain small synthetic examples, with stale outputs cleared. Their full-kernel execution is recorded in `docs/results/notebook-app-verification.json`. Superseded archives are available in Git history, not as active APIs; see [cleanup.md](cleanup.md).
 
 The named dataclasses Parameters, FitOptions, FitResult and FilterState replace anonymous tuples in new work. Old import paths still work after package installation. Use `.legacy_tuple()` only at the compatibility boundary. Exact and legacy modes require separate caches/calibration; never combine likelihoods from different modes or initializations in one ratio.
 
