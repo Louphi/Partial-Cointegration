@@ -11,8 +11,13 @@ class partial_cointegration:
 
     def __init__(self, X1, X2):
         # Our two time-series to fit the PCI model to
-        self.X1 = X1
-        self.X2 = X2
+        self.X1 = np.asarray(X1, dtype=float)
+        self.X2 = np.asarray(X2, dtype=float)
+        if (self.X1.ndim != 1 or self.X2.ndim != 1
+                or self.X1.shape != self.X2.shape or self.X1.size < 4):
+            raise ValueError("Expected two equal-length one-dimensional series with at least four observations")
+        if not (np.isfinite(self.X1).all() and np.isfinite(self.X2).all()):
+            raise ValueError("Price series must contain only finite observations")
 
     def fit_pci(self, tol=0.001, LRT_mode: bool = True):
         '''
@@ -238,6 +243,9 @@ class partial_cointegration:
         # Component using the Partially Autoregressive Model". See algo on page 9.
 
         # Create arrays for storing both components and prediction errors
+        W = np.asarray(W, dtype=float)
+        if W.ndim != 1 or W.size == 0 or not np.isfinite(W).all():
+            raise ValueError("Residuals must be a nonempty finite one-dimensional series")
         M = np.zeros(len(W))
         R = np.zeros(len(W))
         eps = np.zeros(len(W))

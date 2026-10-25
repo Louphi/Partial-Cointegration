@@ -48,34 +48,21 @@ class Definition:
         return adjPrice.loc[:, adjPrice.columns.isin(tickerList)]
 
     def f_insample_outsample(data, year):
-        data.index = pd.to_datetime(data.index)
-        
-        start_of_year = pd.to_datetime(str(year))
-        
-        end_of_period = start_of_year + pd.DateOffset(months=6)  # This is "year + 6 months"
-        start_of_period = start_of_year - pd.DateOffset(years=4) 
-        
-        # Adjusted filter condition using the corrected datetime offsets
-        all_sample = data[(data.index < end_of_period) & (data.index >= start_of_period)]
-        
-        # Cleaning operations
-        tmp = all_sample.dropna(how="all")
-        all_sample_cleaned = tmp.dropna(axis=1, how='any')
-        
-        
-        # Select in-sample data: data from the four years prior to the specified year.
-        # It checks if the year in the data is less than the specified year
-        # and greater than or equal to four years before the specified year.
-        
-        in_sample = all_sample_cleaned[(all_sample_cleaned.index < start_of_year) & (all_sample_cleaned.index >= start_of_period)]
-        
-        # Select out-sample data: data from the specified year but only for the first six months.
-        # It checks if the year in the data is exactly the specified year and
-        # if the month is less than or equal to 6 (January to June).
-        out_sample = all_sample_cleaned[(all_sample_cleaned.index >= start_of_year) & (all_sample_cleaned.index <= end_of_period)]
+        """Split prices without using future completeness to select training stocks.
 
-        # Return both the in-sample and out-sample datasets.
-        return in_sample, out_sample
+        Keep missing test prices visible: callers must decide how to handle a
+        suspended or delisted stock rather than silently remove it from training.
+        """
+        data = data.copy()
+        data.index = pd.to_datetime(data.index)
+        start = pd.Timestamp(year=int(year), month=1, day=1)
+        training = data.loc[(data.index >= start - pd.DateOffset(years=4))
+                            & (data.index < start)].dropna(how="all")
+        training = training.dropna(axis=1, how="any")
+        testing = data.loc[(data.index >= start)
+                          & (data.index < start + pd.DateOffset(months=6)),
+                          training.columns]
+        return training, testing
 
 
     def pairDatabase(consituentList : list) -> pd.DataFrame:
@@ -90,8 +77,13 @@ class Definition:
 
 class Computation:
     def __init__(self, X1, X2) -> None:
-        self.X1 = X1
-        self.X2 = X2
+        self.X1 = np.asarray(X1, dtype=float)
+        self.X2 = np.asarray(X2, dtype=float)
+        if (self.X1.ndim != 1 or self.X2.ndim != 1
+                or self.X1.shape != self.X2.shape or self.X1.size < 4):
+            raise ValueError("Expected two equal-length one-dimensional series with at least four observations")
+        if not (np.isfinite(self.X1).all() and np.isfinite(self.X2).all()):
+            raise ValueError("Price series must contain only finite observations")
 
     def Rsquare(sigmaM, sigmaR, rho):
         return 2 * (sigmaM ** 2) / (2 * (sigmaM ** 2) + (1+rho) * sigmaR ** 2)
@@ -149,7 +141,7 @@ class Computation:
             return estimates[argmax] # Return estimates linked to max likelihood
         except:
             # print('Estimation failed!')
-            return len(x0) * [np.nan]  # Returns nanns
+            return np.full(3, np.nan)  # Returns nanns
         
 
     def lagvar_estimate_par(self, W):
@@ -228,6 +220,9 @@ class Computation:
         # Component using the Partially Autoregressive Model". See algo on page 9.
 
         # Create arrays for storing both components and prediction errors
+        W = np.asarray(W, dtype=float)
+        if W.ndim != 1 or W.size == 0 or not np.isfinite(W).all():
+            raise ValueError("Residuals must be a nonempty finite one-dimensional series")
         M = np.zeros(len(W))
         R = np.zeros(len(W))
         eps = np.zeros(len(W))
@@ -385,8 +380,8 @@ class Computation:
     
     def f_compute_estimate(pairName: pd.DataFrame, inSample: pd.DataFrame, pairData: pd.DataFrame) -> tuple :
         N = len(pairName)
-        elligibilityData = np.zeros((N, 3))
-        estimationData = np.zeros((N, 5))
+        elligibilityData = np.full((N, 3), np.nan)
+        estimationData = np.full((N, 5), np.nan)
         
         
 
@@ -410,7 +405,6 @@ class Computation:
     def f_create_dataframe(elligibilityData: pd.DataFrame, estimationData: pd.DataFrame, pairName: pd.DataFrame)-> tuple:
     
         elligibilityData = pd.DataFrame(elligibilityData, index = pairName, columns=["rho", "Rsquare", "ll_ratio"])
-        elligibilityData["ll_ratio"].fillna(0)
         elligibility_sorted_data = elligibilityData[
                                                     (elligibilityData["rho"] > 0.5) & 
                                                      (elligibilityData["Rsquare"] > 0.5)
@@ -469,12 +463,12 @@ class Computation:
 
             W = X2 - alpha - beta * X1
             coint_tmp = Computation(X1, X2)
-            _, Mt, _ = coint_tmp.kalman_estimate(W, rho, sigmaM, sigmaR)
+            Mt, _, _ = coint_tmp.kalman_estimate(W, rho, sigmaM, sigmaR)
             df_mt[:, i] = Mt
             # Number of share invested in S1 for 1$ invested in X2
             df_hedge[:, i] = beta / X2 # The amount of share
             
-        return pd.DataFrame(data = df_mt, columns=pairListSelected), pd.DataFrame(data = df_hedge, columns = pairListSelected)
+        return pd.DataFrame(data=df_mt, index=stock_price.index, columns=pairListSelected), pd.DataFrame(data=df_hedge, index=stock_price.index, columns=pairListSelected)
       
     
     def rolling_z_score(series: pd.Series, window: int) -> pd.Series:
@@ -488,24 +482,13 @@ class Computation:
         Returns:
         pd.Series: A series of rolling Z-scores.
         """
-        # Convert numpy array to pandas Series if necessary
-        # Convert numpy array to pandas Series if necessary
-    # Initialize an array to hold the rolling Z-scores
-        z_scores = np.full(series.shape, np.nan)
-
-        # Loop through the series to calculate the rolling mean and standard deviation
-        for i in range(window - 1, len(series)):
-            window_values = series[i - window + 1 : i+1]
-            #print([window_values[-1], series[i]])
-            window_mean = np.mean(window_values)
-            window_std = np.std(window_values, ddof=1)
-
-            # Avoid division by zero
-            if window_std != 0:
-                z_scores[i] = (series.iloc[i] - window_mean) / window_std
-
-        return z_scores
+        if window < 2:
+            raise ValueError("window must be at least 2")
+        values = pd.Series(series, copy=False)
+        rolling = values.rolling(window)
+        return ((values - rolling.mean()) / rolling.std(ddof=1).replace(0, np.nan)).to_numpy()
     
+
     def percentile_zscore(value, data):
         # Calculate the percentile-based z-score for a single value
         
