@@ -64,6 +64,29 @@ for i, date in enumerate(["2023-01-01", "2023-02-01"]):
     )
     outputs.append(str(dest))
 (folder / "cohorts.json").write_text(json.dumps(outputs))
+empty_config = asdict(StudyConfig(ranking_fraction=1, rho_min=1))
+(folder / "empty-config.json").write_text(json.dumps(empty_config))
+for config_name in ["empty-config.json", "config.json"]:
+    subprocess.run(
+        [
+            sys.executable,
+            str(root / "experiments/empirical.py"),
+            "--manifest",
+            str(folder / "manifest.json"),
+            "--config",
+            str(folder / config_name),
+            "--trading-start",
+            "2023-01-01",
+            "--output",
+            outputs[0],
+        ],
+        check=True,
+        cwd=root,
+    )
+    if config_name == "empty-config.json":
+        assert pd.read_csv(Path(outputs[0]) / "orders.csv").empty
+        assert pd.read_csv(Path(outputs[0]) / "ols-spread-equity.csv").empty
+        assert (pd.read_csv(Path(outputs[0]) / "equity.csv").iloc[:, 1] == 1).all()
 subprocess.run(
     [
         sys.executable,
@@ -87,6 +110,7 @@ report = {
     "seed": 20261025,
     "cohorts": 2,
     "overlapping_cash_pool": True,
+    "empty_selection_clears_prior_output": True,
     "portfolio_observations": len(portfolio),
     "historical_performance_verified": False,
     "hac_unavailable_reason": "Two six-month cohorts provide too few monthly returns",

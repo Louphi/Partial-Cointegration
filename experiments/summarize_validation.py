@@ -219,7 +219,8 @@ lines += [
     "## Reproducibility and invalidation",
     "",
     "Audit baseline: bef2b7d (production baseline 1501aa6). Core corrected estimator: 7a321fa; "
-    "workflow integration: bf1ead1. The report records the exact execution-byte source SHA "
+    "workflow integration: bf1ead1; study entry points: 68ae98b; source-bound calibration "
+    "evidence: 2dc1f57. The report records the exact execution-byte source SHA "
     "and an LF-normalized SHA for portable code matching. Source/configuration changes require "
     "new calibration. The full study is checkpointed; reported invocation times may reuse "
     "checkpoints and are not total computation time. Compact null-score banks and digest manifests "

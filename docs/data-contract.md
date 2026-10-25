@@ -1,0 +1,21 @@
+# Market-data contract and experiment scope
+
+Raw market history is not included. Do not replace it with synthetic history under a market label.
+
+The empirical command requires a JSON manifest with source, adjustment_basis, security_id_mapping, corporate_action_policy, delisting_policy, prices_file, membership_file and data_kind (market/synthetic). Prices are wide CSV with a `date` column and unique stable security-ID columns. Observed prices must be positive; missing quotes remain missing. Dates must be unique/increasing. Membership CSV requires `security_id`, `from`, `thru` (inclusive, open ended allowed), and a point-in-time `sector` if the same-sector screen is used. Current ticker aliases alone are insufficient historical security mapping.
+
+A manifest documents supplied provenance; it does not automatically verify its truth. Real-market certification still requires inspecting the vendor fields, adjustments, delisting cash flows, borrow assumptions and benchmark data. The repository constituent file starts in 1995 and does not establish earlier coverage.
+
+`experiments/empirical.py --manifest ... --trading-start YYYY-MM-DD --config experiments/configs/nasdaq-extension.json --output ...` runs one 48-month formation/6-month evaluation cohort with future-invariant selection, disjoint security exposures and shared capital. The run records actual dates and observation counts; an external exchange calendar is still required to establish complete period coverage. Empty selections produce an explicit cash-only equity series.
+
+Run independently configured cohorts for walk-forward analysis, then supply a JSON list of their output directories to `experiments/aggregate.py --cohorts ... --output ... --max-active 6`. It allocates from one cash pool using prior-close equity before observing a new cohort's returns. Matured cohorts return closing capital after that date's starts. Cohort NAVs must begin at one and finish after liquidation. The aggregator rejects incompatible variants and schedules exceeding the active-cohort limit. It reports a Bartlett/Newey-West interval for the monthly mean only when more than 20 monthly returns exist, with a declared six-month lag. This asymptotic interval does not certify finite-sample coverage or account for unreported strategy searches. Independent cohort portfolios must not simply be added together.
+
+The second configuration is named **paper-inspired reference**, deliberately not an exact replication. It uses the legacy scorer and formation scaling, but the corrected next-close ledger, disjoint-pair allocation and absence of the original full data feed prevent an exact paper-performance claim. Both configurations use a cross-sectional bottom-fraction ranking; that ranking is not a 5% individual test. Training Sharpe ranking is selection, not independent validation. No final-test threshold tuning is authorized by these configurations.
+
+Missing trading quotes never create executable fills. The exact filter predicts across them. Existing positions use flagged stale marks for valuation only. A missing terminal quote requires an explicit official settlement amount. Unknown delisting values are an error, not zero or a forward-filled fill price.
+
+The engine-independent ledger is authoritative. Its optional vectorbt replay is a cross-check for complete-price, no-borrow/no-settlement examples. No historical profitability, uncertainty robustness or operational deployment claim follows from software tests.
+
+Model time is one step per supplied trading observation, not one step per elapsed calendar day. Preserve missing trading observations as explicit NaN rows and verify the exchange calendar externally; the software does not infer how many trading steps an arbitrary date gap represents. Borrow charges are per observation at annual_rate/252. The daily-close ledger checks gross capacity on entry; it is not an intraday broker margin-call/financing simulator.
+
+In extreme synthetic recovery cells, additive Gaussian response noise can produce negative response levels. Those cells test the unconstrained Gaussian time-series model. Trading still requires positive observed executable prices; recovery data are never relabeled as investable market history.

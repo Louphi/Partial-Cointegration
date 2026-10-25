@@ -17,6 +17,10 @@ The matrix reference and dense shock-loading Gaussian density agree to the decla
 
 The smoke fits and reduced notebook calculation establish operability only. No 10,000-replication paper table, formal recovery/coverage experiment, hypothesis-test size/power study or historical-market backtest was completed. S2's full text remains unavailable; R reference source was inspected but not run. Original CSV constituents were inspected; undocumented pickle caches were not executed/deserialized.
 
+## Historical scope after implementation
+
+The commands below target the pre-correction production interfaces. To reproduce the audit itself, use a separate checkout of audit commit `bef2b7d` (its production sources match audited `1501aa6`). The audit probes deliberately expose old failures and are not the current regression suite. On the corrected branch use the root README's `pytest` and `experiments/validate.py` commands. Do not overwrite the historical evidence with corrected-model results.
+
 ## Re-run in a fresh environment
 
 From the repository root, using Python 3.12:

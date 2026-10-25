@@ -29,11 +29,13 @@ def main():
         json.dumps(record["config"], sort_keys=True) for record in records
     }
     versions = {record["package_fingerprint"] for record in records}
+    entrypoints = {record["entrypoint_sha256"] for record in records}
     if (
         len(kinds) != 1
         or len(names) != 1
         or len(configurations) != 1
         or len(versions) != 1
+        or len(entrypoints) != 1
     ):
         raise ValueError(
             "Do not silently mix synthetic/market data or different strategy variants"
@@ -65,6 +67,10 @@ def main():
                 "max_active": args.max_active,
                 "package_fingerprint": package_fingerprint(),
                 "cohort_package_fingerprint": next(iter(versions)),
+                "cohort_entrypoint_sha256": next(iter(entrypoints)),
+                "entrypoint_sha256": hashlib.sha256(
+                    Path(__file__).read_bytes().replace(b"\r\n", b"\n")
+                ).hexdigest(),
                 "config": records[0]["config"],
                 "input_sha256": {
                     str(folder / file): hashlib.sha256(

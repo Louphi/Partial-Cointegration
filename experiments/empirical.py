@@ -60,6 +60,8 @@ def main():
     baseline_ledger = result.pop("ols_spread_baseline")
     if baseline_ledger is not None:
         baseline_ledger.equity.to_csv(out / "ols-spread-equity.csv")
+    else:
+        pd.Series(dtype=float, name="equity").to_csv(out / "ols-spread-equity.csv")
     baseline = result.pop("no_trade_equity")
     baseline.to_csv(out / "no-trade-equity.csv")
     if ledger is not None:
@@ -68,7 +70,26 @@ def main():
         ledger.rejections.to_csv(out / "rejections.csv", index=False)
     else:
         baseline.to_csv(out / "equity.csv")
+        pd.DataFrame(
+            columns=[
+                "pair",
+                "decision_time",
+                "fill_time",
+                "security",
+                "units",
+                "price",
+                "fees",
+                "kind",
+            ]
+        ).to_csv(out / "orders.csv", index=False)
+        pd.DataFrame(columns=["pair", "decision_time", "reason"]).to_csv(
+            out / "rejections.csv", index=False
+        )
     result.update(
+        ols_baseline_available=baseline_ledger is not None,
+        entrypoint_sha256=hashlib.sha256(
+            Path(__file__).read_bytes().replace(b"\r\n", b"\n")
+        ).hexdigest(),
         requested_trading_start=str(start),
         formation_observations=len(tr),
         formation_start=str(tr.index.min()),

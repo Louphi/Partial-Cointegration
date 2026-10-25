@@ -4,6 +4,7 @@
   "seed": 20261025,
   "cohorts": 2,
   "overlapping_cash_pool": true,
+  "empty_selection_clears_prior_output": true,
   "portfolio_observations": 151,
   "historical_performance_verified": false,
   "hac_unavailable_reason": "Two six-month cohorts provide too few monthly returns",
