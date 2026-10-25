@@ -7,7 +7,8 @@ import json
 from pathlib import Path
 from typing import Any, cast
 import numpy as np
-from .model import FilterState, Parameters, Mode, MODEL_VERSION
+from .model import FilterState, Parameters, Mode, MODEL_VERSION, FitError
+from .inference import Calibration
 
 
 def estimator_fingerprint() -> str:
@@ -75,3 +76,42 @@ def load_current_report(path: str | Path) -> dict[str, Any]:
     ) or not report.get("full_design"):
         raise ValueError("Scientific report is stale or only a pilot")
     return report
+
+
+def calibration_from_report(path: str | Path, *, n: int) -> Calibration:
+    """Load a source-matched, size-checked calibration with its full DGP identity.
+
+    This supports the reported sample sizes and null design only. It does not
+    validate a new market-data design merely because its length is the same.
+    """
+    report = load_current_report(path)
+    entries = report["size"].get(str(n))
+    if not entries:
+        raise ValueError("No calibrated evidence for that sample size")
+    if not all(cell["size_gate_passed"] for cell in entries.values()):
+        raise FitError("Calibration size gate failed; inspect the scientific report")
+    folder = Path(path).resolve().parent
+    bank_path = (folder / report["null_score_bank_file"]).resolve()
+    if bank_path.parent != folder:
+        raise ValueError("Score bank must be a sibling of its report")
+    if (
+        hashlib.sha256(bank_path.read_bytes()).hexdigest()
+        != report["null_score_bank_sha256"]
+    ):
+        raise ValueError("Calibration score-bank integrity check failed")
+    with np.load(bank_path) as bank:
+        if str(bank["source_hash"]) != report["source_hash"]:
+            raise ValueError("Score bank and report source identities differ")
+        scores = np.asarray(bank[f"calibration_n{n}"], dtype=float).copy()
+    if scores.ndim != 1 or len(scores) != report["calibration"][str(n)]["replications"]:
+        raise ValueError("Score bank has an unexpected replication count")
+    scores.setflags(write=False)
+    config = report["config"]
+    return Calibration(
+        scores,
+        n,
+        cast(Mode, config["mode"]),
+        config["seed"],
+        json.dumps(report["dgp"], sort_keys=True),
+        {**config["fit_options"], "source_hash": estimator_fingerprint()},
+    )

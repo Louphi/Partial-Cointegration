@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "synthetic_only": true,
+  "seed": 20261025,
+  "cohorts": 2,
+  "overlapping_cash_pool": true,
+  "portfolio_observations": 151,
+  "historical_performance_verified": false,
+  "hac_unavailable_reason": "Two six-month cohorts provide too few monthly returns",
+  "fixture_directory": ".test-deps\\empirical-command-check"
+}

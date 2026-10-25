@@ -1,6 +1,7 @@
 """Render executed scientific evidence; never promote missing evidence to a pass."""
 
 import json
+import hashlib
 from pathlib import Path
 import re
 import matplotlib
@@ -14,6 +15,33 @@ results = root / "docs/results"
 r = load_current_report(results / "scientific-validation.json")
 legacy_path = results / "legacy-score-tables.json"
 legacy = json.loads(legacy_path.read_text()) if legacy_path.exists() else None
+if (
+    r["config"]["mode"] != "exact"
+    or r["config"]["seed"] != 20261025
+    or r["config"]["recovery_reps"] != 1000
+    or r["config"]["null_reps"] != 10000
+    or len(r["recovery"]) != 75
+    or len(r["boundaries"]) != 6
+):
+    raise ValueError(
+        "This report template requires the preregistered complete corrected design"
+    )
+if legacy:
+    canonical = hashlib.sha256(
+        b"".join(
+            (root / "src/partial_cointegration" / name)
+            .read_bytes()
+            .replace(b"\r\n", b"\n")
+            for name in ["model.py", "estimation.py", "likelihood.py", "simulation.py"]
+        )
+    ).hexdigest()
+    if (
+        legacy.get("canonical_source_hash") != canonical
+        or legacy["replications_per_cell"] != 10000
+        or legacy.get("independent_calibration_reps_per_n") != 10000
+        or len(legacy["cells"]) != 51
+    ):
+        raise ValueError("Legacy comparison is stale, incomplete or only a pilot")
 raw_log = (results / "software-tests.txt").read_bytes()
 testlog = raw_log.decode("utf-16" if raw_log.startswith(b"\xff\xfe") else "utf-8")
 passed = re.search(r"(\d+) passed", testlog).group(1)
@@ -123,7 +151,12 @@ lines += [
     "![Selected recovery curves](results/recovery-summary.png)",
     "",
     "The plot shows a selected equal-noise slice, not the entire grid. "
-    "The JSON includes weak-signal cases with substantial rho error and frequent boundary estimates.",
+    "The JSON includes weak-signal cases with substantial rho error and frequent boundary estimates. "
+    "For example, at n=10,000, rho=0.99 and equal noise, rho RMSE is 0.160, the "
+    "pure-RW selection mass is 2.1%, and rejection power is only 52.5% at the calibrated 5% level. "
+    "Rho RMSE under a positive true transient variance includes the fitter's rho=0 convention "
+    "when it selects a pure RW. Under a truly pure RW, rho error is undefined and omitted. "
+    "Convergence therefore does not establish reliable component identification, even at 10,000 observations.",
     "",
     "## Legacy comparison and reproduction",
     "",
@@ -189,8 +222,8 @@ lines += [
     "workflow integration: bf1ead1. The report records the exact execution-byte source SHA "
     "and an LF-normalized SHA for portable code matching. Source/configuration changes require "
     "new calibration. The full study is checkpointed; reported invocation times may reuse "
-    "checkpoints and are not total computation time. Large transient arrays remain outside Git; "
-    "digest manifests are committed. A first report-save attempt failed on a NumPy boolean; "
+    "checkpoints and are not total computation time. Compact null-score banks and digest manifests "
+    "are committed; large recovery/bootstrap arrays remain outside Git. A first report-save attempt failed on a NumPy boolean; "
     "the report was regenerated from intact checkpoints after serialization was corrected.",
     "",
     f"Canonical numerical-source SHA: `{r['canonical_source_hash']}`.",

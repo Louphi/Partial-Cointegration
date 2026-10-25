@@ -284,3 +284,27 @@ def test_overlapping_cohorts_share_capital_and_hac_is_dependence_aware():
     assert dependent["standard_error"] > iid["standard_error"]
     with pytest.raises(ValueError):
         hac_mean_interval([0.1] * 10)
+
+
+def test_committed_calibration_bank_is_source_bound_and_integrity_checked(tmp_path):
+    import json
+    from pathlib import Path
+    from partial_cointegration.io import calibration_from_report
+
+    path = (
+        Path(__file__).resolve().parents[1] / "docs/results/scientific-validation.json"
+    )
+    report = json.loads(path.read_text())
+    calibration = calibration_from_report(path, n=100)
+    assert calibration.critical_value(0.05) == pytest.approx(
+        report["calibration"]["100"]["quantiles"]["0.05"]
+    )
+    assert not calibration.scores.flags.writeable
+    assert '"initialization": "known"' in calibration.design
+    with pytest.raises(ValueError, match="sample size"):
+        calibration_from_report(path, n=101)
+    copied = tmp_path / "report.json"
+    copied.write_text(json.dumps(report))
+    (tmp_path / report["null_score_bank_file"]).write_bytes(b"corrupt calibration")
+    with pytest.raises(ValueError, match="integrity"):
+        calibration_from_report(copied, n=100)

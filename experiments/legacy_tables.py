@@ -169,6 +169,23 @@ def main():
         n: np.concatenate([np.load(path)["records"][:, 4] for _, path in sorted(parts)])
         for n, parts in calibration_groups.items()
     }
+    null_path = ROOT / "docs/results/legacy-null-banks.npz"
+    banks = {f"calibration_n{n}": values for n, values in calibration_arrays.items()}
+    banks.update(
+        {
+            f"evaluation_n{n}": arrays[settings.index((n, 0.9, 0.0))][:, 4]
+            for n in calibration_arrays
+        }
+    )
+    np.savez_compressed(
+        null_path,
+        **banks,
+        source_hash=sha,
+        seed=args.seed,
+        initialization="legacy",
+        mode="legacy",
+        replications=args.replications,
+    )
     reports = []
     size_report = {}
     rng = np.random.default_rng(99177)
@@ -271,6 +288,8 @@ def main():
         "runtime_scope": "this invocation; checkpoint reuse is possible; not total CPU time",
         "independent_calibration_reps_per_n": args.replications,
         "null_size": size_report,
+        "null_score_bank_file": null_path.name,
+        "null_score_bank_sha256": hashlib.sha256(null_path.read_bytes()).hexdigest(),
         "cells": reports,
         "raw_manifest": {
             path.name: hashlib.sha256(path.read_bytes()).hexdigest()

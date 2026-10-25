@@ -234,6 +234,18 @@ def main():
         k: np.concatenate([np.load(path)["records"] for _, path in sorted(v)])
         for k, v in groups.items()
     }
+    null_path = (ROOT / args.output).with_name(f"{config['mode']}-null-banks.npz")
+    null_path.parent.mkdir(parents=True, exist_ok=True)
+    banks = {f"calibration_n{n}": arrays[(2, i)][:, 4] for i, n in enumerate(nvalues)}
+    banks.update(
+        {f"evaluation_n{n}": arrays[(3, i)][:, 4] for i, n in enumerate(nvalues)}
+    )
+    np.savez_compressed(
+        null_path,
+        **banks,
+        config=json.dumps(config, sort_keys=True),
+        source_hash=source_hash,
+    )
     calibration = {}
     size = {}
     rng = np.random.default_rng(np.random.SeedSequence([args.seed, 900]))
@@ -377,6 +389,15 @@ def main():
         commit = "unavailable"
     report = {
         "config": config,
+        "dgp": {
+            "design": "geometric",
+            "initialization": "known",
+            "sigma_x": 0.0236,
+            "initial_price": 100,
+            "beta": 1,
+            "sigma_r": 1,
+            "null": "rw",
+        },
         "source_hash": source_hash,
         "canonical_source_hash": hashlib.sha256(
             b"".join(
@@ -404,6 +425,8 @@ def main():
         "simultaneous_size_gate": "Bonferroni 99% Wilson intervals over 3 levels x all sample sizes, augmented by 200 independent calibration resamples",
         "report_script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "full_design": full,
+        "null_score_bank_file": null_path.name,
+        "null_score_bank_sha256": hashlib.sha256(null_path.read_bytes()).hexdigest(),
         "raw_manifest": {
             p.name: hashlib.sha256(p.read_bytes()).hexdigest()
             for p in sorted(cache.glob("*.npz"))

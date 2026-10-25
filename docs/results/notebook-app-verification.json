@@ -1,0 +1,22 @@
+[
+  {
+    "notebook": "Simulation/Functions/HowToUse.ipynb",
+    "executed_cells": 3,
+    "status": "passed"
+  },
+  {
+    "notebook": "PCI Framework/VBT_TMP.ipynb",
+    "executed_cells": 4,
+    "status": "passed"
+  },
+  {
+    "application": "Streamlit synthetic demonstration",
+    "action": "click Run research example",
+    "status": "passed"
+  },
+  {
+    "application": "Streamlit configured CSV flow using synthetic fixture",
+    "action": "load CSV, run analysis, reject too-short data cleanly",
+    "status": "passed"
+  }
+]

@@ -66,6 +66,37 @@ report.append(
         "status": "passed",
     }
 )
+import pandas as pd
+from partial_cointegration import Parameters
+from partial_cointegration.simulation import simulate_pair
+
+pair = simulate_pair(100, Parameters(1, 0.6, 1, 1), seed=40)
+prices = pd.DataFrame(
+    {"X": pair.x, "Y": pair.y}, index=pd.bdate_range("2020-01-01", periods=100)
+)
+fixture = root / ".test-deps/app-price-fixture.csv"
+prices.to_csv(fixture, index_label="date")
+configured = AppTest.from_file(
+    str(root / "PCI Framework/app.py"), default_timeout=60
+).run()
+configured.selectbox[0].set_value("Historical CSV/parquet").run()
+configured.text_input[0].input(str(fixture)).run()
+assert not configured.exception, configured.exception
+assert not configured.error, configured.error
+configured.button[0].click().run()
+assert not configured.exception, configured.exception
+assert not configured.error, configured.error
+prices.iloc[:20].to_csv(fixture, index_label="date")
+configured.run()
+assert not configured.exception, configured.exception
+assert configured.error and "30 observations" in configured.error[0].value
+report.append(
+    {
+        "application": "Streamlit configured CSV flow using synthetic fixture",
+        "action": "load CSV, run analysis, reject too-short data cleanly",
+        "status": "passed",
+    }
+)
 (root / "docs/results/notebook-app-verification.json").write_text(
     json.dumps(report, indent=2) + "\n"
 )
