@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "partial-cointegration-research"
+version = "0.2.0"
+description = "Conditional Gaussian partial cointegration research with explicit inference and execution"
+requires-python = ">=3.12,<3.13"
+dependencies = ["numpy==1.26.4", "pandas==2.2.0", "scipy==1.12.0"]
+
+[project.optional-dependencies]
+research = ["numba==0.61.2", "xarray==2024.2.0", "matplotlib==3.8.2", "openpyxl==3.1.2"]
+app = ["streamlit==1.40.2", "plotly==5.18.0", "pyarrow==17.0.0"]
+engine = ["vectorbt==0.26.2", "numba==0.61.2", "plotly==5.18.0"]
+dev = ["pytest==8.3.5", "pytest-cov==6.0.0", "mypy==1.15.0", "black==25.1.0", "ruff==0.11.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "PCI Framework", "Simulation/Functions"]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 88
