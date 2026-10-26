@@ -16,19 +16,19 @@ Four years of preceding formation history are refitted every six months; capital
 
 ![Pepsi/Coke daily account value and annual returns](results/daily-pair-performance-pep-ko.png)
 
-The same 2019â€“2023 walk-forward setup completed six round trips and rejected two requests. $10,000 became $11,226.12 (+12.26%) after assumed costs and net dividend accrual of âˆ’$88.46. Long dividend entitlements and short dividend liabilities accrue as cash on vendor ex-dates, rather than payment dates; taxes and funding differences are not modeled. Six trades do not establish repeatable profitability. [Measured daily result](results/longer-pair-pep-ko.json).
+The same 2019–2023 walk-forward setup completed six round trips and rejected two requests. $10,000 became $11,226.12 (+12.26%) after assumed costs and net dividend accrual of −$88.46. Long dividend entitlements and short dividend liabilities accrue as cash on vendor ex-dates, rather than payment dates; taxes and funding differences are not modeled. Six trades do not establish repeatable profitability. [Measured daily result](results/longer-pair-pep-ko.json).
 
 ## PepsiCo / Coca-Cola: minute sample
 
 ![Pepsi/Coke minute sample stays in cash](results/minute-pair-performance-pep-ko.png)
 
-The three-session formation fit selected the pure random-walk boundary with zero transient variance. The following October 22â€“23, 2026 sessions therefore had no trades and remained at $10,000. This is a fit outcome in a very short sample, not proof that mean reversion never exists. [Measured minute result](results/minute-pair-pep-ko.json).
+The three-session formation fit selected the pure random-walk boundary with zero transient variance. The following October 22–23, 2026 sessions therefore had no trades and remained at $10,000. This is a fit outcome in a very short sample, not proof that mean reversion never exists. [Measured minute result](results/minute-pair-pep-ko.json).
 
 ## Alphabet: five-year daily test
 
 ![Daily account value and annual returns](results/daily-pair-performance.png)
 
-The model refits on the preceding four years every six months. One capital account is rolled forward, with positions closed at each six-month boundary. The 2019â€“2023 test completed 19 round trips and rejected 56 requests. $10,000 ended at $9,234.47. The equity axis is deliberately enlarged to show changes; it does not begin at zero. The dashed cash reference assumes zero interest.
+The model refits on the preceding four years every six months. One capital account is rolled forward, with positions closed at each six-month boundary. The 2019–2023 test completed 19 round trips and rejected 56 requests. $10,000 ended at $9,234.47. The equity axis is deliberately enlarged to show changes; it does not begin at zero. The dashed cash reference assumes zero interest.
 
 [Measured daily result](results/longer-pair-goog-googl.json).
 
