@@ -1,0 +1,710 @@
+{
+  "baseline": "1501aa6bb0b246ec30a8e3b305743cc58b986b5b",
+  "main": "8d37c814cf3f20dca22cc868d938365abfe45bbb",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.0",
+    "scipy": "1.12.0",
+    "statsmodels": "0.14.1",
+    "tqdm": "4.66.1",
+    "xarray": "2024.2.0"
+  },
+  "source_sha256": {
+    "PCI Framework/PCIPipeline.py": "96ac53cb3c7676fb93b1ada4279fd540e56646859bf05c739bfa9c9a46094083",
+    "Simulation/Functions/PartialCointegration.py": "ea39b0de9502953f5542a92be3a685432255a704a894f6cd5025cae987acfda2",
+    "PCI Framework/PCIStrat.py": "5d04deb29f117b9485d02940fc95af031efbb736c6a0244353e69ecc723cbea3",
+    "Simulation/Functions/ResultReplication.py": "95ae3b20e526065df836e4295511461f36f3a7988745a1a30a7956196f8f0d28"
+  },
+  "criteria": "validation-protocol.md",
+  "likelihood_comparisons": [
+    {
+      "rho": 0.6,
+      "sm": 1.0,
+      "sr": 1.0,
+      "exact_ll": -11.496712131782768,
+      "dense_ll": -11.496712131782772,
+      "legacy_ll": -11.507347473375221,
+      "steady_correct_ll": -11.596297753397057,
+      "innovation_variance": 2.19224993899441,
+      "legacy_variance": 2.0,
+      "steady_gain": [
+        0.32460947032107534,
+        0.6753905296789248
+      ],
+      "matrix_vs_legacy_state_max_error": 6.772360450213455e-14
+    },
+    {
+      "rho": 0.9,
+      "sm": 1.0,
+      "sr": 1.0,
+      "exact_ll": -11.787944424196615,
+      "dense_ll": -11.787944424196617,
+      "legacy_ll": -11.828225076526065,
+      "steady_correct_ll": -11.840154128713223,
+      "innovation_variance": 2.0429311422412644,
+      "legacy_variance": 2.0,
+      "steady_gain": [
+        0.3003624092564513,
+        0.6996375907435487
+      ],
+      "matrix_vs_legacy_state_max_error": 2.859934511434403e-13
+    },
+    {
+      "rho": -0.8,
+      "sm": 0.7,
+      "sr": 1.2,
+      "exact_ll": -11.411337807061619,
+      "dense_ll": -11.411337807061619,
+      "legacy_ll": -10.538932537147122,
+      "steady_correct_ll": -11.59592188162686,
+      "innovation_variance": 3.2048562701533685,
+      "legacy_variance": 1.93,
+      "steady_gain": [
+        0.3296880414185522,
+        0.6703119585814478
+      ],
+      "matrix_vs_legacy_state_max_error": 1.1102230246251565e-15
+    },
+    {
+      "rho": 0.99,
+      "sm": 1.0,
+      "sr": 0.1,
+      "exact_ll": -12.471969908788937,
+      "dense_ll": -12.471969908788935,
+      "legacy_ll": -12.477339798506666,
+      "steady_correct_ll": -12.475093121134222,
+      "innovation_variance": 1.0109054379333564,
+      "legacy_variance": 1.01,
+      "steady_gain": [
+        0.9005408522272779,
+        0.09945914777272216
+      ],
+      "matrix_vs_legacy_state_max_error": 6.427608445491728e-12
+    },
+    {
+      "rho": 0.6,
+      "sm": 0.0,
+      "sr": 1.0,
+      "exact_ll": -12.55756973243271,
+      "dense_ll": -12.55756973243271,
+      "legacy_ll": -12.55756973243271,
+      "steady_correct_ll": -12.55756973243271,
+      "innovation_variance": 1.0,
+      "legacy_variance": 1.0,
+      "steady_gain": [
+        0.0,
+        1.0
+      ],
+      "matrix_vs_legacy_state_max_error": 0.0
+    },
+    {
+      "rho": 0.6,
+      "sm": 1.0,
+      "sr": 0.0,
+      "exact_ll": -10.447969732432709,
+      "dense_ll": -10.44796973243271,
+      "legacy_ll": -10.447969732432709,
+      "steady_correct_ll": -10.447969732432709,
+      "innovation_variance": 1.0,
+      "legacy_variance": 1.0,
+      "steady_gain": [
+        1.0,
+        0.0
+      ],
+      "matrix_vs_legacy_state_max_error": 0.0
+    }
+  ],
+  "alpha_profile": {
+    "-100": -11.507347473375209,
+    "0": -11.507347473375221,
+    "100": -11.507347473375209
+  },
+  "lagvar_constant": {
+    "value": [
+      null,
+      0.0,
+      0.0
+    ],
+    "warnings": [
+      "invalid value encountered in scalar divide"
+    ]
+  },
+  "lagvar_linear": {
+    "value": [
+      null,
+      0.0,
+      0.0
+    ],
+    "warnings": [
+      "invalid value encountered in scalar divide"
+    ]
+  },
+  "zero_noise_ll": {
+    "error": "ZeroDivisionError: division by zero",
+    "warnings": [
+      "divide by zero encountered in log"
+    ]
+  },
+  "negative_noise_filter": {
+    "value": [
+      [
+        0.0,
+        0.2272266292246257,
+        -0.1912304735160447,
+        0.4122677263489899,
+        -0.38078884855226514,
+        0.04669309461647317,
+        0.3262271883431271,
+        -0.1514364774542616
+      ],
+      [
+        0.0,
+        0.47277337077537424,
+        -0.20876952648395525,
+        0.8877322736510098,
+        -0.4192111514477346,
+        0.15330690538352676,
+        0.7737728116568728,
+        0.05143647745426172
+      ],
+      [
+        0.0,
+        0.7,
+        -1.0091093483101496,
+        1.623507810593582,
+        -1.9350929094604037,
+        0.8476844605790936,
+        0.9186772378465894,
+        -1.069509124662749
+      ]
+    ],
+    "warnings": []
+  },
+  "failed_final_fit_accepted": {
+    "value": [
+      0.0,
+      1.0,
+      0.6,
+      1.0,
+      1.0,
+      -100.0
+    ],
+    "warnings": []
+  },
+  "misaligned_input_accepted": {
+    "value": -1.0,
+    "warnings": []
+  },
+  "future_membership_selected": [
+    "FUTURE"
+  ],
+  "constituent_data": {
+    "rows": 485,
+    "tickers": 408,
+    "from_min": "1995-01-01",
+    "open_intervals": 101,
+    "duplicates": 0
+  },
+  "filter_reset": {
+    "continuous_test_m": [
+      -0.8073184342019015,
+      0.38461206671891157,
+      -0.04390274258688684,
+      -0.3566516142797316
+    ],
+    "restarted_test_m": [
+      0.0,
+      0.9738284109626816,
+      0.38613314612312866,
+      -0.042792592232469034
+    ]
+  },
+  "missing_test_price_rejected": {
+    "error": "ValueError: Price series must contain only finite observations",
+    "warnings": []
+  },
+  "subset_pair_index": {
+    "error": "UnboundLocalError: cannot access local variable 'pairName_i' where it is not associated with a value",
+    "warnings": [
+      "datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC)."
+    ]
+  },
+  "mse_repeat": {
+    "first": [
+      [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    ],
+    "second": [
+      [
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    ],
+    "mutated_params": [
+      0,
+      1,
+      0.9,
+      1.5,
+      1,
+      0.0236
+    ]
+  },
+  "missing_lrt_power": {
+    "coords": {
+      "var_param": {
+        "dims": [
+          "var_param"
+        ],
+        "attrs": {},
+        "data": [
+          1.0
+        ]
+      },
+      "estimates": {
+        "dims": [],
+        "attrs": {},
+        "data": "lrt"
+      },
+      "quantile": {
+        "dims": [
+          "quantile"
+        ],
+        "attrs": {},
+        "data": [
+          0.05
+        ]
+      }
+    },
+    "attrs": {},
+    "dims": {
+      "var_param": 1,
+      "quantile": 1
+    },
+    "data_vars": {
+      "estimates_sample_size_100": {
+        "dims": [
+          "var_param",
+          "quantile"
+        ],
+        "attrs": {},
+        "data": [
+          [
+            0.5
+          ]
+        ]
+      }
+    }
+  },
+  "replication_import": "success",
+  "reduced_notebook_reproduction": {
+    "seed": 20261025,
+    "n_replications_per_cell": 2,
+    "sample_sizes": [
+      100,
+      1000
+    ],
+    "varying_sigma_m": [
+      0.5,
+      1.5
+    ],
+    "number_of_fits": 8,
+    "seconds": 2.597675899975002,
+    "means": {
+      "coords": {
+        "var_param": {
+          "dims": [
+            "var_param"
+          ],
+          "attrs": {},
+          "data": [
+            0.5,
+            1.5
+          ]
+        },
+        "estimates": {
+          "dims": [
+            "estimates"
+          ],
+          "attrs": {},
+          "data": [
+            "beta",
+            "rho",
+            "sigma_m",
+            "sigma_r",
+            "lrt"
+          ]
+        }
+      },
+      "attrs": {},
+      "dims": {
+        "var_param": 2,
+        "estimates": 5
+      },
+      "data_vars": {
+        "estimates_sample_size_100": {
+          "dims": [
+            "var_param",
+            "estimates"
+          ],
+          "attrs": {},
+          "data": [
+            [
+              1.0026950214402337,
+              0.6493073165061706,
+              0.7597477305979322,
+              0.7468575286192871,
+              -0.5837311639204898
+            ],
+            [
+              0.8300702193385672,
+              0.04935834533822456,
+              0.5808469354308285,
+              1.4659766013553632,
+              -0.5277757495853166
+            ]
+          ]
+        },
+        "estimates_sample_size_1000": {
+          "dims": [
+            "var_param",
+            "estimates"
+          ],
+          "attrs": {},
+          "data": [
+            [
+              1.0087009943052208,
+              0.9108793121285621,
+              0.7357562071318873,
+              0.8355725602708175,
+              -1.4659882959406332
+            ],
+            [
+              0.9846947339629109,
+              0.9001361017385379,
+              1.498684380120017,
+              1.0205936809093483,
+              -6.344858168640485
+            ]
+          ]
+        }
+      }
+    },
+    "mse": {
+      "coords": {
+        "var_param": {
+          "dims": [
+            "var_param"
+          ],
+          "attrs": {},
+          "data": [
+            0.5,
+            1.5
+          ]
+        },
+        "estimates": {
+          "dims": [
+            "estimates"
+          ],
+          "attrs": {},
+          "data": [
+            "beta",
+            "rho",
+            "sigma_m",
+            "sigma_r"
+          ]
+        }
+      },
+      "attrs": {},
+      "dims": {
+        "var_param": 2,
+        "estimates": 4
+      },
+      "data_vars": {
+        "estimates_sample_size_100": {
+          "dims": [
+            "var_param",
+            "estimates"
+          ],
+          "attrs": {},
+          "data": [
+            [
+              8.507526561303619e-06,
+              0.1318676897893984,
+              0.12315295944313812,
+              0.11464504217841529
+            ],
+            [
+              0.03785548663849536,
+              0.8868616139701836,
+              0.900029874303981,
+              0.22431585449357638
+            ]
+          ]
+        },
+        "estimates_sample_size_1000": {
+          "dims": [
+            "var_param",
+            "estimates"
+          ],
+          "attrs": {},
+          "data": [
+            [
+              0.0001525754704618877,
+              0.0003388630667776898,
+              0.05752234687456485,
+              0.027211328328009668
+            ],
+            [
+              0.00023790853459423287,
+              1.3110651998098914e-05,
+              0.016245680394638404,
+              0.01161606952471528
+            ]
+          ]
+        }
+      }
+    },
+    "warnings": [
+      "divide by zero encountered in log",
+      "divide by zero encountered in scalar divide",
+      "invalid value encountered in scalar subtract",
+      "dropping labels using list-like labels is deprecated; using dict-like arguments with `drop_sel`, e.g. `ds.drop_sel(dim=[labels])."
+    ]
+  },
+  "smoke": [
+    {
+      "value": [
+        -7.640864736908254,
+        1.0860594730570152,
+        -0.1933832500000458,
+        0.49828406634117917,
+        1.244957790191751,
+        -169.53255148586817,
+        -170.9902970629294,
+        -1.4577455770612175
+      ],
+      "warnings": [
+        "divide by zero encountered in log",
+        "divide by zero encountered in scalar divide",
+        "invalid value encountered in scalar subtract"
+      ],
+      "seed": 20261085,
+      "true_rho": 0.6,
+      "n": 100,
+      "seconds": 0.09383170027285814,
+      "optimizer_calls": 30,
+      "optimizer_failures": 4,
+      "final_calls": [
+        {
+          "success": true,
+          "fun": 169.53255148586817,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        },
+        {
+          "success": true,
+          "fun": 170.9902970629294,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        }
+      ]
+    },
+    {
+      "value": [
+        7.464540508253592,
+        0.9269684969572886,
+        0.353933355899671,
+        0.94159688690146,
+        1.1394208567717834,
+        -179.12083916739667,
+        -181.09472445229954,
+        -1.9738852849028774
+      ],
+      "warnings": [
+        "divide by zero encountered in log",
+        "divide by zero encountered in scalar divide",
+        "invalid value encountered in scalar subtract"
+      ],
+      "seed": 20261086,
+      "true_rho": 0.6,
+      "n": 100,
+      "seconds": 0.10190619993954897,
+      "optimizer_calls": 28,
+      "optimizer_failures": 3,
+      "final_calls": [
+        {
+          "success": true,
+          "fun": 179.12083916739667,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        },
+        {
+          "success": true,
+          "fun": 181.09472445229954,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        }
+      ]
+    },
+    {
+      "value": [
+        -2.9659901455552244,
+        1.0474253102046718,
+        0.7005581799492024,
+        1.202586927058595,
+        0.49451093861824946,
+        -166.55700127479142,
+        -170.12295021565592,
+        -3.5659489408645015
+      ],
+      "warnings": [
+        "divide by zero encountered in log",
+        "divide by zero encountered in scalar divide",
+        "invalid value encountered in scalar subtract"
+      ],
+      "seed": 20261087,
+      "true_rho": 0.6,
+      "n": 100,
+      "seconds": 0.08938750019297004,
+      "optimizer_calls": 26,
+      "optimizer_failures": 2,
+      "final_calls": [
+        {
+          "success": true,
+          "fun": 166.55700127479142,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        },
+        {
+          "success": true,
+          "fun": 170.12295021565592,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        }
+      ]
+    },
+    {
+      "value": [
+        -5.642948929076937,
+        1.0367037384347424,
+        -1.0,
+        0.01206799309451483,
+        1.166951413920667,
+        -157.18630557852572,
+        -158.61178628411915,
+        -1.4254807055934293
+      ],
+      "warnings": [
+        "divide by zero encountered in log",
+        "divide by zero encountered in scalar divide",
+        "invalid value encountered in scalar subtract"
+      ],
+      "seed": 20261115,
+      "true_rho": 0.9,
+      "n": 100,
+      "seconds": 0.09209210006520152,
+      "optimizer_calls": 24,
+      "optimizer_failures": 5,
+      "final_calls": [
+        {
+          "success": true,
+          "fun": 157.18630557852572,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        },
+        {
+          "success": true,
+          "fun": 158.61178628411915,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        }
+      ]
+    },
+    {
+      "value": [
+        -1.318694304392423,
+        1.0252072998727584,
+        0.9003853815691367,
+        1.1727927082840472,
+        0.5961578606304987,
+        -167.97502726154653,
+        -168.48019615615155,
+        -0.5051688946050206
+      ],
+      "warnings": [
+        "divide by zero encountered in log",
+        "divide by zero encountered in scalar divide",
+        "invalid value encountered in scalar subtract"
+      ],
+      "seed": 20261116,
+      "true_rho": 0.9,
+      "n": 100,
+      "seconds": 0.12148400023579597,
+      "optimizer_calls": 28,
+      "optimizer_failures": 6,
+      "final_calls": [
+        {
+          "success": true,
+          "fun": 167.97502726154653,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        },
+        {
+          "success": true,
+          "fun": 168.48019615615155,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        }
+      ]
+    },
+    {
+      "value": [
+        -1.3157378721794544,
+        1.0220874749677311,
+        0.9713457050521448,
+        1.0203063711827498,
+        1.164536940549721,
+        -184.0906037415281,
+        -184.21652115439107,
+        -0.1259174128629752
+      ],
+      "warnings": [
+        "divide by zero encountered in log",
+        "divide by zero encountered in scalar divide",
+        "invalid value encountered in scalar subtract"
+      ],
+      "seed": 20261117,
+      "true_rho": 0.9,
+      "n": 100,
+      "seconds": 0.10243309987708926,
+      "optimizer_calls": 28,
+      "optimizer_failures": 4,
+      "final_calls": [
+        {
+          "success": true,
+          "fun": 184.0906037415281,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        },
+        {
+          "success": true,
+          "fun": 184.21652115439107,
+          "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH"
+        }
+      ]
+    }
+  ]
+}

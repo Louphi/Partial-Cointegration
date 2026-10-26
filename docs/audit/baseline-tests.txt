@@ -1,0 +1,18 @@
+test_failed_optimizer_returns_missing_estimates (test_pipeline.PipelineTests.test_failed_optimizer_returns_missing_estimates) ... ok
+test_failed_pair_does_not_look_like_zero_estimates (test_pipeline.PipelineTests.test_failed_pair_does_not_look_like_zero_estimates) ... C:\Users\gagne\OneDrive\Documents\Synerqo\Ganesha\Partial-Cointegration\.test-deps\pinned\tqdm\std.py:580: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+  if rate and total else datetime.utcfromtimestamp(0))
+
+Processing Pairs:   0%|          | 0/2 [00:00<?, ?it/s]
+Processing Pairs: 100%|##########| 2/2 [00:00<?, ?it/s]
+ok
+test_filter_random_walk_boundary_and_reconstruction (test_pipeline.PipelineTests.test_filter_random_walk_boundary_and_reconstruction) ... ok
+test_future_missing_price_does_not_change_training_universe (test_pipeline.PipelineTests.test_future_missing_price_does_not_change_training_universe) ... ok
+test_rolling_score_is_causal_and_handles_constant_windows (test_pipeline.PipelineTests.test_rolling_score_is_causal_and_handles_constant_windows) ... ok
+test_signal_uses_transient_component_and_preserves_dates (test_pipeline.PipelineTests.test_signal_uses_transient_component_and_preserves_dates) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.058s
+
+OK
+Error with A/B and invalid prices
+Error with B/A and invalid prices

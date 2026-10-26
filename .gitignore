@@ -1,0 +1,22 @@
+.test-deps/
+__pycache__/
+*.py[cod]
+.venv/
+.venv-*/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.nbc
+*.nbi
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+build/
+dist/
+/Simulation/Outputs/
+/PCI Framework/data/data.pickle

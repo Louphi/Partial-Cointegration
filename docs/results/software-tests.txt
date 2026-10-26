@@ -1,0 +1,48 @@
+........................................................................ [ 37%]
+........................................................................ [ 74%]
+.................................................                        [100%]
+============================== warnings summary ===============================
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+  C:\Users\gagne\OneDrive\Documents\Synerqo\Ganesha\Partial-Cointegration\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:88: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+  C:\Users\gagne\OneDrive\Documents\Synerqo\Ganesha\Partial-Cointegration\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:92: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+tests/test_research_flow.py::test_simulation_summary_idempotency_and_adapter_contracts
+  C:\Users\gagne\OneDrive\Documents\Synerqo\Ganesha\Partial-Cointegration\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform win32, python 3.12.14-final-0 ----------
+Name                                      Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------
+src\partial_cointegration\__init__.py         4      0   100%
+src\partial_cointegration\data.py            46      0   100%
+src\partial_cointegration\estimation.py      90      1    99%   72
+src\partial_cointegration\execution.py      157     12    92%   55, 59, 120, 157, 161-162, 223, 263-271, 327, 334, 337
+src\partial_cointegration\filtering.py       81      1    99%   100
+src\partial_cointegration\inference.py       50      3    94%   44, 68, 90
+src\partial_cointegration\io.py              48      5    90%   46, 92, 96, 104, 107
+src\partial_cointegration\likelihood.py      71      2    97%   81-82
+src\partial_cointegration\model.py           78      1    99%   116
+src\partial_cointegration\portfolio.py       57      3    95%   21, 65, 110
+src\partial_cointegration\signals.py         47      0   100%
+src\partial_cointegration\simulation.py      52      0   100%
+src\partial_cointegration\study.py          144      6    96%   101, 134-135, 180, 182, 254
+-----------------------------------------------------------------------
+TOTAL                                       925     34    96%
+
+193 passed, 13 warnings in 29.63s

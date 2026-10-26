@@ -1,0 +1,290 @@
+{
+  "scope": "Retrospective fixed-pair daily illustration, not certified universe-wide performance",
+  "pair": [
+    "GOOG",
+    "GOOGL"
+  ],
+  "evaluation_start": "2019-01-02",
+  "evaluation_end": "2023-12-29",
+  "evaluation_n": 1258,
+  "formation": "Preceding four years, refitted every six months",
+  "normalization": "formation",
+  "entry": 1,
+  "exit": -0.5,
+  "initial_capital": 10000,
+  "final_capital": 9234.465340683197,
+  "total_return": -0.07655346593168033,
+  "max_drawdown": -0.07664851627247238,
+  "completed_round_trips": 19,
+  "rejected_requests": 56,
+  "fees_paid": 361.14106896216765,
+  "yearly_returns": {
+    "2019": -0.005514844221288007,
+    "2020": -0.026809674323738486,
+    "2021": -0.03504222755408426,
+    "2022": -0.00599925394170997,
+    "2023": -0.005234651658220679
+  },
+  "cohorts": [
+    {
+      "start": "2019-01-01",
+      "training_start": "2015-01-02",
+      "training_end": "2018-12-31",
+      "training_n": 1006,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 1.0066380037549711,
+        "rho": 0.5870381440212429,
+        "sigma_m": 0.06370975586029873,
+        "sigma_r": 0.04701170159236911,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.0012122581882387795,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2019-07-01",
+      "training_start": "2015-07-01",
+      "training_end": "2019-06-28",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 1.005156211444361,
+        "rho": 0.5777970245545944,
+        "sigma_m": 0.06543239778633697,
+        "sigma_r": 0.045818653818876544,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.004307808208823705,
+      "pair_entries": 1,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2020-01-01",
+      "training_start": "2016-01-04",
+      "training_end": "2019-12-31",
+      "training_n": 1006,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 1.0007477973371888,
+        "rho": 0.43865751788328544,
+        "sigma_m": 0.05819740628047675,
+        "sigma_r": 0.04309594423271617,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.01441675284816546,
+      "pair_entries": 3,
+      "rejected_requests": 7,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2020-07-01",
+      "training_start": "2016-07-01",
+      "training_end": "2020-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 1.0020258718794948,
+        "rho": 0.3852862517303298,
+        "sigma_m": 0.060063470183170445,
+        "sigma_r": 0.04427473794275185,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.012574200618148179,
+      "pair_entries": 3,
+      "rejected_requests": 6,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2021-01-01",
+      "training_start": "2017-01-03",
+      "training_end": "2020-12-31",
+      "training_n": 1007,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.9975097153991731,
+        "rho": 0.267794858762477,
+        "sigma_m": 0.06350023769018484,
+        "sigma_r": 0.04761270286198367,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.014903202387252623,
+      "pair_entries": 3,
+      "rejected_requests": 12,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2021-07-01",
+      "training_start": "2017-07-03",
+      "training_end": "2021-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.993473921141658,
+        "rho": -0.18537490808386672,
+        "sigma_m": 0.05466173320693311,
+        "sigma_r": 0.10694553267102895,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.020443701792185243,
+      "pair_entries": 5,
+      "rejected_requests": 21,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2022-01-01",
+      "training_start": "2018-01-02",
+      "training_end": "2021-12-31",
+      "training_n": 1008,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.9930605051877869,
+        "rho": 0.7174716816308757,
+        "sigma_m": 0.16463602568834546,
+        "sigma_r": 0.13574596244656476,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.003973182774126061,
+      "pair_entries": 1,
+      "rejected_requests": 5,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2022-07-01",
+      "training_start": "2018-07-02",
+      "training_end": "2022-06-30",
+      "training_n": 1007,
+      "evaluation_n": 127,
+      "parameters": {
+        "beta": 0.995293589877846,
+        "rho": 0.7080224085201878,
+        "sigma_m": 0.1790311953832092,
+        "sigma_r": 0.13450315119743048,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.0020341532301578757,
+      "pair_entries": 1,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2023-01-01",
+      "training_start": "2019-01-02",
+      "training_end": "2022-12-30",
+      "training_n": 1008,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.992199985388109,
+        "rho": 0.7032308022103849,
+        "sigma_m": 0.17887335178063404,
+        "sigma_r": 0.135837852802299,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.005234651658220679,
+      "pair_entries": 1,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2023-07-01",
+      "training_start": "2019-07-01",
+      "training_end": "2023-06-30",
+      "training_n": 1008,
+      "evaluation_n": 126,
+      "parameters": {
+        "beta": 0.9905240818702711,
+        "rho": 0.6984640610917038,
+        "sigma_m": 0.1825084211318776,
+        "sigma_r": 0.13993049309070166,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 2,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    }
+  ],
+  "execution": {
+    "capital": 10000,
+    "fees": 0.001,
+    "slippage": 0.001,
+    "annual_borrow": 0.01,
+    "gross_leverage": 1.0,
+    "liquidate": true,
+    "borrow_observations_per_year": 252.0
+  },
+  "accounting": "One capital account rolled forward, flat at each six-month boundary; daily cash/equity independently reconciled within $1e-8",
+  "price_basis": "Vendor split-adjusted Close, not dividend-adjusted Adj Close. Dividend entitlements accrue to carried holdings on ex-dates: longs receive and shorts owe. No separate payment-date receivables/taxes modeled. Model/signal inputs also use Close, not adjusted-close units.",
+  "net_dividend_accrual": 0.0,
+  "sources": {
+    "GOOG": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?interval=1d&events=div%2Csplits&includePrePost=false&period1=1420070400&period2=1704067200",
+      "raw_sha256": "82475a22580cceb0d426e1b3553016cbdac366757bda979844e598fa0a947758",
+      "events": {
+        "splits": {
+          "1430141400": {
+            "date": 1430141400,
+            "numerator": 10027455.0,
+            "denominator": 10000000.0,
+            "splitRatio": "10027455:10000000"
+          },
+          "1658151000": {
+            "date": 1658151000,
+            "numerator": 20.0,
+            "denominator": 1.0,
+            "splitRatio": "20:1"
+          }
+        }
+      }
+    },
+    "GOOGL": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOGL?interval=1d&events=div%2Csplits&includePrePost=false&period1=1420070400&period2=1704067200",
+      "raw_sha256": "c269fdefd83a5bc46e74146c99ff7844305ab38dae97edc07734729a0212075d",
+      "events": {
+        "splits": {
+          "1658151000": {
+            "date": 1658151000,
+            "numerator": 20.0,
+            "denominator": 1.0,
+            "splitRatio": "20:1"
+          }
+        }
+      }
+    }
+  },
+  "corporate_action_review": "Original snapshot corporate-action guard",
+  "package_fingerprint": "fdd6dd50c94b4a7152aa523074cf96d343ec2d2f2c5214f4af639a4ad9325f33",
+  "script_sha256": "9440fcadda35292f1752bc047c68f2178d73e5f72ef8cc2a9f09e6983cd677d6",
+  "created_utc": "2026-10-26T02:34:17.893279+00:00",
+  "limitations": [
+    "Fixed pair; no broad pair-universe selection or reverse-orientation search",
+    "Ex-dividend cash-accrual approximation, not actual payment-date cash settlement; raw ex-dividend price gaps remain in signal inputs",
+    "Vendor history is not point-in-time audited",
+    "Borrow availability/actual costs unverified; 1% annual charge assumed",
+    "Period selected retrospectively before this run; no parameter or threshold search",
+    "No untouched future test or calibrated profitability significance claim"
+  ]
+}

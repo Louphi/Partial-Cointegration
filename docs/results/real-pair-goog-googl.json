@@ -1,0 +1,116 @@
+{
+  "data_kind": "market",
+  "scope": "Exploratory fixed-pair illustration, not full-universe certification",
+  "pair_chosen_before_results": [
+    "GOOG",
+    "GOOGL"
+  ],
+  "pair_rationale": "Same issuer, different share classes; no performance-based pair search",
+  "training": {
+    "start": "2019-01-02",
+    "end": "2022-12-30",
+    "n": 1008
+  },
+  "evaluation": {
+    "start": "2023-01-03",
+    "end": "2023-06-30",
+    "n": 124
+  },
+  "normalization": "formation",
+  "entry": 1,
+  "exit": -0.5,
+  "parameters": {
+    "beta": 0.992199985388109,
+    "rho": 0.7032308022103849,
+    "sigma_m": 0.17887335178063404,
+    "sigma_r": 0.135837852802299,
+    "alpha": 0.0
+  },
+  "fit_options": {
+    "seed": 20261025,
+    "random_starts": 2,
+    "rho_limit": 0.9999,
+    "max_iterations": 300,
+    "tolerance": 1e-10
+  },
+  "selected_model": "mixed",
+  "log_ratio": -15.116968411120297,
+  "execution": {
+    "capital": 10000,
+    "fees": 0.001,
+    "slippage": 0.001,
+    "annual_borrow": 0.01,
+    "gross_leverage": 1.0,
+    "liquidate": true
+  },
+  "stats": {
+    "Initial capital": 10000.0,
+    "Final value": 9947.653483417787,
+    "Total return": -0.005234651658221234,
+    "Fees paid": 18.75250128029184,
+    "Rejected/unfilled requests": 1.0
+  },
+  "max_drawdown": -0.005234651658221234,
+  "completed_pair_entries": 1,
+  "completed_pair_exits": 1,
+  "accounting_oracle": "Daily cash/equity reconstructed independently from executed orders and vendor closes; agreement within 1e-8 USD",
+  "executed_trade_attribution_usd": {
+    "price_pnl_before_costs": -10.404924894434771,
+    "fees": 18.75250128029184,
+    "assumed_slippage": 18.75249087536606,
+    "assumed_borrow": 4.43659953211646,
+    "net_pnl": -52.346516582212644
+  },
+  "unexecuted_requests_by_reason": {
+    "insufficient gross margin": 1
+  },
+  "cash_benchmark_return": 0,
+  "source": "Yahoo Finance daily public chart responses, saved locally with digests",
+  "price_basis": "Vendor Close field, split-adjusted historical series; not dividend-adjusted Adj Close. No evaluation-period corporate actions in vendor responses.",
+  "training_split": "Both classes had a 20:1 split in July 2022; vendor historical closes share the post-split basis",
+  "sources": {
+    "GOOG": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?period1=1546300800&period2=1688169600&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "raw_sha256": "055244a6e0b721c158462bfd8e03372ccd10df6e0651c5d4bec832efc6707a3c",
+      "events": {
+        "splits": {
+          "1658151000": {
+            "date": 1658151000,
+            "numerator": 20.0,
+            "denominator": 1.0,
+            "splitRatio": "20:1"
+          }
+        }
+      },
+      "observations": 1132
+    },
+    "GOOGL": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOGL?period1=1546300800&period2=1688169600&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "raw_sha256": "ada6c4f405e70332928facca02cda4089a9eee9a153a8ae7a27e416abe8207d9",
+      "events": {
+        "splits": {
+          "1658151000": {
+            "date": 1658151000,
+            "numerator": 20.0,
+            "denominator": 1.0,
+            "splitRatio": "20:1"
+          }
+        }
+      },
+      "observations": 1132
+    }
+  },
+  "estimator_fingerprint": "90ca50c2f831b05f40c0afe1ee273c4bfd32cd94b2668561b0eee6f1ce553a6f",
+  "package_fingerprint": "c26233607258451e57443b05770bbfb7cf2e1032244db956502ee8c93f8fee1b",
+  "script_sha256": "bb2e92133b5b2bce71c2c461bb4fe39455b7fc3e47661711522cf63f5d07ba56",
+  "report_created_utc": "2026-10-26T01:33:11.705247+00:00",
+  "vendor_cache_policy": "Reuse local raw JSON when present; source digests identify the exact downloaded snapshot",
+  "qualified_historical_performance_verified": false,
+  "limitations": [
+    "One retrospectively chosen pair/window; not a preregistration before the historical period or an untouched future test",
+    "Current vendor history, not a point-in-time vendor archive; no independent exchange-price reconciliation",
+    "Borrow availability and actual borrow fees unknown; 1% annual rate is an assumption",
+    "Fractional-share, daily-close ledger; no intraday margin calls, financing or market impact beyond assumed slippage",
+    "No calibrated significance claim, universe selection or threshold tuning"
+  ]
+}
