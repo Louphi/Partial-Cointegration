@@ -62,6 +62,10 @@ An [exploratory real-price example](docs/results/real-pair-goog-googl.json) uses
 
 Run `.venv/Scripts/python experiments/real_pair_example.py` to reproduce it. The command keeps raw vendor responses, prices and full ledgers in ignored `.test-deps/real-pair-goog-googl/`, records source digests in the compact report and independently reconstructs daily cash/equity from executed orders. It uses the Close field rather than dividend-adjusted Adj Close; vendor records contain no evaluation-period dividends/splits. Deleting cached responses downloads a new vendor snapshot and can change results. No pair or threshold search is performed.
 
+The [longer daily example](docs/results/longer-pair-goog-googl.json) evaluates 2019–2023, refitting the preceding four years every six months and rolling one capital account forward. With the same pair and rules, $10,000 became $9,234.47 (−7.66%), across 19 completed round trips and 56 rejected requests. Reproduce with `experiments/longer_pair_example.py`. This remains a retrospective, fixed-pair illustration with assumed costs.
+
+The [one-minute prototype](docs/results/minute-pair-goog-googl.json) fits three complete sessions and evaluates two later sessions from a cached five-day public-price snapshot. It shifts vendor bar-start timestamps to completed-bar end, requires all 390 regular minutes per session, closes positions daily, and uses 252×390 borrow observations/year. It completed two round trips and returned −0.78%, with 54 rejected requests. The fixed initial-capital sizing/capacity policy materially limits executions after losses; these results do not describe all signal opportunities. Reproduce with `experiments/minute_pair_example.py`. Two sessions, session-compressed overnight filtering and assumed close-price fills cannot validate an intraday strategy; actual bid/ask quotes, latency, availability and a longer archive remain unverified. Minute parameters are refitted rather than copied from the daily model.
+
 ## Research status and documentation
 
 - [Implementation status](docs/implementation-status.md): task-by-task acceptance and evidence.

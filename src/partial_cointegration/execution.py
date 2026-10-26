@@ -10,7 +10,11 @@ from .data import validate_prices
 
 @dataclass(frozen=True)
 class ExecutionConfig:
-    """Costs are fractions per fill; borrow is charged per row/252."""
+    """Costs are per fill; borrow accrues per row at a declared frequency.
+
+    The default is daily (252 rows/year). A minute adapter must explicitly
+    supply its frequency and handle session boundaries/overnight exposure.
+    """
 
     capital: float = 1.0
     fees: float = 0.001
@@ -18,6 +22,7 @@ class ExecutionConfig:
     annual_borrow: float = 0.0
     gross_leverage: float = 1.0
     liquidate: bool = True
+    borrow_observations_per_year: float = 252.0
 
     def __post_init__(self) -> None:
         if (
@@ -28,10 +33,12 @@ class ExecutionConfig:
                     self.slippage,
                     self.annual_borrow,
                     self.gross_leverage,
+                    self.borrow_observations_per_year,
                 ]
             ).all()
             or self.capital <= 0
             or self.gross_leverage <= 0
+            or self.borrow_observations_per_year <= 0
             or min(self.fees, self.slippage, self.annual_borrow) < 0
             or self.slippage >= 1
         ):
@@ -144,7 +151,7 @@ def backtest_pairs(
         before = total_holdings()
         borrow = (
             c.annual_borrow
-            / 252
+            / c.borrow_observations_per_year
             * sum(max(-before[s], 0) * marks[s] for s in frame if before[s] != 0)
         )
         cash -= borrow

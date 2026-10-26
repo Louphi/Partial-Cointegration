@@ -56,6 +56,34 @@ def test_next_close_constant_round_trip_and_actual_engine_oracle():
     assert out.holdings.iloc[-1].eq(0).all()
 
 
+def test_declared_minute_borrow_frequency_matches_hand_worked_charge():
+    prices, entries, exits = fixture()
+    dates = pd.date_range(
+        "2023-01-03 09:31", periods=5, freq="min", tz="America/New_York"
+    )
+    prices.index = entries.index = exits.index = dates
+    for frequency in [252, 252 * 390]:
+        result = backtest_pairs(
+            prices,
+            {"A/B": ("A", "B", 1)},
+            entries,
+            exits,
+            config=ExecutionConfig(
+                fees=0,
+                slippage=0,
+                annual_borrow=0.1,
+                borrow_observations_per_year=frequency,
+            ),
+        )
+        # One unit /30: short value 20/30, held over two charged intervals.
+        assert result.equity.iloc[-1] == pytest.approx(
+            1 - 2 * (20 / 30) * 0.1 / frequency, abs=1e-12
+        )
+    for invalid in [0, -1, np.inf]:
+        with pytest.raises(ValueError):
+            ExecutionConfig(borrow_observations_per_year=invalid)
+
+
 def test_known_price_move_shared_capital_and_final_signal():
     p, e, x = fixture()
     p.loc[p.index[2] :, "A"] = 12.0

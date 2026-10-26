@@ -1,0 +1,83 @@
+{
+  "scope": "Short minute-data mechanics prototype; not an intraday profitability certification",
+  "pair": [
+    "GOOG",
+    "GOOGL"
+  ],
+  "formation_sessions": [
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21"
+  ],
+  "evaluation_sessions": [
+    "2026-10-22",
+    "2026-10-23"
+  ],
+  "formation_bars": 1170,
+  "evaluation_bars": 780,
+  "parameters": {
+    "beta": 1.0245382507982368,
+    "rho": -0.01759426132400857,
+    "sigma_m": 0.02663627032540837,
+    "sigma_r": 0.02424249106386316,
+    "alpha": 0.0
+  },
+  "initial_capital": 10000,
+  "final_capital": 9921.841453891213,
+  "total_return": -0.007815854610878747,
+  "completed_round_trips": 2,
+  "rejected_requests": 54,
+  "rejected_requests_by_reason": {
+    "insufficient gross margin": 54
+  },
+  "sessions": [
+    {
+      "date": "2026-10-22",
+      "completed_round_trips": 1,
+      "return": -0.0038561971075223855,
+      "rejected_requests": 27
+    },
+    {
+      "date": "2026-10-23",
+      "completed_round_trips": 1,
+      "return": -0.003974985832224998,
+      "rejected_requests": 27
+    }
+  ],
+  "fees_paid": 39.84067554585138,
+  "normalization": "formation",
+  "entry": 1,
+  "exit": -0.5,
+  "fees_per_fill": 0.001,
+  "slippage_per_fill": 0.001,
+  "annual_borrow": 0.01,
+  "borrow_observations_per_year": 98280,
+  "overnight_positions": false,
+  "bar_timestamps": "Vendor minute-start timestamps shifted to completed-bar end; fills occur at a later completed bar",
+  "accounting": "Session-by-session flat close, rolled capital; independently reconciled equity to $1e-8",
+  "sources": {
+    "GOOG": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?interval=1m&events=div%2Csplits&includePrePost=false&range=5d",
+      "raw_sha256": "67a3317767aace3b87f5a968b2716c3f5aa8335ad4a5bc019fc76dc426139faa",
+      "vendor_bars": 1951,
+      "excluded_outside_regular_session": 1
+    },
+    "GOOGL": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOGL?interval=1m&events=div%2Csplits&includePrePost=false&range=5d",
+      "raw_sha256": "31fe3e331d1b3c7713ea04002127023f04a3efa94734836b777092f812f5bc57",
+      "vendor_bars": 1951,
+      "excluded_outside_regular_session": 1
+    }
+  },
+  "package_fingerprint": "32edd17fafbc57e02c5594de01b07561b70428bd0239ac499642beef1e4142a5",
+  "script_sha256": "669afe6d9f745878d3ee98ae5edc10cba899a8919fefb6afe99696cfac4922a8",
+  "created_utc": "2026-10-26T01:55:10.892989+00:00",
+  "limitations": [
+    "Only two evaluation sessions; not evidence of stable performance",
+    "Session-compressed observation-clock filtering: training/test overnight state transitions are not separately modeled",
+    "Minute closing trades are not synchronized bid/ask executable quotes; spread/latency/partial fills unverified",
+    "Cost/borrow assumptions are illustrative, not verified broker terms",
+    "Each session must have all 390 regular minutes; early closes and missing minutes rejected",
+    "No reuse of daily parameters or daily critical values; no significance claim"
+  ]
+}
