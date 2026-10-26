@@ -1,8 +1,20 @@
-# GOOG / GOOGL backtest graphs
+# Pair backtest graphs
 
 These are hypothetical account values computed from real public price history, not actual brokerage returns. Both examples assume 0.10% fees and 0.10% slippage per fill, plus 1% annual short borrow under the stated observation-clock convention. Neither example is a certified profitability result.
 
-## Five-year daily test
+## PepsiCo / Coca-Cola: daily test
+
+![Pepsi/Coke daily account value and annual returns](results/daily-pair-performance-pep-ko.png)
+
+The same 2019–2023 walk-forward setup completed six round trips and rejected two requests. $10,000 became $11,226.12 (+12.26%) after assumed costs and net dividend accrual of −$88.46. Long dividend entitlements and short dividend liabilities accrue as cash on vendor ex-dates, rather than payment dates; taxes and funding differences are not modeled. Six trades do not establish repeatable profitability. [Measured daily result](results/longer-pair-pep-ko.json).
+
+## PepsiCo / Coca-Cola: minute sample
+
+![Pepsi/Coke minute sample stays in cash](results/minute-pair-performance-pep-ko.png)
+
+The three-session formation fit selected the pure random-walk boundary with zero transient variance. The following October 22–23, 2026 sessions therefore had no trades and remained at $10,000. This is a fit outcome in a very short sample, not proof that mean reversion never exists. [Measured minute result](results/minute-pair-pep-ko.json).
+
+## Alphabet: five-year daily test
 
 ![Daily account value and annual returns](results/daily-pair-performance.png)
 
@@ -10,7 +22,7 @@ The model refits on the preceding four years every six months. One capital accou
 
 [Measured daily result](results/longer-pair-goog-googl.json).
 
-## One-minute prototype
+## Alphabet: one-minute prototype
 
 ![Minute account value by session](results/minute-pair-performance.png)
 

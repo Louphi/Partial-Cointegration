@@ -1,0 +1,559 @@
+{
+  "scope": "Retrospective fixed-pair daily illustration, not certified universe-wide performance",
+  "pair": [
+    "PEP",
+    "KO"
+  ],
+  "evaluation_start": "2019-01-02",
+  "evaluation_end": "2023-12-29",
+  "evaluation_n": 1258,
+  "formation": "Preceding four years, refitted every six months",
+  "normalization": "formation",
+  "entry": 1,
+  "exit": -0.5,
+  "initial_capital": 10000,
+  "final_capital": 11226.116853915852,
+  "total_return": 0.12261168539158507,
+  "max_drawdown": -0.05024377587167128,
+  "completed_round_trips": 6,
+  "rejected_requests": 2,
+  "fees_paid": 120.25074439172175,
+  "yearly_returns": {
+    "2019": 0.03735363931431346,
+    "2020": 0.02741708254507058,
+    "2021": 0.01237659334217156,
+    "2022": 0.04043234668368645,
+    "2023": 0.0
+  },
+  "cohorts": [
+    {
+      "start": "2019-01-01",
+      "training_start": "2015-01-02",
+      "training_end": "2018-12-31",
+      "training_n": 1006,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.27784460348018303,
+        "rho": 0.873007245537077,
+        "sigma_m": 0.16738056581698094,
+        "sigma_r": 0.1844588196675641,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.03735363931431346,
+      "pair_entries": 3,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -15.665088883366519,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2019-07-01",
+      "training_start": "2015-07-01",
+      "training_end": "2019-06-28",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.28435304408008366,
+        "rho": 0.9874812577959873,
+        "sigma_m": 0.28786022483582324,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2020-01-01",
+      "training_start": "2016-01-04",
+      "training_end": "2019-12-31",
+      "training_n": 1006,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.27889992303911376,
+        "rho": 0.9867306505185114,
+        "sigma_m": 0.3104339001069832,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "ar",
+      "return": 0.02741708254507058,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -16.013642823587865,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2020-07-01",
+      "training_start": "2016-07-01",
+      "training_end": "2020-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.27697047291708665,
+        "rho": 0.9917894480162346,
+        "sigma_m": 0.39101022397773905,
+        "sigma_r": 0.08141821850734152,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2021-01-01",
+      "training_start": "2017-01-03",
+      "training_end": "2020-12-31",
+      "training_n": 1007,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.27691471140544466,
+        "rho": 0.986697126041908,
+        "sigma_m": 0.43529227667103176,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "ar",
+      "return": 0.01237659334217156,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -45.97084009974278,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2021-07-01",
+      "training_start": "2017-07-03",
+      "training_end": "2021-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.2749398040239527,
+        "rho": 0.9861711315659786,
+        "sigma_m": 0.45194398380366435,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2022-01-01",
+      "training_start": "2018-01-02",
+      "training_end": "2021-12-31",
+      "training_n": 1008,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.27546273810500993,
+        "rho": 0.9857712470386107,
+        "sigma_m": 0.46198682544412706,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2022-07-01",
+      "training_start": "2018-07-02",
+      "training_end": "2022-06-30",
+      "training_n": 1007,
+      "evaluation_n": 127,
+      "parameters": {
+        "beta": 0.2843709630089101,
+        "rho": 0.9852544528828328,
+        "sigma_m": 0.47916505198617976,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "ar",
+      "return": 0.04043234668368645,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -10.80886834779675,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2023-01-01",
+      "training_start": "2019-01-02",
+      "training_end": "2022-12-30",
+      "training_n": 1008,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.28694969174336044,
+        "rho": 0.986367389035065,
+        "sigma_m": 0.46653985645429,
+        "sigma_r": 0.13323463310943182,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2023-07-01",
+      "training_start": "2019-07-01",
+      "training_end": "2023-06-30",
+      "training_n": 1008,
+      "evaluation_n": 126,
+      "parameters": {
+        "beta": 0.2832194599968873,
+        "rho": 0.9870265940337448,
+        "sigma_m": 0.4597551330326149,
+        "sigma_r": 0.09915626485895405,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    }
+  ],
+  "execution": {
+    "capital": 10000,
+    "fees": 0.001,
+    "slippage": 0.001,
+    "annual_borrow": 0.01,
+    "gross_leverage": 1.0,
+    "liquidate": true,
+    "borrow_observations_per_year": 252.0
+  },
+  "accounting": "One capital account rolled forward, flat at each six-month boundary; daily cash/equity independently reconciled within $1e-8",
+  "price_basis": "Vendor split-adjusted Close, not dividend-adjusted Adj Close. Dividend entitlements accrue to carried holdings on ex-dates: longs receive and shorts owe. No separate payment-date receivables/taxes modeled. Model/signal inputs also use Close, not adjusted-close units.",
+  "net_dividend_accrual": -88.45844015449391,
+  "sources": {
+    "PEP": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/PEP?interval=1d&events=div%2Csplits&includePrePost=false&period1=1420070400&period2=1704067200",
+      "raw_sha256": "2dd5b596a671085f491fc0fb42caa6aea48207b91a6d1521157f660ff2b03281",
+      "events": {
+        "dividends": {
+          "1425479400": {
+            "amount": 0.655,
+            "date": 1425479400
+          },
+          "1433338200": {
+            "amount": 0.703,
+            "date": 1433338200
+          },
+          "1441200600": {
+            "amount": 0.703,
+            "date": 1441200600
+          },
+          "1449066600": {
+            "amount": 0.703,
+            "date": 1449066600
+          },
+          "1456929000": {
+            "amount": 0.703,
+            "date": 1456929000
+          },
+          "1464787800": {
+            "amount": 0.753,
+            "date": 1464787800
+          },
+          "1472650200": {
+            "amount": 0.753,
+            "date": 1472650200
+          },
+          "1480516200": {
+            "amount": 0.753,
+            "date": 1480516200
+          },
+          "1488378600": {
+            "amount": 0.753,
+            "date": 1488378600
+          },
+          "1496237400": {
+            "amount": 0.805,
+            "date": 1496237400
+          },
+          "1504099800": {
+            "amount": 0.805,
+            "date": 1504099800
+          },
+          "1512052200": {
+            "amount": 0.805,
+            "date": 1512052200
+          },
+          "1519914600": {
+            "amount": 0.805,
+            "date": 1519914600
+          },
+          "1527773400": {
+            "amount": 0.928,
+            "date": 1527773400
+          },
+          "1536240600": {
+            "amount": 0.928,
+            "date": 1536240600
+          },
+          "1544106600": {
+            "amount": 0.928,
+            "date": 1544106600
+          },
+          "1551364200": {
+            "amount": 0.928,
+            "date": 1551364200
+          },
+          "1559827800": {
+            "amount": 0.955,
+            "date": 1559827800
+          },
+          "1567690200": {
+            "amount": 0.955,
+            "date": 1567690200
+          },
+          "1575556200": {
+            "amount": 0.955,
+            "date": 1575556200
+          },
+          "1583418600": {
+            "amount": 0.955,
+            "date": 1583418600
+          },
+          "1591277400": {
+            "amount": 1.023,
+            "date": 1591277400
+          },
+          "1599139800": {
+            "amount": 1.023,
+            "date": 1599139800
+          },
+          "1607005800": {
+            "amount": 1.023,
+            "date": 1607005800
+          },
+          "1614868200": {
+            "amount": 1.023,
+            "date": 1614868200
+          },
+          "1622727000": {
+            "amount": 1.075,
+            "date": 1622727000
+          },
+          "1630589400": {
+            "amount": 1.075,
+            "date": 1630589400
+          },
+          "1638455400": {
+            "amount": 1.075,
+            "date": 1638455400
+          },
+          "1646317800": {
+            "amount": 1.075,
+            "date": 1646317800
+          },
+          "1654176600": {
+            "amount": 1.15,
+            "date": 1654176600
+          },
+          "1662039000": {
+            "amount": 1.15,
+            "date": 1662039000
+          },
+          "1669905000": {
+            "amount": 1.15,
+            "date": 1669905000
+          },
+          "1677767400": {
+            "amount": 1.15,
+            "date": 1677767400
+          },
+          "1685626200": {
+            "amount": 1.265,
+            "date": 1685626200
+          },
+          "1693488600": {
+            "amount": 1.265,
+            "date": 1693488600
+          },
+          "1701354600": {
+            "amount": 1.265,
+            "date": 1701354600
+          }
+        }
+      }
+    },
+    "KO": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/KO?interval=1d&events=div%2Csplits&includePrePost=false&period1=1420070400&period2=1704067200",
+      "raw_sha256": "6043b3d6c74fd1340ce4ecf00eae7581b72c267a63764ac66ddede2bdc9eb63b",
+      "events": {
+        "dividends": {
+          "1426167000": {
+            "amount": 0.33,
+            "date": 1426167000
+          },
+          "1434029400": {
+            "amount": 0.33,
+            "date": 1434029400
+          },
+          "1441978200": {
+            "amount": 0.33,
+            "date": 1441978200
+          },
+          "1448634600": {
+            "amount": 0.33,
+            "date": 1448634600
+          },
+          "1457706600": {
+            "amount": 0.35,
+            "date": 1457706600
+          },
+          "1465824600": {
+            "amount": 0.35,
+            "date": 1465824600
+          },
+          "1473773400": {
+            "amount": 0.35,
+            "date": 1473773400
+          },
+          "1480429800": {
+            "amount": 0.35,
+            "date": 1480429800
+          },
+          "1489411800": {
+            "amount": 0.37,
+            "date": 1489411800
+          },
+          "1497360600": {
+            "amount": 0.37,
+            "date": 1497360600
+          },
+          "1505395800": {
+            "amount": 0.37,
+            "date": 1505395800
+          },
+          "1512052200": {
+            "amount": 0.37,
+            "date": 1512052200
+          },
+          "1521034200": {
+            "amount": 0.39,
+            "date": 1521034200
+          },
+          "1528983000": {
+            "amount": 0.39,
+            "date": 1528983000
+          },
+          "1536845400": {
+            "amount": 0.39,
+            "date": 1536845400
+          },
+          "1543501800": {
+            "amount": 0.39,
+            "date": 1543501800
+          },
+          "1552570200": {
+            "amount": 0.4,
+            "date": 1552570200
+          },
+          "1560432600": {
+            "amount": 0.4,
+            "date": 1560432600
+          },
+          "1568381400": {
+            "amount": 0.4,
+            "date": 1568381400
+          },
+          "1575037800": {
+            "amount": 0.4,
+            "date": 1575037800
+          },
+          "1584106200": {
+            "amount": 0.41,
+            "date": 1584106200
+          },
+          "1591968600": {
+            "amount": 0.41,
+            "date": 1591968600
+          },
+          "1600090200": {
+            "amount": 0.41,
+            "date": 1600090200
+          },
+          "1606746600": {
+            "amount": 0.41,
+            "date": 1606746600
+          },
+          "1615559400": {
+            "amount": 0.42,
+            "date": 1615559400
+          },
+          "1623677400": {
+            "amount": 0.42,
+            "date": 1623677400
+          },
+          "1631626200": {
+            "amount": 0.42,
+            "date": 1631626200
+          },
+          "1638282600": {
+            "amount": 0.42,
+            "date": 1638282600
+          },
+          "1647264600": {
+            "amount": 0.44,
+            "date": 1647264600
+          },
+          "1655213400": {
+            "amount": 0.44,
+            "date": 1655213400
+          },
+          "1663248600": {
+            "amount": 0.44,
+            "date": 1663248600
+          },
+          "1669818600": {
+            "amount": 0.44,
+            "date": 1669818600
+          },
+          "1678973400": {
+            "amount": 0.46,
+            "date": 1678973400
+          },
+          "1686835800": {
+            "amount": 0.46,
+            "date": 1686835800
+          },
+          "1694698200": {
+            "amount": 0.46,
+            "date": 1694698200
+          },
+          "1701354600": {
+            "amount": 0.46,
+            "date": 1701354600
+          }
+        }
+      }
+    }
+  },
+  "package_fingerprint": "fdd6dd50c94b4a7152aa523074cf96d343ec2d2f2c5214f4af639a4ad9325f33",
+  "script_sha256": "880dc2c3e346bcb8b9fc5a0a203280ac2b5a5cf5cee8329d5dbcecebf52da829",
+  "created_utc": "2026-10-26T02:15:56.166840+00:00",
+  "limitations": [
+    "Fixed pair; no broad pair-universe selection or reverse-orientation search",
+    "Ex-dividend cash-accrual approximation, not actual payment-date cash settlement; raw ex-dividend price gaps remain in signal inputs",
+    "Vendor history is not point-in-time audited",
+    "Borrow availability/actual costs unverified; 1% annual charge assumed",
+    "Period selected retrospectively before this run; no parameter or threshold search",
+    "No untouched future test or calibrated profitability significance claim"
+  ]
+}

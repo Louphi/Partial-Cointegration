@@ -84,6 +84,55 @@ def test_declared_minute_borrow_frequency_matches_hand_worked_charge():
             ExecutionConfig(borrow_observations_per_year=invalid)
 
 
+def test_dividend_entitlements_follow_previous_holdings_and_short_liability():
+    prices, entries, exits = fixture()
+    distributions = pd.DataFrame(0.0, index=prices.index, columns=["A", "B"])
+    distributions.iloc[1] = [99, 0]  # New entry at this close has no entitlement.
+    distributions.iloc[2] = [3, 1]  # Long receives 3/30; short owes 1/30.
+    distributions.iloc[3] = [0, 1]  # Exit today still owes the carried short dividend.
+    distributions.iloc[4] = [99, 0]  # Flat positions have no entitlement.
+    result = backtest_pairs(
+        prices,
+        {"A/B": ("A", "B", 1)},
+        entries,
+        exits,
+        config=ExecutionConfig(fees=0, slippage=0),
+        cash_distributions=distributions,
+    )
+    np.testing.assert_allclose(
+        result.cash_distributions, [0, 0, 2 / 30, -1 / 30, 0], atol=1e-12
+    )
+    assert result.equity.iloc[-1] == pytest.approx(1 + 1 / 30)
+    with pytest.raises(ValueError, match="cash distributions"):
+        replay_vectorbt(result, prices)
+    for bad in [
+        distributions.iloc[1:],
+        distributions.assign(unknown=0),
+        distributions * -1,
+    ]:
+        with pytest.raises(ValueError, match="Cash distributions"):
+            backtest_pairs(
+                prices, {"A/B": ("A", "B", 1)}, entries, exits, cash_distributions=bad
+            )
+
+
+def test_ex_dividend_price_drop_and_cash_entitlement_do_not_create_profit():
+    prices, entries, exits = fixture()
+    prices.loc[prices.index[2] :, ["A", "B"]] = [9.0, 18.0]
+    dividends = pd.DataFrame(0.0, index=prices.index, columns=["A", "B"])
+    dividends.iloc[2] = [1, 2]
+    result = backtest_pairs(
+        prices,
+        {"A/B": ("A", "B", 1)},
+        entries,
+        exits,
+        config=ExecutionConfig(fees=0, slippage=0),
+        cash_distributions=dividends,
+    )
+    np.testing.assert_allclose(result.equity, 1, atol=1e-12)
+    assert result.cash_distributions.iloc[2] == pytest.approx(-1 / 30)
+
+
 def test_known_price_move_shared_capital_and_final_signal():
     p, e, x = fixture()
     p.loc[p.index[2] :, "A"] = 12.0

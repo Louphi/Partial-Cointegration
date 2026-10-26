@@ -56,6 +56,7 @@ class LedgerResult:
     rejections: Any
     stale_valuation: Any
     config: ExecutionConfig
+    cash_distributions: Any = None
 
     def value(self) -> Any:
         """Portfolio value on one committed-capital denominator."""
@@ -83,6 +84,7 @@ def backtest_pairs(
     config: ExecutionConfig | None = None,
     weights: dict[str, float] | None = None,
     settlements: dict[str, float] | None = None,
+    cash_distributions: Any = None,
 ) -> LedgerResult:
     """Fill decisions at a strictly later observed quote, using decision-time units.
 
@@ -90,6 +92,9 @@ def backtest_pairs(
     Portfolio gross margin is checked before entry; short sale proceeds are not
     treated as additional capacity. Missing marks are valuation-only and flagged.
     Terminal settlement values are explicit cash payments, never inferred prices.
+    Optional per-share cash distributions accrue before executions to positions
+    carried from the preceding row: longs receive, shorts owe. Ex-date inputs
+    imply ex-date cash accrual, not a modeled payment-date receivable schedule.
     """
     c = config or ExecutionConfig()
     frame = validate_prices(prices)
@@ -121,6 +126,20 @@ def backtest_pairs(
     ):
         raise ValueError("Positive pair weights must sum to at most one")
     settlement = settlements or {}
+    distributions = pd.DataFrame(0.0, index=frame.index, columns=frame.columns)
+    if cash_distributions is not None:
+        if (
+            not isinstance(cash_distributions, pd.DataFrame)
+            or not cash_distributions.index.equals(frame.index)
+            or not cash_distributions.columns.is_unique
+            or not set(cash_distributions.columns) <= set(frame.columns)
+            or not np.isfinite(cash_distributions.to_numpy(dtype=float)).all()
+            or (cash_distributions.to_numpy(dtype=float) < 0).any()
+        ):
+            raise ValueError(
+                "Cash distributions need aligned dates, known unique columns and finite nonnegative per-share amounts"
+            )
+        distributions.loc[:, cash_distributions.columns] = cash_distributions
     if any(
         s not in frame or not np.isfinite(v) or v < 0 for s, v in settlement.items()
     ):
@@ -135,6 +154,7 @@ def backtest_pairs(
     stales = []
     orders = []
     rejects = []
+    distribution_flows = []
 
     def total_holdings() -> Any:
         total = pd.Series(0.0, index=frame.columns)
@@ -149,6 +169,9 @@ def backtest_pairs(
         last[mask] = observed[mask]
         marks = pd.Series(last, index=frame.columns)
         before = total_holdings()
+        distribution = float((before * distributions.loc[date]).sum())
+        cash += distribution
+        distribution_flows.append(distribution)
         borrow = (
             c.annual_borrow
             / c.borrow_observations_per_year
@@ -319,6 +342,7 @@ def backtest_pairs(
         pd.DataFrame(rejects, columns=["pair", "decision_time", "time", "reason"]),
         pd.Series(stales, index=frame.index),
         c,
+        pd.Series(distribution_flows, index=frame.index, name="cash_distributions"),
     )
 
 
@@ -330,8 +354,17 @@ def replay_vectorbt(result: LedgerResult, prices: Any) -> Any:
     """
     import vectorbt as vbt
 
-    if result.config.annual_borrow or (result.orders["kind"] == "settlement").any():
-        raise ValueError("Engine replay cannot represent borrow or cash settlement")
+    if (
+        result.config.annual_borrow
+        or (result.orders["kind"] == "settlement").any()
+        or (
+            result.cash_distributions is not None
+            and result.cash_distributions.ne(0).any()
+        )
+    ):
+        raise ValueError(
+            "Engine replay cannot represent borrow, cash distributions or cash settlement"
+        )
     if result.orders.duplicated(["fill_time", "security"]).any():
         raise ValueError(
             "Engine replay cannot net multiple same-bar fills without changing costs"

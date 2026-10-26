@@ -1,6 +1,7 @@
 """Fixed-pair daily walk-forward illustration, 2019-2023; no threshold search."""
 
 from dataclasses import asdict
+import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -19,12 +20,23 @@ from partial_cointegration.signals import score_components, decisions
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--pair", choices=["goog-googl", "pep-ko"], default="goog-googl"
+    )
+    args = parser.parse_args()
+    x, y = ("GOOG", "GOOGL") if args.pair == "goog-googl" else ("PEP", "KO")
+    pair_id = f"{x}/{y}"
     root = Path(__file__).resolve().parents[1]
-    cache = root / ".test-deps/longer-real-pair"
+    cache = (
+        root
+        / ".test-deps"
+        / ("longer-real-pair" if args.pair == "goog-googl" else args.pair)
+    )
     cache.mkdir(parents=True, exist_ok=True)
     series = []
     sources = {}
-    for symbol in ["GOOG", "GOOGL"]:
+    for symbol in [x, y]:
         url = (
             f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?"
             + urlencode(
@@ -60,9 +72,9 @@ def main() -> None:
                 record["indicators"]["quote"][0]["close"], index=index, name=symbol
             )
         )
-        if record.get("events", {}).get("dividends"):
+        if args.pair == "pep-ko" and record.get("events", {}).get("splits"):
             raise ValueError(
-                "This illustration requires explicit dividend handling before extending into dividend-paying periods"
+                "Dividend amounts require split-basis reconciliation for this pair"
             )
         sources[symbol] = {
             "url": url,
@@ -72,6 +84,18 @@ def main() -> None:
     if not series[0].index.equals(series[1].index):
         raise ValueError("Do not silently intersect vendor calendars")
     prices = validate_prices(pd.concat(series, axis=1))
+    distributions = pd.DataFrame(0.0, index=prices.index, columns=prices.columns)
+    for symbol, source in sources.items():
+        for event in source["events"].get("dividends", {}).values():
+            date = (
+                pd.Timestamp(event["date"], unit="s", tz="UTC")
+                .tz_convert("America/New_York")
+                .normalize()
+                .tz_localize(None)
+            )
+            if date not in distributions.index:
+                raise ValueError("Dividend date has no corresponding price observation")
+            distributions.loc[date, symbol] += float(event["amount"])
     if prices.isna().any().any():
         raise ValueError("Inspect missing vendor observations before evaluating")
     capital = 10000.0
@@ -87,11 +111,11 @@ def main() -> None:
         testing = prices.loc[
             (prices.index >= start) & (prices.index < start + pd.DateOffset(months=6))
         ]
-        fit = fit_pair(training.GOOG, training.GOOGL, options=options)
+        fit = fit_pair(training[x], training[y], options=options)
         p = fit.parameters
         label = str(start.date())
         reason = None
-        entries = pd.DataFrame(False, index=testing.index, columns=["GOOG/GOOGL"])
+        entries = pd.DataFrame(False, index=testing.index, columns=[pair_id])
         exits = entries.copy()
         if p.beta <= 0 or p.sigma_m == 0:
             reason = (
@@ -99,24 +123,25 @@ def main() -> None:
             )
         else:
             components = score_components(
-                training.GOOGL - p.beta * training.GOOG,
-                testing.GOOGL - p.beta * testing.GOOG,
+                training[y] - p.beta * training[x],
+                testing[y] - p.beta * testing[x],
                 p,
                 variant="formation",
                 window=30,
             )
             entries, exits = decisions(
-                components["testing_score"].rename("GOOG/GOOGL"), 1, -0.5
+                components["testing_score"].rename(pair_id), 1, -0.5
             )
         config = ExecutionConfig(
             capital=capital, fees=0.001, slippage=0.001, annual_borrow=0.01
         )
         ledger = backtest_pairs(
             testing,
-            {"GOOG/GOOGL": ("GOOG", "GOOGL", p.beta if p.beta > 0 else 1)},
+            {pair_id: (x, y, p.beta if p.beta > 0 else 1)},
             entries,
             exits,
             config=config,
+            cash_distributions=distributions.loc[testing.index],
         )
         if not np.allclose(ledger.holdings.iloc[-1], 0):
             raise AssertionError("Cohort failed to liquidate")
@@ -147,6 +172,9 @@ def main() -> None:
         independent = (
             capital
             + (cash_changes - borrow).cumsum()
+            + (positions.shift(1).fillna(0) * distributions.loc[testing.index])
+            .sum(axis=1)
+            .cumsum()
             + (positions * testing).sum(axis=1)
         )
         np.testing.assert_allclose(independent, ledger.equity, atol=1e-8, rtol=0)
@@ -163,6 +191,7 @@ def main() -> None:
                 "return": float(ledger.equity.iloc[-1] / capital - 1),
                 "pair_entries": n_entries,
                 "rejected_requests": len(ledger.rejections),
+                "net_dividend_accrual": float(ledger.cash_distributions.sum()),
                 "cash_only_reason": reason,
             }
         )
@@ -205,7 +234,7 @@ def main() -> None:
     all_rejected.to_csv(out / "rejections.csv", index=False)
     result = {
         "scope": "Retrospective fixed-pair daily illustration, not certified universe-wide performance",
-        "pair": ["GOOG", "GOOGL"],
+        "pair": [x, y],
         "evaluation_start": str(equity.index[0].date()),
         "evaluation_end": str(equity.index[-1].date()),
         "evaluation_n": len(equity),
@@ -228,7 +257,10 @@ def main() -> None:
             )
         ),
         "accounting": "One capital account rolled forward, flat at each six-month boundary; daily cash/equity independently reconciled within $1e-8",
-        "price_basis": "Vendor split-adjusted Close, not dividend-adjusted Adj Close. Share quantities are split-adjusted equivalents before the 2022 split; no dividends in this selected period.",
+        "price_basis": "Vendor split-adjusted Close, not dividend-adjusted Adj Close. Dividend entitlements accrue to carried holdings on ex-dates: longs receive and shorts owe. No separate payment-date receivables/taxes modeled. Model/signal inputs also use Close, not adjusted-close units.",
+        "net_dividend_accrual": sum(
+            cohort["net_dividend_accrual"] for cohort in cohorts
+        ),
         "sources": sources,
         "package_fingerprint": package_fingerprint(),
         "script_sha256": hashlib.sha256(
@@ -236,14 +268,15 @@ def main() -> None:
         ).hexdigest(),
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "limitations": [
-            "Same issuer's share classes; no broad pair-universe selection",
+            "Fixed pair; no broad pair-universe selection or reverse-orientation search",
+            "Ex-dividend cash-accrual approximation, not actual payment-date cash settlement; raw ex-dividend price gaps remain in signal inputs",
             "Vendor history is not point-in-time audited",
             "Borrow availability/actual costs unverified; 1% annual charge assumed",
             "Period selected retrospectively before this run; no parameter or threshold search",
             "No untouched future test or calibrated profitability significance claim",
         ],
     }
-    (root / "docs/results/longer-pair-goog-googl.json").write_text(
+    (root / f"docs/results/longer-pair-{args.pair}.json").write_text(
         json.dumps(result, indent=2, allow_nan=False) + "\n"
     )
     print(

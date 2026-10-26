@@ -22,6 +22,8 @@
     "sigma_r": 0.02424249106386316,
     "alpha": 0.0
   },
+  "selected_model": "mixed",
+  "cash_only_reason": null,
   "initial_capital": 10000,
   "final_capital": 9921.841453891213,
   "total_return": -0.007815854610878747,
@@ -69,9 +71,9 @@
       "excluded_outside_regular_session": 1
     }
   },
-  "package_fingerprint": "32edd17fafbc57e02c5594de01b07561b70428bd0239ac499642beef1e4142a5",
-  "script_sha256": "669afe6d9f745878d3ee98ae5edc10cba899a8919fefb6afe99696cfac4922a8",
-  "created_utc": "2026-10-26T01:55:10.892989+00:00",
+  "package_fingerprint": "fdd6dd50c94b4a7152aa523074cf96d343ec2d2f2c5214f4af639a4ad9325f33",
+  "script_sha256": "908bec286872f44031e3fba71e4d7d349383561f36e72a06bc5bf3849bf75175",
+  "created_utc": "2026-10-26T02:23:24.234760+00:00",
   "limitations": [
     "Only two evaluation sessions; not evidence of stable performance",
     "Session-compressed observation-clock filtering: training/test overnight state transitions are not separately modeled",

@@ -7,6 +7,7 @@ or a quote-level executable-price validation. No parameter/threshold search.
 """
 
 from dataclasses import asdict
+import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -25,12 +26,23 @@ from partial_cointegration.signals import score_components, decisions
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--pair", choices=["goog-googl", "pep-ko"], default="goog-googl"
+    )
+    args = parser.parse_args()
+    x, y = ("GOOG", "GOOGL") if args.pair == "goog-googl" else ("PEP", "KO")
+    pair_id = f"{x}/{y}"
     root = Path(__file__).resolve().parents[1]
-    cache = root / ".test-deps/longer-real-pair"
+    cache = (
+        root
+        / ".test-deps"
+        / ("longer-real-pair" if args.pair == "goog-googl" else args.pair)
+    )
     cache.mkdir(parents=True, exist_ok=True)
     items = []
     sources = {}
-    for symbol in ["GOOG", "GOOGL"]:
+    for symbol in [x, y]:
         url = (
             f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?"
             + urlencode(
@@ -93,18 +105,18 @@ def main() -> None:
             )
     training = prices.loc[prices.index.date < dates[3]]
     testing = prices.loc[prices.index.date >= dates[3]]
-    fit = fit_pair(training.GOOG, training.GOOGL, options=FitOptions(seed=20261025))
+    fit = fit_pair(training[x], training[y], options=FitOptions(seed=20261025))
     p = fit.parameters
     score = None
     if p.beta > 0 and p.sigma_m > 0:
         components = score_components(
-            training.GOOGL - p.beta * training.GOOG,
-            testing.GOOGL - p.beta * testing.GOOG,
+            training[y] - p.beta * training[x],
+            testing[y] - p.beta * testing[x],
             p,
             variant="formation",
             window=30,
         )
-        score = components["testing_score"].rename("GOOG/GOOGL")
+        score = components["testing_score"].rename(pair_id)
     capital = 10000.0
     curves = []
     orders = []
@@ -113,7 +125,7 @@ def main() -> None:
     for date in dates[3:]:
         day = testing.loc[testing.index.date == date]
         if score is None:
-            entries = pd.DataFrame(False, index=day.index, columns=["GOOG/GOOGL"])
+            entries = pd.DataFrame(False, index=day.index, columns=[pair_id])
             exits = entries.copy()
         else:
             entries, exits = decisions(score.loc[day.index], 1, -0.5)
@@ -126,7 +138,7 @@ def main() -> None:
         )
         ledger = backtest_pairs(
             day,
-            {"GOOG/GOOGL": ("GOOG", "GOOGL", p.beta if p.beta > 0 else 1)},
+            {pair_id: (x, y, p.beta if p.beta > 0 else 1)},
             entries,
             exits,
             config=config,
@@ -195,12 +207,18 @@ def main() -> None:
     all_rejections.to_csv(out / "rejections.csv", index=False)
     result = {
         "scope": "Short minute-data mechanics prototype; not an intraday profitability certification",
-        "pair": ["GOOG", "GOOGL"],
+        "pair": [x, y],
         "formation_sessions": [str(d) for d in dates[:3]],
         "evaluation_sessions": [str(d) for d in dates[3:]],
         "formation_bars": len(training),
         "evaluation_bars": len(testing),
         "parameters": asdict(p),
+        "selected_model": fit.selected,
+        "cash_only_reason": (
+            "No fitted transient component or unsupported hedge sign"
+            if score is None
+            else None
+        ),
         "initial_capital": 10000,
         "final_capital": capital,
         "total_return": capital / 10000 - 1,
@@ -234,7 +252,7 @@ def main() -> None:
             "No reuse of daily parameters or daily critical values; no significance claim",
         ],
     }
-    (root / "docs/results/minute-pair-goog-googl.json").write_text(
+    (root / f"docs/results/minute-pair-{args.pair}.json").write_text(
         json.dumps(result, indent=2, allow_nan=False) + "\n"
     )
     print(json.dumps(result, indent=2, allow_nan=False))

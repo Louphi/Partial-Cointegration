@@ -43,6 +43,7 @@
       "return": -0.0012122581882387795,
       "pair_entries": 1,
       "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -62,6 +63,7 @@
       "return": -0.004307808208823705,
       "pair_entries": 1,
       "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -81,6 +83,7 @@
       "return": -0.01441675284816546,
       "pair_entries": 3,
       "rejected_requests": 7,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -100,6 +103,7 @@
       "return": -0.012574200618148179,
       "pair_entries": 3,
       "rejected_requests": 6,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -119,6 +123,7 @@
       "return": -0.014903202387252623,
       "pair_entries": 3,
       "rejected_requests": 12,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -138,6 +143,7 @@
       "return": -0.020443701792185243,
       "pair_entries": 5,
       "rejected_requests": 21,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -157,6 +163,7 @@
       "return": -0.003973182774126061,
       "pair_entries": 1,
       "rejected_requests": 5,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -176,6 +183,7 @@
       "return": -0.0020341532301578757,
       "pair_entries": 1,
       "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -195,6 +203,7 @@
       "return": -0.005234651658220679,
       "pair_entries": 1,
       "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     },
     {
@@ -214,6 +223,7 @@
       "return": 0.0,
       "pair_entries": 0,
       "rejected_requests": 2,
+      "net_dividend_accrual": 0.0,
       "cash_only_reason": null
     }
   ],
@@ -227,7 +237,8 @@
     "borrow_observations_per_year": 252.0
   },
   "accounting": "One capital account rolled forward, flat at each six-month boundary; daily cash/equity independently reconciled within $1e-8",
-  "price_basis": "Vendor split-adjusted Close, not dividend-adjusted Adj Close. Share quantities are split-adjusted equivalents before the 2022 split; no dividends in this selected period.",
+  "price_basis": "Vendor split-adjusted Close, not dividend-adjusted Adj Close. Dividend entitlements accrue to carried holdings on ex-dates: longs receive and shorts owe. No separate payment-date receivables/taxes modeled. Model/signal inputs also use Close, not adjusted-close units.",
+  "net_dividend_accrual": 0.0,
   "sources": {
     "GOOG": {
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?interval=1d&events=div%2Csplits&includePrePost=false&period1=1420070400&period2=1704067200",
@@ -264,11 +275,12 @@
       }
     }
   },
-  "package_fingerprint": "32edd17fafbc57e02c5594de01b07561b70428bd0239ac499642beef1e4142a5",
-  "script_sha256": "c87cc9c0c233d32d81f5f46a32d6ea2ae1b4057e8ad2d0c1f625c427e4bdc011",
-  "created_utc": "2026-10-26T01:51:18.028077+00:00",
+  "package_fingerprint": "fdd6dd50c94b4a7152aa523074cf96d343ec2d2f2c5214f4af639a4ad9325f33",
+  "script_sha256": "880dc2c3e346bcb8b9fc5a0a203280ac2b5a5cf5cee8329d5dbcecebf52da829",
+  "created_utc": "2026-10-26T02:23:21.926263+00:00",
   "limitations": [
-    "Same issuer's share classes; no broad pair-universe selection",
+    "Fixed pair; no broad pair-universe selection or reverse-orientation search",
+    "Ex-dividend cash-accrual approximation, not actual payment-date cash settlement; raw ex-dividend price gaps remain in signal inputs",
     "Vendor history is not point-in-time audited",
     "Borrow availability/actual costs unverified; 1% annual charge assumed",
     "Period selected retrospectively before this run; no parameter or threshold search",

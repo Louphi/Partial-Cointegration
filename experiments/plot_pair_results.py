@@ -1,6 +1,7 @@
 """Plot saved backtest ledgers; does not refit or select strategy parameters."""
 
 import json
+import argparse
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -15,17 +16,29 @@ import pandas as pd
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--pair", choices=["goog-googl", "pep-ko"], default="goog-googl"
+    )
+    args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     output = root / "docs/results"
-    daily_report = json.loads((output / "longer-pair-goog-googl.json").read_text())
-    minute_report = json.loads((output / "minute-pair-goog-googl.json").read_text())
+    daily_report = json.loads((output / f"longer-pair-{args.pair}.json").read_text())
+    minute_report = json.loads((output / f"minute-pair-{args.pair}.json").read_text())
+    cache = (
+        root
+        / ".test-deps"
+        / ("longer-real-pair" if args.pair == "goog-googl" else args.pair)
+    )
+    pair_label = " / ".join(daily_report["pair"])
+    suffix = "" if args.pair == "goog-googl" else f"-{args.pair}"
     daily = pd.read_csv(
-        root / ".test-deps/longer-real-pair/output/equity.csv",
+        cache / "output/equity.csv",
         index_col=0,
         parse_dates=True,
     ).iloc[:, 0]
     minute = pd.read_csv(
-        root / ".test-deps/longer-real-pair/minute-output/equity.csv",
+        cache / "minute-output/equity.csv",
         index_col=0,
         parse_dates=True,
     ).iloc[:, 0]
@@ -55,9 +68,15 @@ def main() -> None:
         10000, color="#8b8b8b", linestyle="--", label="Cash reference, no interest"
     )
     axes[0].yaxis.set_major_formatter(dollars)
-    axes[0].set_ylim(9100, 10120)
+    daily_span = max(float(daily.max() - daily.min()), 100)
+    axes[0].set_ylim(
+        min(daily.min(), 10000) - daily_span * 0.12,
+        max(daily.max(), 10000) + daily_span * 0.15,
+    )
     axes[0].set_title(
-        r"Account value: \$10,000 → \$9,234.47 (−7.66%)", loc="left", fontsize=13
+        rf"Account value: \$10,000 → \${daily.iloc[-1]:,.2f} ({daily_report['total_return']:+.2%})",
+        loc="left",
+        fontsize=13,
     )
     axes[0].set_ylabel("Account value (USD)")
     axes[0].legend(loc="lower left", fontsize=10)
@@ -67,21 +86,31 @@ def main() -> None:
     axes[0].set_xlim(pd.Timestamp("2019-01-01"), pd.Timestamp("2023-12-31"))
     years = list(daily_report["yearly_returns"])
     returns = [100 * daily_report["yearly_returns"][year] for year in years]
-    axes[1].bar(years, returns, color="#ad4b46", width=0.6)
+    axes[1].bar(
+        years,
+        returns,
+        color=["#27825b" if v > 0 else "#ad4b46" for v in returns],
+        width=0.6,
+    )
     axes[1].axhline(0, color="black", linewidth=0.8)
-    axes[1].set_ylim(min(returns) - 0.8, 0.3)
+    axes[1].set_ylim(min([0] + returns) - 0.8, max([0] + returns) + 0.8)
     axes[1].set_title("Return in each calendar year", loc="left", fontsize=13)
     axes[1].set_ylabel("Annual return (%)")
     axes[1].grid(axis="y", alpha=0.2)
     for year, value in zip(years, returns):
         axes[1].text(
-            year, value - 0.12, f"{value:.2f}%", ha="center", va="top", fontsize=12
+            year,
+            value + (0.12 if value >= 0 else -0.12),
+            f"{value:+.2f}%",
+            ha="center",
+            va="bottom" if value >= 0 else "top",
+            fontsize=12,
         )
     fig.suptitle(
-        "GOOG / GOOGL · daily walk-forward test\n2019–2023 · 19 round trips · 56 rejected requests",
+        f"{pair_label} · daily walk-forward test\n2019–2023 · {daily_report['completed_round_trips']} round trips · {daily_report['rejected_requests']} rejected requests",
         fontsize=15,
     )
-    fig.savefig(output / "daily-pair-performance.png", dpi=170)
+    fig.savefig(output / f"daily-pair-performance{suffix}.png", dpi=170)
     plt.close(fig)
 
     fig, axes = plt.subplots(2, 1, figsize=(8, 8), constrained_layout=True, sharey=True)
@@ -90,7 +119,11 @@ def main() -> None:
         curve = minute.loc[minute.index.date == date]
         ax.plot(curve.index, curve, color="#176b95", linewidth=2)
         ax.axhline(10000, color="#8b8b8b", linestyle="--")
-        ax.set_ylim(9900, 10015)
+        minute_span = max(float(minute.max() - minute.min()), 100)
+        ax.set_ylim(
+            min(minute.min(), 10000) - minute_span * 0.12,
+            max(minute.max(), 10000) + minute_span * 0.15,
+        )
         ax.yaxis.set_major_formatter(dollars)
         ax.xaxis.set_major_locator(mdates.HourLocator(tz=ZoneInfo("America/New_York")))
         ax.xaxis.set_major_formatter(
@@ -105,13 +138,15 @@ def main() -> None:
         ax.set_xlabel("New York time · positions closed at session end")
         ax.grid(alpha=0.2)
     fig.suptitle(
-        "GOOG / GOOGL · one-minute prototype\n"
-        + r"\$10,000 → \$9,921.84 (−0.78%) · only two test sessions",
+        f"{pair_label} · one-minute prototype\n"
+        + rf"\$10,000 → \${minute.iloc[-1]:,.2f} ({minute_report['total_return']:+.2%}) · only two test sessions",
         fontsize=15,
     )
-    fig.savefig(output / "minute-pair-performance.png", dpi=170)
+    fig.savefig(output / f"minute-pair-performance{suffix}.png", dpi=170)
     plt.close(fig)
-    print("Saved daily-pair-performance.png and minute-pair-performance.png")
+    print(
+        f"Saved daily-pair-performance{suffix}.png and minute-pair-performance{suffix}.png"
+    )
 
 
 if __name__ == "__main__":
