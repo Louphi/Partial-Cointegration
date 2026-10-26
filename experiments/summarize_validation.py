@@ -212,9 +212,13 @@ lines += [
     "**Unmet external gates:** no qualified raw historical adjusted-price feed, complete historical "
     "security mapping, corporate-action/delisting cash-flow record, borrow data or benchmark series "
     "was supplied. Bundled constituent coverage starts in 1995 and cannot establish earlier coverage. "
-    "Consequently genuine historical returns, robustness, turnover/capacity and dependence-aware "
+    "Consequently provenance-qualified universe-wide returns, robustness, turnover/capacity and dependence-aware "
     "market comparisons remain unexecuted. The full Clegg 2015 source could not be verified. "
     "No historical profitability, deployment readiness or complete author-table reproduction is claimed.",
+    "A later [fixed-pair GOOG/GOOGL illustration](results/real-pair-goog-googl.json) uses public "
+    "Yahoo price history with formation in 2019–2022 and evaluation in January–June 2023. "
+    "It records costs and independently checks daily cash accounting. This exploratory example "
+    "is separate from the qualified market-study gates above and does not close them.",
     "",
     "## Reproducibility and invalidation",
     "",

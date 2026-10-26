@@ -58,6 +58,10 @@ Historical raw prices are not bundled. The application no longer loads another d
 
 The [data contract](docs/data-contract.md) defines price dates, stable security IDs, point-in-time membership, adjustments and delisting inputs. Formation selection never depends on future completeness. Filter means/covariances continue into evaluation; missing observations are predict-only. Decisions fill at a later observed close. One committed-capital ledger accounts for both legs, costs, margin checks, rejected orders and scheduled liquidation. Nonpositive beta is supported in estimation but currently rejected for trading.
 
+An [exploratory real-price example](docs/results/real-pair-goog-googl.json) uses GOOG/GOOGL daily Yahoo closes: formation 2019–2022, evaluation January–June 2023, fixed formation scaling and entry/exit thresholds. On $10,000, it returned −0.52% after assumed fees, slippage and borrow, completing one round trip. Pair, period and rules were fixed before computing the result. This is a retrospectively chosen historical example, not a qualified universe-wide performance study or untouched future test. Borrow availability and actual broker costs are unverified.
+
+Run `.venv/Scripts/python experiments/real_pair_example.py` to reproduce it. The command keeps raw vendor responses, prices and full ledgers in ignored `.test-deps/real-pair-goog-googl/`, records source digests in the compact report and independently reconstructs daily cash/equity from executed orders. It uses the Close field rather than dividend-adjusted Adj Close; vendor records contain no evaluation-period dividends/splits. Deleting cached responses downloads a new vendor snapshot and can change results. No pair or threshold search is performed.
+
 ## Research status and documentation
 
 - [Implementation status](docs/implementation-status.md): task-by-task acceptance and evidence.
