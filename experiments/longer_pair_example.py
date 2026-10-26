@@ -1,4 +1,4 @@
-"""Fixed-pair daily walk-forward illustration, 2019-2023; no threshold search."""
+"""Fixed-pair daily walk-forward illustrations; no threshold search."""
 
 from dataclasses import asdict
 import argparse
@@ -24,14 +24,20 @@ def main() -> None:
     parser.add_argument(
         "--pair", choices=["goog-googl", "pep-ko"], default="goog-googl"
     )
+    parser.add_argument(
+        "--extended", action="store_true", help="PEP/KO: evaluate 2000–2025"
+    )
     args = parser.parse_args()
+    if args.extended and args.pair != "pep-ko":
+        parser.error("The extended corporate-action checks support PEP/KO only")
+    suffix = "-extended" if args.extended else ""
     x, y = ("GOOG", "GOOGL") if args.pair == "goog-googl" else ("PEP", "KO")
     pair_id = f"{x}/{y}"
     root = Path(__file__).resolve().parents[1]
     cache = (
         root
         / ".test-deps"
-        / ("longer-real-pair" if args.pair == "goog-googl" else args.pair)
+        / (("longer-real-pair" if args.pair == "goog-googl" else args.pair) + suffix)
     )
     cache.mkdir(parents=True, exist_ok=True)
     series = []
@@ -44,8 +50,8 @@ def main() -> None:
                     "interval": "1d",
                     "events": "div,splits",
                     "includePrePost": "false",
-                    "period1": 1420070400,
-                    "period2": 1704067200,
+                    "period1": 820454400 if args.extended else 1420070400,
+                    "period2": 1767225600 if args.extended else 1704067200,
                 }
             )
         )
@@ -72,7 +78,35 @@ def main() -> None:
                 record["indicators"]["quote"][0]["close"], index=index, name=symbol
             )
         )
-        if args.pair == "pep-ko" and record.get("events", {}).get("splits"):
+        if args.extended:
+            # Yahoo dividends and Close are already in split-adjusted share units.
+            # Check the known 2012 KO transition against issuer dividend figures;
+            # dividing these dividends by the split ratio again would be wrong.
+            events = record.get("events", {})
+            splits = events.get("splits", {}).values()
+            expected_splits = {1996: 2.0} if symbol == "PEP" else {1996: 2.0, 2012: 2.0}
+            actual_splits = {
+                datetime.fromtimestamp(e["date"], timezone.utc).year: float(
+                    e["numerator"]
+                )
+                / float(e["denominator"])
+                for e in splits
+            }
+            if actual_splits != expected_splits:
+                raise ValueError("Unreviewed corporate action in extended snapshot")
+            if symbol == "KO":
+                amounts = [
+                    float(e["amount"])
+                    for e in events.get("dividends", {}).values()
+                    if datetime.fromtimestamp(e["date"], timezone.utc).year == 2012
+                ]
+                np.testing.assert_allclose(amounts, [0.255] * 4, atol=1e-12)
+                np.testing.assert_allclose(
+                    series[-1].loc["2012-08-13"] / series[-1].loc["2012-08-10"],
+                    1.0,
+                    atol=0.1,
+                )
+        elif args.pair == "pep-ko" and record.get("events", {}).get("splits"):
             raise ValueError(
                 "Dividend amounts require split-basis reconciliation for this pair"
             )
@@ -94,7 +128,20 @@ def main() -> None:
                 .tz_localize(None)
             )
             if date not in distributions.index:
-                raise ValueError("Dividend date has no corresponding price observation")
+                if (
+                    args.extended
+                    and symbol == "KO"
+                    and date == pd.Timestamp("2001-09-12")
+                ):
+                    # NYSE was closed September 11–14. No fills occur in this gap;
+                    # credit carried holdings at the first observed close, before fills.
+                    date = distributions.index[distributions.index.searchsorted(date)]
+                    if date != pd.Timestamp("2001-09-17"):
+                        raise ValueError("Unexpected post-closure trading calendar")
+                else:
+                    raise ValueError(
+                        "Dividend date has no corresponding price observation"
+                    )
             distributions.loc[date, symbol] += float(event["amount"])
     if prices.isna().any().any():
         raise ValueError("Inspect missing vendor observations before evaluating")
@@ -104,13 +151,19 @@ def main() -> None:
     orders = []
     rejected = []
     options = FitOptions(seed=20261025)
-    for start in pd.date_range("2019-01-01", "2023-07-01", freq="6MS"):
+    for start in pd.date_range(
+        "2000-01-01" if args.extended else "2019-01-01",
+        "2025-07-01" if args.extended else "2023-07-01",
+        freq="6MS",
+    ):
         training = prices.loc[
             (prices.index >= start - pd.DateOffset(years=4)) & (prices.index < start)
         ]
         testing = prices.loc[
             (prices.index >= start) & (prices.index < start + pd.DateOffset(months=6))
         ]
+        if len(training) < 990 or len(testing) < 120:
+            raise ValueError("Incomplete formation or evaluation period")
         fit = fit_pair(training[x], training[y], options=options)
         p = fit.parameters
         label = str(start.date())
@@ -262,6 +315,16 @@ def main() -> None:
             cohort["net_dividend_accrual"] for cohort in cohorts
         ),
         "sources": sources,
+        "corporate_action_review": (
+            "Extended snapshot: PEP 1996 and KO 1996/2012 splits checked; "
+            "Yahoo Close and dividend events use split-adjusted units. KO 2012 "
+            "four quarterly dividends are each 0.255 (pre-split actual 0.51); "
+            "no second split adjustment applied. PEP 1997 spin-off is in formation "
+            "history only; no positions held then. KO September 12, 2001 dividend "
+            "accrues on September 17 before fills because the exchange was closed."
+            if args.extended
+            else "Original snapshot corporate-action guard"
+        ),
         "package_fingerprint": package_fingerprint(),
         "script_sha256": hashlib.sha256(
             Path(__file__).read_bytes().replace(b"\r\n", b"\n")
@@ -276,7 +339,7 @@ def main() -> None:
             "No untouched future test or calibrated profitability significance claim",
         ],
     }
-    (root / f"docs/results/longer-pair-{args.pair}.json").write_text(
+    (root / f"docs/results/longer-pair-{args.pair}{suffix}.json").write_text(
         json.dumps(result, indent=2, allow_nan=False) + "\n"
     )
     print(

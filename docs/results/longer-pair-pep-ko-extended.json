@@ -1,0 +1,2123 @@
+{
+  "scope": "Retrospective fixed-pair daily illustration, not certified universe-wide performance",
+  "pair": [
+    "PEP",
+    "KO"
+  ],
+  "evaluation_start": "2000-01-03",
+  "evaluation_end": "2025-12-31",
+  "evaluation_n": 6539,
+  "formation": "Preceding four years, refitted every six months",
+  "normalization": "formation",
+  "entry": 1,
+  "exit": -0.5,
+  "initial_capital": 10000,
+  "final_capital": 8176.230004857982,
+  "total_return": -0.18237699951420183,
+  "max_drawdown": -0.26423515793380203,
+  "completed_round_trips": 45,
+  "rejected_requests": 84,
+  "fees_paid": 867.3805695811734,
+  "yearly_returns": {
+    "2000": 0.0,
+    "2001": 0.0,
+    "2002": 0.09488753872117073,
+    "2003": 0.0,
+    "2004": 0.0,
+    "2005": 0.0,
+    "2006": 0.0,
+    "2007": 0.0,
+    "2008": -0.03354326036499122,
+    "2009": -0.06289524820138703,
+    "2010": -0.0061006920544764975,
+    "2011": -0.015554432508343097,
+    "2012": -0.06576288299024113,
+    "2013": 0.032804924967581695,
+    "2014": 0.007059001661773978,
+    "2015": -0.013692038035923115,
+    "2016": 0.0,
+    "2017": -0.02260803665446809,
+    "2018": -0.010003671846877893,
+    "2019": 0.03735363931431235,
+    "2020": 0.027417082545070803,
+    "2021": 0.012376593342171338,
+    "2022": 0.040432346683686005,
+    "2023": 0.0,
+    "2024": -0.05253606491545082,
+    "2025": -0.14563890129870205
+  },
+  "cohorts": [
+    {
+      "start": "2000-01-01",
+      "training_start": "1996-01-02",
+      "training_end": "1999-12-31",
+      "training_n": 1011,
+      "evaluation_n": 126,
+      "parameters": {
+        "beta": 0.3196863617101144,
+        "rho": 0.9820305320310628,
+        "sigma_m": 0.35217919693797256,
+        "sigma_r": 0.35680039633693844,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2000-07-01",
+      "training_start": "1996-07-01",
+      "training_end": "2000-06-30",
+      "training_n": 1011,
+      "evaluation_n": 126,
+      "parameters": {
+        "beta": 0.3257801408227276,
+        "rho": 0.9798601881418688,
+        "sigma_m": 0.43215570777271106,
+        "sigma_r": 0.3458220974958311,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2001-01-01",
+      "training_start": "1997-01-02",
+      "training_end": "2000-12-29",
+      "training_n": 1009,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.3042334555617299,
+        "rho": 0.9935010975628086,
+        "sigma_m": 0.5929907165245468,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2001-07-01",
+      "training_start": "1997-07-01",
+      "training_end": "2001-06-29",
+      "training_n": 1009,
+      "evaluation_n": 123,
+      "parameters": {
+        "beta": 0.30224453763776565,
+        "rho": 0.9829732852543477,
+        "sigma_m": 0.5091674004496366,
+        "sigma_r": 0.28170460248193474,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2002-01-01",
+      "training_start": "1998-01-02",
+      "training_end": "2001-12-31",
+      "training_n": 1004,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.28193102908148937,
+        "rho": 0.9752338701369208,
+        "sigma_m": 0.48528205565424026,
+        "sigma_r": 0.2966140937249732,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2002-07-01",
+      "training_start": "1998-07-01",
+      "training_end": "2002-06-28",
+      "training_n": 1004,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.2868319092292762,
+        "rho": 0.963659334514613,
+        "sigma_m": 0.3777835734463228,
+        "sigma_r": 0.4021824511789978,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.09488753872117073,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -13.526783680698992,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2003-01-01",
+      "training_start": "1999-01-04",
+      "training_end": "2002-12-31",
+      "training_n": 1004,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.26440834213622333,
+        "rho": 0.9669067970125195,
+        "sigma_m": 0.4524473643190779,
+        "sigma_r": 0.23924075282061733,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2003-07-01",
+      "training_start": "1999-07-01",
+      "training_end": "2003-06-30",
+      "training_n": 1004,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.27136688407805654,
+        "rho": 0.9696982252630381,
+        "sigma_m": 0.4015659151598461,
+        "sigma_r": 0.2684233783718177,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2004-01-01",
+      "training_start": "2000-01-03",
+      "training_end": "2003-12-31",
+      "training_n": 1004,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.25444116558741997,
+        "rho": 0.9743391367071719,
+        "sigma_m": 0.39662614263642726,
+        "sigma_r": 0.1981630078646698,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2004-07-01",
+      "training_start": "2000-07-03",
+      "training_end": "2004-06-30",
+      "training_n": 1002,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.23290959106675113,
+        "rho": 0.9563370149354188,
+        "sigma_m": 0.2909875740554821,
+        "sigma_r": 0.2326978909858926,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2005-01-01",
+      "training_start": "2001-01-02",
+      "training_end": "2004-12-31",
+      "training_n": 1004,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.24898837698337548,
+        "rho": 0.0,
+        "sigma_m": 0.0,
+        "sigma_r": 0.30644392427237405,
+        "alpha": 0.0
+      },
+      "selected_model": "rw",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": "Unsupported hedge sign or no transient component; cash-only cohort"
+    },
+    {
+      "start": "2005-07-01",
+      "training_start": "2001-07-02",
+      "training_end": "2005-06-30",
+      "training_n": 1004,
+      "evaluation_n": 127,
+      "parameters": {
+        "beta": 0.24859188613026345,
+        "rho": 0.993135884967085,
+        "sigma_m": 0.26928136399254293,
+        "sigma_r": 0.05264332816556707,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2006-01-01",
+      "training_start": "2002-01-02",
+      "training_end": "2005-12-30",
+      "training_n": 1008,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.25215028492777236,
+        "rho": 0.9940462965705702,
+        "sigma_m": 0.22512603441205767,
+        "sigma_r": 0.12381875249052067,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2006-07-01",
+      "training_start": "2002-07-01",
+      "training_end": "2006-06-30",
+      "training_n": 1009,
+      "evaluation_n": 126,
+      "parameters": {
+        "beta": 0.24537070233359,
+        "rho": 0.9570020333328834,
+        "sigma_m": 0.12541851139575358,
+        "sigma_r": 0.20397518829249048,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2007-01-01",
+      "training_start": "2003-01-02",
+      "training_end": "2006-12-29",
+      "training_n": 1007,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.1984893304425322,
+        "rho": 0.9944038790577912,
+        "sigma_m": 0.1704804897156349,
+        "sigma_r": 0.09637039995860967,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2007-07-01",
+      "training_start": "2003-07-01",
+      "training_end": "2007-06-29",
+      "training_n": 1007,
+      "evaluation_n": 127,
+      "parameters": {
+        "beta": 0.17305613562023164,
+        "rho": 0.9985091824414115,
+        "sigma_m": 0.178599840038806,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "ar",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2008-01-01",
+      "training_start": "2004-01-02",
+      "training_end": "2007-12-31",
+      "training_n": 1006,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.21158503302967546,
+        "rho": -0.9999,
+        "sigma_m": 0.00018388613810672074,
+        "sigma_r": 0.17870627822546115,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.03354326036499122,
+      "pair_entries": 6,
+      "rejected_requests": 57,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2008-07-01",
+      "training_start": "2004-07-01",
+      "training_end": "2008-06-30",
+      "training_n": 1007,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.23650492967534545,
+        "rho": 0.9988075156737711,
+        "sigma_m": 0.19047495303426162,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "ar",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2009-01-01",
+      "training_start": "2005-01-03",
+      "training_end": "2008-12-31",
+      "training_n": 1007,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.29101241466189154,
+        "rho": 0.8034932947467899,
+        "sigma_m": 0.1629560345285043,
+        "sigma_r": 0.14652713899028488,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.03690593867173464,
+      "pair_entries": 3,
+      "rejected_requests": 1,
+      "net_dividend_accrual": -21.400778193764815,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2009-07-01",
+      "training_start": "2005-07-01",
+      "training_end": "2009-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.2935801912124455,
+        "rho": 0.7485225777578342,
+        "sigma_m": 0.17199621641507987,
+        "sigma_r": 0.15726473614520722,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.0269852245727783,
+      "pair_entries": 2,
+      "rejected_requests": 2,
+      "net_dividend_accrual": -50.30985256723838,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2010-01-01",
+      "training_start": "2006-01-03",
+      "training_end": "2009-12-31",
+      "training_n": 1007,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.28957966647340977,
+        "rho": 0.7738301399900899,
+        "sigma_m": 0.179295049815848,
+        "sigma_r": 0.16041407327230683,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2010-07-01",
+      "training_start": "2006-07-03",
+      "training_end": "2010-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.2941345418251363,
+        "rho": 0.7608675976666573,
+        "sigma_m": 0.1810750358284707,
+        "sigma_r": 0.17054161914246915,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.0061006920544764975,
+      "pair_entries": 1,
+      "rejected_requests": 2,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2011-01-01",
+      "training_start": "2007-01-03",
+      "training_end": "2010-12-31",
+      "training_n": 1008,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.2974158328364979,
+        "rho": 0.7107457035456696,
+        "sigma_m": 0.16821914933303006,
+        "sigma_r": 0.18728554578831247,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0026291216587692734,
+      "pair_entries": 2,
+      "rejected_requests": 2,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2011-07-01",
+      "training_start": "2007-07-02",
+      "training_end": "2011-06-30",
+      "training_n": 1009,
+      "evaluation_n": 127,
+      "parameters": {
+        "beta": 0.29742351885261126,
+        "rho": 0.7306124303195749,
+        "sigma_m": 0.17415761444249822,
+        "sigma_r": 0.1912721929992414,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.018135872751261273,
+      "pair_entries": 1,
+      "rejected_requests": 3,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2012-01-01",
+      "training_start": "2008-01-02",
+      "training_end": "2011-12-30",
+      "training_n": 1009,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.3118296369879118,
+        "rho": 0.7315131186904994,
+        "sigma_m": 0.16518144126947232,
+        "sigma_r": 0.21799738419584827,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.0649007283457298,
+      "pair_entries": 1,
+      "rejected_requests": 1,
+      "net_dividend_accrual": -16.920332213843857,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2012-07-01",
+      "training_start": "2008-07-01",
+      "training_end": "2012-06-29",
+      "training_n": 1009,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.3135044440884831,
+        "rho": 0.8108422142785285,
+        "sigma_m": 0.1614449360890031,
+        "sigma_r": 0.2180416392286545,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.0009219926382640908,
+      "pair_entries": 2,
+      "rejected_requests": 2,
+      "net_dividend_accrual": -13.342124776012724,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2013-01-01",
+      "training_start": "2009-01-02",
+      "training_end": "2012-12-31",
+      "training_n": 1006,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.2996614606819073,
+        "rho": 0.890803299889166,
+        "sigma_m": 0.12756798894754562,
+        "sigma_r": 0.21716650888133868,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.05078878020278976,
+      "pair_entries": 3,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2013-07-01",
+      "training_start": "2009-07-01",
+      "training_end": "2013-06-28",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.31523153592605935,
+        "rho": 0.8608423701734677,
+        "sigma_m": 0.14976163534753495,
+        "sigma_r": 0.22046663963789737,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.01711462434128519,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2014-01-01",
+      "training_start": "2010-01-04",
+      "training_end": "2013-12-31",
+      "training_n": 1006,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.32977654514036336,
+        "rho": 0.7489678840459472,
+        "sigma_m": 0.13263886695342308,
+        "sigma_r": 0.23072055872992991,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.016926888204211732,
+      "pair_entries": 3,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2014-07-01",
+      "training_start": "2010-07-01",
+      "training_end": "2014-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.3198046992197573,
+        "rho": 0.5981218111212492,
+        "sigma_m": 0.1230509179709815,
+        "sigma_r": 0.24081141020850028,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.009703634210974088,
+      "pair_entries": 4,
+      "rejected_requests": 2,
+      "net_dividend_accrual": -12.919047197596917,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2015-01-01",
+      "training_start": "2011-01-03",
+      "training_end": "2014-12-31",
+      "training_n": 1006,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.32464371770996053,
+        "rho": 0.9536531345691522,
+        "sigma_m": 0.2726535589346758,
+        "sigma_r": 0.11514281340831944,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2015-07-01",
+      "training_start": "2011-07-01",
+      "training_end": "2015-06-30",
+      "training_n": 1005,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.32201577976368184,
+        "rho": 0.9325171118634558,
+        "sigma_m": 0.2527871576624757,
+        "sigma_r": 0.15630087532416967,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.013692038035923115,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -12.894581836957872,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2016-01-01",
+      "training_start": "2012-01-03",
+      "training_end": "2015-12-31",
+      "training_n": 1006,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.31637747292321794,
+        "rho": 0.9330589729113723,
+        "sigma_m": 0.25887103756127205,
+        "sigma_r": 0.11722569333526493,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2016-07-01",
+      "training_start": "2012-07-02",
+      "training_end": "2016-06-30",
+      "training_n": 1006,
+      "evaluation_n": 127,
+      "parameters": {
+        "beta": 0.3280730124786188,
+        "rho": 0.9117430884313427,
+        "sigma_m": 0.25326218644455933,
+        "sigma_r": 0.1301150719307004,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2017-01-01",
+      "training_start": "2013-01-02",
+      "training_end": "2016-12-30",
+      "training_n": 1008,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.318363012707335,
+        "rho": 0.9066644579884241,
+        "sigma_m": 0.22938765433360828,
+        "sigma_r": 0.1652554131551121,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.011984283553094,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -13.20201939297548,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2017-07-01",
+      "training_start": "2013-07-01",
+      "training_end": "2017-06-30",
+      "training_n": 1009,
+      "evaluation_n": 126,
+      "parameters": {
+        "beta": 0.3079929040857684,
+        "rho": 0.9277942691399859,
+        "sigma_m": 0.20706872636838342,
+        "sigma_r": 0.1567410911278738,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.010752615494396323,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -13.605633334493227,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2018-01-01",
+      "training_start": "2014-01-02",
+      "training_end": "2017-12-29",
+      "training_n": 1007,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.2987104368348877,
+        "rho": 0.9479161602132725,
+        "sigma_m": 0.18845447501058538,
+        "sigma_r": 0.17890905660610504,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0009221580313221178,
+      "pair_entries": 2,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -13.26156934782577,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2018-07-01",
+      "training_start": "2014-07-01",
+      "training_end": "2018-06-29",
+      "training_n": 1008,
+      "evaluation_n": 126,
+      "parameters": {
+        "beta": 0.29708164808203064,
+        "rho": 0.9608084112434447,
+        "sigma_m": 0.1982145712834435,
+        "sigma_r": 0.16978648314034214,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.01091576381892645,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -13.116262876783154,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2019-01-01",
+      "training_start": "2015-01-02",
+      "training_end": "2018-12-31",
+      "training_n": 1006,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.27784460348018303,
+        "rho": 0.873007245537077,
+        "sigma_m": 0.16738056581698094,
+        "sigma_r": 0.1844588196675641,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.03735363931431235,
+      "pair_entries": 3,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -14.094583657674072,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2019-07-01",
+      "training_start": "2015-07-01",
+      "training_end": "2019-06-28",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.28435304408008366,
+        "rho": 0.9874812577959873,
+        "sigma_m": 0.28786022483582324,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2020-01-01",
+      "training_start": "2016-01-04",
+      "training_end": "2019-12-31",
+      "training_n": 1006,
+      "evaluation_n": 125,
+      "parameters": {
+        "beta": 0.27889992303911376,
+        "rho": 0.9867306505185114,
+        "sigma_m": 0.3104339001069832,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "ar",
+      "return": 0.027417082545070803,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -14.40819328390976,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2020-07-01",
+      "training_start": "2016-07-01",
+      "training_end": "2020-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.27697047291708665,
+        "rho": 0.9917894480162346,
+        "sigma_m": 0.39101022397773905,
+        "sigma_r": 0.08141821850734152,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2021-01-01",
+      "training_start": "2017-01-03",
+      "training_end": "2020-12-31",
+      "training_n": 1007,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.27691471140544466,
+        "rho": 0.986697126041908,
+        "sigma_m": 0.43529227667103176,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "ar",
+      "return": 0.012376593342171338,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -41.362028420239376,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2021-07-01",
+      "training_start": "2017-07-03",
+      "training_end": "2021-06-30",
+      "training_n": 1006,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.2749398040239527,
+        "rho": 0.9861711315659786,
+        "sigma_m": 0.45194398380366435,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2022-01-01",
+      "training_start": "2018-01-02",
+      "training_end": "2021-12-31",
+      "training_n": 1008,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.27546273810500993,
+        "rho": 0.9857712470386107,
+        "sigma_m": 0.46198682544412706,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 1,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2022-07-01",
+      "training_start": "2018-07-02",
+      "training_end": "2022-06-30",
+      "training_n": 1007,
+      "evaluation_n": 127,
+      "parameters": {
+        "beta": 0.2843709630089101,
+        "rho": 0.9852544528828328,
+        "sigma_m": 0.47916505198617976,
+        "sigma_r": 0.0,
+        "alpha": 0.0
+      },
+      "selected_model": "ar",
+      "return": 0.040432346683686005,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -9.725224051206684,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2023-01-01",
+      "training_start": "2019-01-02",
+      "training_end": "2022-12-30",
+      "training_n": 1008,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.28694969174336044,
+        "rho": 0.986367389035065,
+        "sigma_m": 0.46653985645429,
+        "sigma_r": 0.13323463310943182,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2023-07-01",
+      "training_start": "2019-07-01",
+      "training_end": "2023-06-30",
+      "training_n": 1008,
+      "evaluation_n": 126,
+      "parameters": {
+        "beta": 0.2832194599968873,
+        "rho": 0.9870265940337448,
+        "sigma_m": 0.4597551330326149,
+        "sigma_r": 0.09915626485895405,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2024-01-01",
+      "training_start": "2020-01-02",
+      "training_end": "2023-12-29",
+      "training_n": 1006,
+      "evaluation_n": 124,
+      "parameters": {
+        "beta": 0.27720718731999505,
+        "rho": 0.9914373867038245,
+        "sigma_m": 0.4277339942869819,
+        "sigma_r": 0.1841263402763972,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.0239860405304142,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -9.83244982494233,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2024-07-01",
+      "training_start": "2020-07-01",
+      "training_end": "2024-06-28",
+      "training_n": 1005,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.2548248302323415,
+        "rho": 0.9892102795283342,
+        "sigma_m": 0.3304967021667963,
+        "sigma_r": 0.24228652122180055,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.029251655786308728,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -26.23546651685004,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2025-01-01",
+      "training_start": "2021-01-04",
+      "training_end": "2024-12-31",
+      "training_n": 1005,
+      "evaluation_n": 122,
+      "parameters": {
+        "beta": 0.24369437880449793,
+        "rho": 0.9946172833917192,
+        "sigma_m": 0.38411321642649465,
+        "sigma_r": 0.11445421947760556,
+        "alpha": 0.0
+      },
+      "selected_model": "mixed",
+      "return": -0.14563890129870205,
+      "pair_entries": 1,
+      "rejected_requests": 0,
+      "net_dividend_accrual": -33.27855332159696,
+      "cash_only_reason": null
+    },
+    {
+      "start": "2025-07-01",
+      "training_start": "2021-07-01",
+      "training_end": "2025-06-30",
+      "training_n": 1003,
+      "evaluation_n": 128,
+      "parameters": {
+        "beta": 0.24869670834742755,
+        "rho": 0.0,
+        "sigma_m": 0.0,
+        "sigma_r": 0.4419183942595783,
+        "alpha": 0.0
+      },
+      "selected_model": "rw",
+      "return": 0.0,
+      "pair_entries": 0,
+      "rejected_requests": 0,
+      "net_dividend_accrual": 0.0,
+      "cash_only_reason": "Unsupported hedge sign or no transient component; cash-only cohort"
+    }
+  ],
+  "execution": {
+    "capital": 10000,
+    "fees": 0.001,
+    "slippage": 0.001,
+    "annual_borrow": 0.01,
+    "gross_leverage": 1.0,
+    "liquidate": true,
+    "borrow_observations_per_year": 252.0
+  },
+  "accounting": "One capital account rolled forward, flat at each six-month boundary; daily cash/equity independently reconciled within $1e-8",
+  "price_basis": "Vendor split-adjusted Close, not dividend-adjusted Adj Close. Dividend entitlements accrue to carried holdings on ex-dates: longs receive and shorts owe. No separate payment-date receivables/taxes modeled. Model/signal inputs also use Close, not adjusted-close units.",
+  "net_dividend_accrual": -343.4354844946104,
+  "sources": {
+    "PEP": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/PEP?interval=1d&events=div%2Csplits&includePrePost=false&period1=820454400&period2=1767225600",
+      "raw_sha256": "b329680755b7e0ff8e7e5b87cd4a8f383067fea737fe6ef56b67851e3cfaced8",
+      "events": {
+        "dividends": {
+          "826122600": {
+            "amount": 0.1,
+            "date": 826122600
+          },
+          "833981400": {
+            "amount": 0.115,
+            "date": 833981400
+          },
+          "841843800": {
+            "amount": 0.115,
+            "date": 841843800
+          },
+          "849709800": {
+            "amount": 0.115,
+            "date": 849709800
+          },
+          "858177000": {
+            "amount": 0.115,
+            "date": 858177000
+          },
+          "866035800": {
+            "amount": 0.125,
+            "date": 866035800
+          },
+          "874503000": {
+            "amount": 0.125,
+            "date": 874503000
+          },
+          "876231000": {
+            "amount": 3.2,
+            "date": 876231000
+          },
+          "881764200": {
+            "amount": 0.125,
+            "date": 881764200
+          },
+          "889626600": {
+            "amount": 0.125,
+            "date": 889626600
+          },
+          "897485400": {
+            "amount": 0.13,
+            "date": 897485400
+          },
+          "905347800": {
+            "amount": 0.13,
+            "date": 905347800
+          },
+          "913213800": {
+            "amount": 0.13,
+            "date": 913213800
+          },
+          "921076200": {
+            "amount": 0.13,
+            "date": 921076200
+          },
+          "928935000": {
+            "amount": 0.135,
+            "date": 928935000
+          },
+          "936797400": {
+            "amount": 0.135,
+            "date": 936797400
+          },
+          "944663400": {
+            "amount": 0.135,
+            "date": 944663400
+          },
+          "952525800": {
+            "amount": 0.135,
+            "date": 952525800
+          },
+          "960384600": {
+            "amount": 0.14,
+            "date": 960384600
+          },
+          "968247000": {
+            "amount": 0.14,
+            "date": 968247000
+          },
+          "976113000": {
+            "amount": 0.14,
+            "date": 976113000
+          },
+          "983975400": {
+            "amount": 0.14,
+            "date": 983975400
+          },
+          "991834200": {
+            "amount": 0.145,
+            "date": 991834200
+          },
+          "999696600": {
+            "amount": 0.145,
+            "date": 999696600
+          },
+          "1007562600": {
+            "amount": 0.145,
+            "date": 1007562600
+          },
+          "1015425000": {
+            "amount": 0.145,
+            "date": 1015425000
+          },
+          "1023283800": {
+            "amount": 0.15,
+            "date": 1023283800
+          },
+          "1031146200": {
+            "amount": 0.15,
+            "date": 1031146200
+          },
+          "1039012200": {
+            "amount": 0.15,
+            "date": 1039012200
+          },
+          "1047479400": {
+            "amount": 0.15,
+            "date": 1047479400
+          },
+          "1055338200": {
+            "amount": 0.16,
+            "date": 1055338200
+          },
+          "1063200600": {
+            "amount": 0.16,
+            "date": 1063200600
+          },
+          "1071066600": {
+            "amount": 0.16,
+            "date": 1071066600
+          },
+          "1078929000": {
+            "amount": 0.16,
+            "date": 1078929000
+          },
+          "1086787800": {
+            "amount": 0.23,
+            "date": 1086787800
+          },
+          "1094650200": {
+            "amount": 0.23,
+            "date": 1094650200
+          },
+          "1102516200": {
+            "amount": 0.23,
+            "date": 1102516200
+          },
+          "1110378600": {
+            "amount": 0.23,
+            "date": 1110378600
+          },
+          "1118237400": {
+            "amount": 0.26,
+            "date": 1118237400
+          },
+          "1126099800": {
+            "amount": 0.26,
+            "date": 1126099800
+          },
+          "1133965800": {
+            "amount": 0.26,
+            "date": 1133965800
+          },
+          "1141828200": {
+            "amount": 0.26,
+            "date": 1141828200
+          },
+          "1149687000": {
+            "amount": 0.3,
+            "date": 1149687000
+          },
+          "1157549400": {
+            "amount": 0.3,
+            "date": 1157549400
+          },
+          "1165415400": {
+            "amount": 0.3,
+            "date": 1165415400
+          },
+          "1173277800": {
+            "amount": 0.3,
+            "date": 1173277800
+          },
+          "1181136600": {
+            "amount": 0.375,
+            "date": 1181136600
+          },
+          "1188999000": {
+            "amount": 0.375,
+            "date": 1188999000
+          },
+          "1196865000": {
+            "amount": 0.375,
+            "date": 1196865000
+          },
+          "1204727400": {
+            "amount": 0.375,
+            "date": 1204727400
+          },
+          "1212586200": {
+            "amount": 0.425,
+            "date": 1212586200
+          },
+          "1220448600": {
+            "amount": 0.425,
+            "date": 1220448600
+          },
+          "1228314600": {
+            "amount": 0.425,
+            "date": 1228314600
+          },
+          "1236177000": {
+            "amount": 0.425,
+            "date": 1236177000
+          },
+          "1244035800": {
+            "amount": 0.45,
+            "date": 1244035800
+          },
+          "1251898200": {
+            "amount": 0.45,
+            "date": 1251898200
+          },
+          "1259764200": {
+            "amount": 0.45,
+            "date": 1259764200
+          },
+          "1267626600": {
+            "amount": 0.45,
+            "date": 1267626600
+          },
+          "1275485400": {
+            "amount": 0.48,
+            "date": 1275485400
+          },
+          "1283347800": {
+            "amount": 0.48,
+            "date": 1283347800
+          },
+          "1291213800": {
+            "amount": 0.48,
+            "date": 1291213800
+          },
+          "1299076200": {
+            "amount": 0.48,
+            "date": 1299076200
+          },
+          "1306935000": {
+            "amount": 0.515,
+            "date": 1306935000
+          },
+          "1314797400": {
+            "amount": 0.515,
+            "date": 1314797400
+          },
+          "1322663400": {
+            "amount": 0.515,
+            "date": 1322663400
+          },
+          "1330525800": {
+            "amount": 0.515,
+            "date": 1330525800
+          },
+          "1338384600": {
+            "amount": 0.538,
+            "date": 1338384600
+          },
+          "1346851800": {
+            "amount": 0.538,
+            "date": 1346851800
+          },
+          "1354717800": {
+            "amount": 0.537,
+            "date": 1354717800
+          },
+          "1361975400": {
+            "amount": 0.537,
+            "date": 1361975400
+          },
+          "1370439000": {
+            "amount": 0.568,
+            "date": 1370439000
+          },
+          "1378301400": {
+            "amount": 0.568,
+            "date": 1378301400
+          },
+          "1386167400": {
+            "amount": 0.568,
+            "date": 1386167400
+          },
+          "1394029800": {
+            "amount": 0.568,
+            "date": 1394029800
+          },
+          "1401888600": {
+            "amount": 0.655,
+            "date": 1401888600
+          },
+          "1409751000": {
+            "amount": 0.655,
+            "date": 1409751000
+          },
+          "1417617000": {
+            "amount": 0.655,
+            "date": 1417617000
+          },
+          "1425479400": {
+            "amount": 0.655,
+            "date": 1425479400
+          },
+          "1433338200": {
+            "amount": 0.703,
+            "date": 1433338200
+          },
+          "1441200600": {
+            "amount": 0.703,
+            "date": 1441200600
+          },
+          "1449066600": {
+            "amount": 0.703,
+            "date": 1449066600
+          },
+          "1456929000": {
+            "amount": 0.703,
+            "date": 1456929000
+          },
+          "1464787800": {
+            "amount": 0.753,
+            "date": 1464787800
+          },
+          "1472650200": {
+            "amount": 0.753,
+            "date": 1472650200
+          },
+          "1480516200": {
+            "amount": 0.753,
+            "date": 1480516200
+          },
+          "1488378600": {
+            "amount": 0.753,
+            "date": 1488378600
+          },
+          "1496237400": {
+            "amount": 0.805,
+            "date": 1496237400
+          },
+          "1504099800": {
+            "amount": 0.805,
+            "date": 1504099800
+          },
+          "1512052200": {
+            "amount": 0.805,
+            "date": 1512052200
+          },
+          "1519914600": {
+            "amount": 0.805,
+            "date": 1519914600
+          },
+          "1527773400": {
+            "amount": 0.928,
+            "date": 1527773400
+          },
+          "1536240600": {
+            "amount": 0.928,
+            "date": 1536240600
+          },
+          "1544106600": {
+            "amount": 0.928,
+            "date": 1544106600
+          },
+          "1551364200": {
+            "amount": 0.928,
+            "date": 1551364200
+          },
+          "1559827800": {
+            "amount": 0.955,
+            "date": 1559827800
+          },
+          "1567690200": {
+            "amount": 0.955,
+            "date": 1567690200
+          },
+          "1575556200": {
+            "amount": 0.955,
+            "date": 1575556200
+          },
+          "1583418600": {
+            "amount": 0.955,
+            "date": 1583418600
+          },
+          "1591277400": {
+            "amount": 1.023,
+            "date": 1591277400
+          },
+          "1599139800": {
+            "amount": 1.023,
+            "date": 1599139800
+          },
+          "1607005800": {
+            "amount": 1.023,
+            "date": 1607005800
+          },
+          "1614868200": {
+            "amount": 1.023,
+            "date": 1614868200
+          },
+          "1622727000": {
+            "amount": 1.075,
+            "date": 1622727000
+          },
+          "1630589400": {
+            "amount": 1.075,
+            "date": 1630589400
+          },
+          "1638455400": {
+            "amount": 1.075,
+            "date": 1638455400
+          },
+          "1646317800": {
+            "amount": 1.075,
+            "date": 1646317800
+          },
+          "1654176600": {
+            "amount": 1.15,
+            "date": 1654176600
+          },
+          "1662039000": {
+            "amount": 1.15,
+            "date": 1662039000
+          },
+          "1669905000": {
+            "amount": 1.15,
+            "date": 1669905000
+          },
+          "1677767400": {
+            "amount": 1.15,
+            "date": 1677767400
+          },
+          "1685626200": {
+            "amount": 1.265,
+            "date": 1685626200
+          },
+          "1693488600": {
+            "amount": 1.265,
+            "date": 1693488600
+          },
+          "1701354600": {
+            "amount": 1.265,
+            "date": 1701354600
+          },
+          "1709217000": {
+            "amount": 1.265,
+            "date": 1709217000
+          },
+          "1717767000": {
+            "amount": 1.355,
+            "date": 1717767000
+          },
+          "1725629400": {
+            "amount": 1.355,
+            "date": 1725629400
+          },
+          "1733495400": {
+            "amount": 1.355,
+            "date": 1733495400
+          },
+          "1741357800": {
+            "amount": 1.355,
+            "date": 1741357800
+          },
+          "1749216600": {
+            "amount": 1.423,
+            "date": 1749216600
+          },
+          "1757079000": {
+            "amount": 1.423,
+            "date": 1757079000
+          },
+          "1764945000": {
+            "amount": 1.423,
+            "date": 1764945000
+          }
+        },
+        "splits": {
+          "833376600": {
+            "date": 833376600,
+            "numerator": 2.0,
+            "denominator": 1.0,
+            "splitRatio": "2:1"
+          }
+        }
+      }
+    },
+    "KO": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/KO?interval=1d&events=div%2Csplits&includePrePost=false&period1=820454400&period2=1767225600",
+      "raw_sha256": "28d8815208bd010d64c3d4d599ec179ef0202caaf0a850dca41aea0aabc75150",
+      "events": {
+        "dividends": {
+          "826727400": {
+            "amount": 0.0625,
+            "date": 826727400
+          },
+          "834586200": {
+            "amount": 0.0625,
+            "date": 834586200
+          },
+          "842448600": {
+            "amount": 0.0625,
+            "date": 842448600
+          },
+          "849018600": {
+            "amount": 0.0625,
+            "date": 849018600
+          },
+          "858177000": {
+            "amount": 0.07,
+            "date": 858177000
+          },
+          "866035800": {
+            "amount": 0.07,
+            "date": 866035800
+          },
+          "873984600": {
+            "amount": 0.07,
+            "date": 873984600
+          },
+          "880554600": {
+            "amount": 0.07,
+            "date": 880554600
+          },
+          "889626600": {
+            "amount": 0.075,
+            "date": 889626600
+          },
+          "897571800": {
+            "amount": 0.075,
+            "date": 897571800
+          },
+          "905520600": {
+            "amount": 0.075,
+            "date": 905520600
+          },
+          "912177000": {
+            "amount": 0.075,
+            "date": 912177000
+          },
+          "921162600": {
+            "amount": 0.08,
+            "date": 921162600
+          },
+          "929107800": {
+            "amount": 0.08,
+            "date": 929107800
+          },
+          "937229400": {
+            "amount": 0.08,
+            "date": 937229400
+          },
+          "943885800": {
+            "amount": 0.08,
+            "date": 943885800
+          },
+          "952957800": {
+            "amount": 0.085,
+            "date": 952957800
+          },
+          "960903000": {
+            "amount": 0.085,
+            "date": 960903000
+          },
+          "968851800": {
+            "amount": 0.085,
+            "date": 968851800
+          },
+          "975508200": {
+            "amount": 0.085,
+            "date": 975508200
+          },
+          "984493800": {
+            "amount": 0.09,
+            "date": 984493800
+          },
+          "992439000": {
+            "amount": 0.09,
+            "date": 992439000
+          },
+          "1000128600": {
+            "amount": 0.18,
+            "date": 1000301400
+          },
+          "1000733400": {
+            "amount": 0.09,
+            "date": 1000733400
+          },
+          "1006957800": {
+            "amount": 0.09,
+            "date": 1006957800
+          },
+          "1016029800": {
+            "amount": 0.1,
+            "date": 1016029800
+          },
+          "1023888600": {
+            "amount": 0.1,
+            "date": 1023888600
+          },
+          "1031751000": {
+            "amount": 0.1,
+            "date": 1031751000
+          },
+          "1038321000": {
+            "amount": 0.1,
+            "date": 1038321000
+          },
+          "1047479400": {
+            "amount": 0.11,
+            "date": 1047479400
+          },
+          "1055338200": {
+            "amount": 0.11,
+            "date": 1055338200
+          },
+          "1063287000": {
+            "amount": 0.11,
+            "date": 1063287000
+          },
+          "1069857000": {
+            "amount": 0.11,
+            "date": 1069857000
+          },
+          "1079015400": {
+            "amount": 0.125,
+            "date": 1079015400
+          },
+          "1087219800": {
+            "amount": 0.125,
+            "date": 1087219800
+          },
+          "1095082200": {
+            "amount": 0.125,
+            "date": 1095082200
+          },
+          "1101738600": {
+            "amount": 0.125,
+            "date": 1101738600
+          },
+          "1110551400": {
+            "amount": 0.14,
+            "date": 1110551400
+          },
+          "1118669400": {
+            "amount": 0.14,
+            "date": 1118669400
+          },
+          "1126618200": {
+            "amount": 0.14,
+            "date": 1126618200
+          },
+          "1133274600": {
+            "amount": 0.14,
+            "date": 1133274600
+          },
+          "1142260200": {
+            "amount": 0.155,
+            "date": 1142260200
+          },
+          "1150205400": {
+            "amount": 0.155,
+            "date": 1150205400
+          },
+          "1158154200": {
+            "amount": 0.155,
+            "date": 1158154200
+          },
+          "1164810600": {
+            "amount": 0.155,
+            "date": 1164810600
+          },
+          "1173792600": {
+            "amount": 0.17,
+            "date": 1173792600
+          },
+          "1181741400": {
+            "amount": 0.17,
+            "date": 1181741400
+          },
+          "1189603800": {
+            "amount": 0.17,
+            "date": 1189603800
+          },
+          "1196260200": {
+            "amount": 0.17,
+            "date": 1196260200
+          },
+          "1205328600": {
+            "amount": 0.19,
+            "date": 1205328600
+          },
+          "1213191000": {
+            "amount": 0.19,
+            "date": 1213191000
+          },
+          "1221139800": {
+            "amount": 0.19,
+            "date": 1221139800
+          },
+          "1227709800": {
+            "amount": 0.19,
+            "date": 1227709800
+          },
+          "1236778200": {
+            "amount": 0.205,
+            "date": 1236778200
+          },
+          "1244727000": {
+            "amount": 0.205,
+            "date": 1244727000
+          },
+          "1252675800": {
+            "amount": 0.205,
+            "date": 1252675800
+          },
+          "1259332200": {
+            "amount": 0.205,
+            "date": 1259332200
+          },
+          "1268317800": {
+            "amount": 0.22,
+            "date": 1268317800
+          },
+          "1276263000": {
+            "amount": 0.22,
+            "date": 1276263000
+          },
+          "1284384600": {
+            "amount": 0.22,
+            "date": 1284384600
+          },
+          "1291041000": {
+            "amount": 0.22,
+            "date": 1291041000
+          },
+          "1299853800": {
+            "amount": 0.235,
+            "date": 1299853800
+          },
+          "1307971800": {
+            "amount": 0.235,
+            "date": 1307971800
+          },
+          "1315920600": {
+            "amount": 0.235,
+            "date": 1315920600
+          },
+          "1322577000": {
+            "amount": 0.235,
+            "date": 1322577000
+          },
+          "1331645400": {
+            "amount": 0.255,
+            "date": 1331645400
+          },
+          "1339594200": {
+            "amount": 0.255,
+            "date": 1339594200
+          },
+          "1347456600": {
+            "amount": 0.255,
+            "date": 1347456600
+          },
+          "1354113000": {
+            "amount": 0.255,
+            "date": 1354113000
+          },
+          "1363181400": {
+            "amount": 0.28,
+            "date": 1363181400
+          },
+          "1371043800": {
+            "amount": 0.28,
+            "date": 1371043800
+          },
+          "1378992600": {
+            "amount": 0.28,
+            "date": 1378992600
+          },
+          "1385562600": {
+            "amount": 0.28,
+            "date": 1385562600
+          },
+          "1394631000": {
+            "amount": 0.305,
+            "date": 1394631000
+          },
+          "1402579800": {
+            "amount": 0.305,
+            "date": 1402579800
+          },
+          "1410442200": {
+            "amount": 0.305,
+            "date": 1410442200
+          },
+          "1417012200": {
+            "amount": 0.305,
+            "date": 1417012200
+          },
+          "1426167000": {
+            "amount": 0.33,
+            "date": 1426167000
+          },
+          "1434029400": {
+            "amount": 0.33,
+            "date": 1434029400
+          },
+          "1441978200": {
+            "amount": 0.33,
+            "date": 1441978200
+          },
+          "1448634600": {
+            "amount": 0.33,
+            "date": 1448634600
+          },
+          "1457706600": {
+            "amount": 0.35,
+            "date": 1457706600
+          },
+          "1465824600": {
+            "amount": 0.35,
+            "date": 1465824600
+          },
+          "1473773400": {
+            "amount": 0.35,
+            "date": 1473773400
+          },
+          "1480429800": {
+            "amount": 0.35,
+            "date": 1480429800
+          },
+          "1489411800": {
+            "amount": 0.37,
+            "date": 1489411800
+          },
+          "1497360600": {
+            "amount": 0.37,
+            "date": 1497360600
+          },
+          "1505395800": {
+            "amount": 0.37,
+            "date": 1505395800
+          },
+          "1512052200": {
+            "amount": 0.37,
+            "date": 1512052200
+          },
+          "1521034200": {
+            "amount": 0.39,
+            "date": 1521034200
+          },
+          "1528983000": {
+            "amount": 0.39,
+            "date": 1528983000
+          },
+          "1536845400": {
+            "amount": 0.39,
+            "date": 1536845400
+          },
+          "1543501800": {
+            "amount": 0.39,
+            "date": 1543501800
+          },
+          "1552570200": {
+            "amount": 0.4,
+            "date": 1552570200
+          },
+          "1560432600": {
+            "amount": 0.4,
+            "date": 1560432600
+          },
+          "1568381400": {
+            "amount": 0.4,
+            "date": 1568381400
+          },
+          "1575037800": {
+            "amount": 0.4,
+            "date": 1575037800
+          },
+          "1584106200": {
+            "amount": 0.41,
+            "date": 1584106200
+          },
+          "1591968600": {
+            "amount": 0.41,
+            "date": 1591968600
+          },
+          "1600090200": {
+            "amount": 0.41,
+            "date": 1600090200
+          },
+          "1606746600": {
+            "amount": 0.41,
+            "date": 1606746600
+          },
+          "1615559400": {
+            "amount": 0.42,
+            "date": 1615559400
+          },
+          "1623677400": {
+            "amount": 0.42,
+            "date": 1623677400
+          },
+          "1631626200": {
+            "amount": 0.42,
+            "date": 1631626200
+          },
+          "1638282600": {
+            "amount": 0.42,
+            "date": 1638282600
+          },
+          "1647264600": {
+            "amount": 0.44,
+            "date": 1647264600
+          },
+          "1655213400": {
+            "amount": 0.44,
+            "date": 1655213400
+          },
+          "1663248600": {
+            "amount": 0.44,
+            "date": 1663248600
+          },
+          "1669818600": {
+            "amount": 0.44,
+            "date": 1669818600
+          },
+          "1678973400": {
+            "amount": 0.46,
+            "date": 1678973400
+          },
+          "1686835800": {
+            "amount": 0.46,
+            "date": 1686835800
+          },
+          "1694698200": {
+            "amount": 0.46,
+            "date": 1694698200
+          },
+          "1701354600": {
+            "amount": 0.46,
+            "date": 1701354600
+          },
+          "1710423000": {
+            "amount": 0.485,
+            "date": 1710423000
+          },
+          "1718371800": {
+            "amount": 0.485,
+            "date": 1718371800
+          },
+          "1726234200": {
+            "amount": 0.485,
+            "date": 1726234200
+          },
+          "1732890600": {
+            "amount": 0.485,
+            "date": 1732890600
+          },
+          "1741959000": {
+            "amount": 0.51,
+            "date": 1741959000
+          },
+          "1749821400": {
+            "amount": 0.51,
+            "date": 1749821400
+          },
+          "1757943000": {
+            "amount": 0.51,
+            "date": 1757943000
+          },
+          "1764599400": {
+            "amount": 0.51,
+            "date": 1764599400
+          }
+        },
+        "splits": {
+          "831994200": {
+            "date": 831994200,
+            "numerator": 2.0,
+            "denominator": 1.0,
+            "splitRatio": "2:1"
+          },
+          "1344864600": {
+            "date": 1344864600,
+            "numerator": 2.0,
+            "denominator": 1.0,
+            "splitRatio": "2:1"
+          }
+        }
+      }
+    }
+  },
+  "corporate_action_review": "Extended snapshot: PEP 1996 and KO 1996/2012 splits checked; Yahoo Close and dividend events use split-adjusted units. KO 2012 four quarterly dividends are each 0.255 (pre-split actual 0.51); no second split adjustment applied. PEP 1997 spin-off is in formation history only; no positions held then. KO September 12, 2001 dividend accrues on September 17 before fills because the exchange was closed.",
+  "package_fingerprint": "fdd6dd50c94b4a7152aa523074cf96d343ec2d2f2c5214f4af639a4ad9325f33",
+  "script_sha256": "9440fcadda35292f1752bc047c68f2178d73e5f72ef8cc2a9f09e6983cd677d6",
+  "created_utc": "2026-10-26T02:32:31.212960+00:00",
+  "limitations": [
+    "Fixed pair; no broad pair-universe selection or reverse-orientation search",
+    "Ex-dividend cash-accrual approximation, not actual payment-date cash settlement; raw ex-dividend price gaps remain in signal inputs",
+    "Vendor history is not point-in-time audited",
+    "Borrow availability/actual costs unverified; 1% annual charge assumed",
+    "Period selected retrospectively before this run; no parameter or threshold search",
+    "No untouched future test or calibrated profitability significance claim"
+  ]
+}

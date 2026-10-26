@@ -20,32 +20,33 @@ def main() -> None:
     parser.add_argument(
         "--pair", choices=["goog-googl", "pep-ko"], default="goog-googl"
     )
+    parser.add_argument(
+        "--extended", action="store_true", help="Plot 2000–2025 PEP/KO daily test only"
+    )
     args = parser.parse_args()
+    if args.extended and args.pair != "pep-ko":
+        parser.error("Extended results support PEP/KO only")
+    extension = "-extended" if args.extended else ""
     root = Path(__file__).resolve().parents[1]
     output = root / "docs/results"
-    daily_report = json.loads((output / f"longer-pair-{args.pair}.json").read_text())
-    minute_report = json.loads((output / f"minute-pair-{args.pair}.json").read_text())
+    daily_report = json.loads(
+        (output / f"longer-pair-{args.pair}{extension}.json").read_text()
+    )
     cache = (
         root
         / ".test-deps"
-        / ("longer-real-pair" if args.pair == "goog-googl" else args.pair)
+        / (("longer-real-pair" if args.pair == "goog-googl" else args.pair) + extension)
     )
     pair_label = " / ".join(daily_report["pair"])
-    suffix = "" if args.pair == "goog-googl" else f"-{args.pair}"
+    suffix = ("" if args.pair == "goog-googl" else f"-{args.pair}") + extension
     daily = pd.read_csv(
         cache / "output/equity.csv",
         index_col=0,
         parse_dates=True,
     ).iloc[:, 0]
-    minute = pd.read_csv(
-        cache / "minute-output/equity.csv",
-        index_col=0,
-        parse_dates=True,
-    ).iloc[:, 0]
-    for curve, report in [(daily, daily_report), (minute, minute_report)]:
-        if not curve.index.is_unique or not curve.index.is_monotonic_increasing:
-            raise ValueError("Need unique ordered observations")
-        np.testing.assert_allclose(curve.iloc[-1], report["final_capital"], atol=1e-8)
+    if not daily.index.is_unique or not daily.index.is_monotonic_increasing:
+        raise ValueError("Need unique ordered observations")
+    np.testing.assert_allclose(daily.iloc[-1], daily_report["final_capital"], atol=1e-8)
     plt.rcParams.update(
         {"font.size": 12, "axes.spines.top": False, "axes.spines.right": False}
     )
@@ -81,9 +82,12 @@ def main() -> None:
     axes[0].set_ylabel("Account value (USD)")
     axes[0].legend(loc="lower left", fontsize=10)
     axes[0].grid(alpha=0.2)
-    axes[0].xaxis.set_major_locator(mdates.YearLocator())
+    axes[0].xaxis.set_major_locator(mdates.YearLocator(5 if args.extended else 1))
     axes[0].xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
-    axes[0].set_xlim(pd.Timestamp("2019-01-01"), pd.Timestamp("2023-12-31"))
+    axes[0].set_xlim(
+        pd.Timestamp(daily_report["evaluation_start"]),
+        pd.Timestamp(daily_report["evaluation_end"]),
+    )
     years = list(daily_report["yearly_returns"])
     returns = [100 * daily_report["yearly_returns"][year] for year in years]
     axes[1].bar(
@@ -93,7 +97,8 @@ def main() -> None:
         width=0.6,
     )
     axes[1].axhline(0, color="black", linewidth=0.8)
-    axes[1].set_ylim(min([0] + returns) - 0.8, max([0] + returns) + 0.8)
+    padding = 5.0 if args.extended else 0.8
+    axes[1].set_ylim(min([0] + returns) - padding, max([0] + returns) + padding)
     axes[1].set_title("Return in each calendar year", loc="left", fontsize=13)
     axes[1].set_ylabel("Annual return (%)")
     axes[1].grid(axis="y", alpha=0.2)
@@ -104,14 +109,30 @@ def main() -> None:
             f"{value:+.2f}%",
             ha="center",
             va="bottom" if value >= 0 else "top",
-            fontsize=12,
+            fontsize=7 if args.extended else 12,
+            rotation=90 if args.extended else 0,
         )
+    if args.extended:
+        axes[1].tick_params(axis="x", labelrotation=90, labelsize=8)
     fig.suptitle(
-        f"{pair_label} · daily walk-forward test\n2019–2023 · {daily_report['completed_round_trips']} round trips · {daily_report['rejected_requests']} rejected requests",
+        f"{pair_label} · daily walk-forward test\n{daily_report['evaluation_start'][:4]}–{daily_report['evaluation_end'][:4]} · {daily_report['completed_round_trips']} round trips · {daily_report['rejected_requests']} rejected requests",
         fontsize=15,
     )
     fig.savefig(output / f"daily-pair-performance{suffix}.png", dpi=170)
     plt.close(fig)
+    if args.extended:
+        print(f"Saved daily-pair-performance{suffix}.png")
+        return
+
+    minute_report = json.loads((output / f"minute-pair-{args.pair}.json").read_text())
+    minute = pd.read_csv(
+        cache / "minute-output/equity.csv", index_col=0, parse_dates=True
+    ).iloc[:, 0]
+    if not minute.index.is_unique or not minute.index.is_monotonic_increasing:
+        raise ValueError("Need unique ordered minute observations")
+    np.testing.assert_allclose(
+        minute.iloc[-1], minute_report["final_capital"], atol=1e-8
+    )
 
     fig, axes = plt.subplots(2, 1, figsize=(8, 8), constrained_layout=True, sharey=True)
     for ax, session in zip(axes, minute_report["sessions"]):

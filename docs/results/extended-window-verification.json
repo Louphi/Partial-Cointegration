@@ -1,0 +1,14 @@
+{
+  "created_utc": "2026-10-26T02:35:20.090011+00:00",
+  "scope": "PEP/KO daily 2000\u20132025 window extension; no estimator, signal, threshold or execution-core changes",
+  "tests_passed": 196,
+  "style": "Modified scripts Black and Ruff pass",
+  "original_daily_regression": "PEP/KO and Alphabet final equity and trade counts unchanged, $1e-8 tolerance",
+  "cohorts": 52,
+  "evaluation_n": 6539,
+  "daily_accounting": "All 52 cohorts independently reconstructed from orders, marks, fees, borrow and carried-holding dividends within $1e-8",
+  "corporate_action_review": "Extended snapshot: PEP 1996 and KO 1996/2012 splits checked; Yahoo Close and dividend events use split-adjusted units. KO 2012 four quarterly dividends are each 0.255 (pre-split actual 0.51); no second split adjustment applied. PEP 1997 spin-off is in formation history only; no positions held then. KO September 12, 2001 dividend accrues on September 17 before fills because the exchange was closed.",
+  "issuer_dividend_reference": "https://investors.coca-colacompany.com/news-events/press-releases/detail/384/the-board-of-directors-of-the-coca-cola-company-announces-quarterly-dividend",
+  "estimator_fingerprint": "90ca50c2f831b05f40c0afe1ee273c4bfd32cd94b2668561b0eee6f1ce553a6f",
+  "package_fingerprint": "fdd6dd50c94b4a7152aa523074cf96d343ec2d2f2c5214f4af639a4ad9325f33"
+}

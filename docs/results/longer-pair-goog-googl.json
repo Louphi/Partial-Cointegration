@@ -275,9 +275,10 @@
       }
     }
   },
+  "corporate_action_review": "Original snapshot corporate-action guard",
   "package_fingerprint": "fdd6dd50c94b4a7152aa523074cf96d343ec2d2f2c5214f4af639a4ad9325f33",
-  "script_sha256": "880dc2c3e346bcb8b9fc5a0a203280ac2b5a5cf5cee8329d5dbcecebf52da829",
-  "created_utc": "2026-10-26T02:23:21.926263+00:00",
+  "script_sha256": "9440fcadda35292f1752bc047c68f2178d73e5f72ef8cc2a9f09e6983cd677d6",
+  "created_utc": "2026-10-26T02:34:17.893279+00:00",
   "limitations": [
     "Fixed pair; no broad pair-universe selection or reverse-orientation search",
     "Ex-dividend cash-accrual approximation, not actual payment-date cash settlement; raw ex-dividend price gaps remain in signal inputs",
