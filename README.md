@@ -73,6 +73,25 @@ Historical raw prices are not bundled. The application no longer loads another d
 .venv/Scripts/python -m streamlit run "PCI Framework/app.py"
 ```
 
+The pair diagnostic view lets you choose a research date range, formation split,
+pair, normalization, thresholds, initial capital and daily cost assumptions.
+Click **Run research example**, then use:
+
+- **Timeline**: aligned observed prices, spread decomposition, score thresholds,
+  decision/fill markers, equity/cash, drawdown and gross capacity. Pan/zoom is
+  shared across the evaluation timeline; double-click resets the view.
+- **Execution & costs**: actual entries versus decisions, fees, adverse slippage,
+  borrow, capital usage, rejection reasons, fills and security holdings.
+- **Model & data**: fitted parameters and the underlying evaluation observations.
+
+CSV downloads retain the completed run. Changed inputs require a new run so old
+results cannot be mistaken for the new configuration. A pure-random-walk fit
+stays in cash. Fill rows represent individual legs; scheduled liquidation is
+separate from signal-driven exits. Costs already reduce equity. This daily-close
+explorer does not account for dividends/corporate actions; use the documented
+experiment runners for their explicitly modeled cash distributions and minute
+conventions. It does not run a calibrated significance test.
+
 The [data contract](docs/data-contract.md) defines price dates, stable security IDs, point-in-time membership, adjustments and delisting inputs. Formation selection never depends on future completeness. Filter means/covariances continue into evaluation; missing observations are predict-only. Decisions fill at a later observed close. One committed-capital ledger accounts for both legs, costs, margin checks, rejected orders and scheduled liquidation. Nonpositive beta is supported in estimation but currently rejected for trading.
 
 An [exploratory real-price example](docs/results/real-pair-goog-googl.json) uses GOOG/GOOGL daily Yahoo closes: formation 2019–2022, evaluation January–June 2023, fixed formation scaling and entry/exit thresholds. On $10,000, it returned −0.52% after assumed fees, slippage and borrow, completing one round trip. Pair, period and rules were fixed before computing the result. This is a retrospectively chosen historical example, not a qualified universe-wide performance study or untouched future test. Borrow availability and actual broker costs are unverified.
@@ -88,6 +107,30 @@ The same runners accept `--pair pep-ko` for PepsiCo/Coca-Cola. The [2019–2023 
 The [extended PEP/KO daily test](docs/results/longer-pair-pep-ko-extended.json) covers **2000–2025** with unchanged rules: 45 round trips, 84 rejected entries, **−18.24% cumulative return** ($10,000 → $8,176.23), and 26.42% maximum drawdown. This contrasts with the shorter positive slice. Reproduce with `experiments/longer_pair_example.py --pair pep-ko --extended`; use the same flags on the plotting script. Corporate-action unit checks, dividend accrual and independent cash reconciliation are recorded in the report and [graphs page](docs/backtest-graphs.md).
 
 ## Research status and documentation
+
+### Long-history US-stock screening
+
+```powershell
+.venv/Scripts/python experiments/us_daily_screen.py --output .test-deps/us-daily-results --workers 4
+.venv/Scripts/python experiments/report_daily_screen.py --study .test-deps/us-daily-results
+```
+
+The frozen `experiments/configs/us-daily-screen.json` defines peer groups and
+rules. The runner requests maximum daily Yahoo histories through its declared
+snapshot date, caches raw responses and formation fits, then runs annual
+four-year-formation / one-year-evaluation pair backtests and a shared-capital
+portfolio selected using past likelihood ranks. Cash dividends, fees, slippage,
+borrow and rejected orders are accounted for; every completed ledger is
+independently reconciled. The generated report explains the outputs and limits.
+
+The universe is a present-day hand-selected sample, not a point-in-time index.
+Descriptive screens are not calibrated significance tests; the latest watchlist
+has no subsequent test data. Missing formation years and evaluation errors are
+reported, and corporate-action units require further issuer verification.
+Use a fresh `--cache` directory when requesting a newer snapshot; existing raw
+responses are deliberately reused. The app-compatible `prices/` exports can be
+loaded into the explorer, whose single-split, dividend-free view differs from
+this annual walk-forward study.
 
 - [Implementation status](docs/implementation-status.md): task-by-task acceptance and evidence.
 - [Validation report](docs/validation-report.md): executed experiments and limitations.
