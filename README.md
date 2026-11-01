@@ -15,6 +15,22 @@ python -m venv .venv
 
 `requirements.txt` contains core numerical pins; `pyproject.toml` separates optional research, UI, engine and validation tools. `requirements-lock.txt` records the environment used for the implementation validation.
 
+## Repository map
+
+| Path | Purpose |
+|---|---|
+| `src/partial_cointegration/` | Active estimation, inference, signals and execution package |
+| `tests/` | Regression and contract checks |
+| `experiments/` | Reproducible studies, examples and verification commands |
+| `PCI Framework/` | Streamlit app, compatibility adapters and example notebook |
+| `Simulation/Functions/` | Supported simulation adapters and example notebook |
+| `docs/` | Model/data contracts, migration guide, audit and validation evidence |
+| `documentation/` | Original research presentation |
+
+Keep generated prices, ledgers, checkpoints and executed notebooks in ignored
+`.test-deps/`. Committed `docs/results/` files are research evidence; regenerate
+them only through their documented experiment runners.
+
 ## Quick use
 
 ```python
@@ -35,6 +51,7 @@ Alpha is not an estimated equilibrium intercept. Rho is not identified under a p
 
 ```powershell
 .venv/Scripts/python -m pytest -q
+.venv/Scripts/python -m ruff check .
 .venv/Scripts/python -m mypy src/partial_cointegration --strict
 .venv/Scripts/python experiments/verify_notebooks.py
 .venv/Scripts/python experiments/verify_empirical.py

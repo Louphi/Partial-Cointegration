@@ -1,5 +1,28 @@
 # Repository cleanup
 
+## Maintenance follow-up (2026-11-01)
+
+- Added a repository map and generated-output guidance to the README.
+- Removed four unused imports from compatibility and test modules.
+- Set Ruff's Python target to the supported Python 3.12 environment. Narrow
+  per-file exceptions retain the deliberate path/kernel setup before imports in
+  experiment runners and the two example notebooks; other lint checks remain on.
+- Ignored parallel coverage data and the generated XML coverage report.
+- Included the README in package metadata.
+
+Verification: 196 tests passed on Python 3.12.7 with research/engine test
+dependencies installed; Ruff, Git whitespace checks and local links in the edited
+Markdown files passed. Pytest used `--basetemp=.test-deps/pytest-full-maintenance`
+to keep temporary fixtures inside the workspace. Pandas emitted its optional
+PyArrow deprecation warning. Expensive studies and notebook/app flows were not
+rerun for this maintenance pass.
+
+The numerical package, experiment runners, notebooks, calibration banks and
+committed research results are unchanged by this follow-up. The historical
+cleanup and verification counts below describe the earlier cleanup, not this pass.
+
+## Earlier cleanup
+
 The active implementation, supported adapters, tests, scientific evidence and original research inputs are retained. Cleanup removes 59 obsolete tracked files (16,748,151 bytes, approximately 16 MiB) from the working tree. It does not rewrite Git history or change the estimator, calibrated scores or strategy.
 
 ## Removed files

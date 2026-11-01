@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 import pytest
-from partial_cointegration import Parameters, fit_pair
-from partial_cointegration.data import members_at, split_prices
+from partial_cointegration import Parameters
+from partial_cointegration.data import members_at
 from partial_cointegration.signals import score_components, decisions
 from partial_cointegration.simulation import simulate_pair, summary
 from partial_cointegration.execution import (

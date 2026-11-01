@@ -7,7 +7,6 @@ import json
 from PCISimulation import pci_generator
 import xarray as xr
 from datetime import datetime
-import matplotlib.pyplot as plt
 import os
 
 # Get todays date

@@ -4,7 +4,6 @@ import pandas as pd
 import pytest
 from partial_cointegration import (
     Parameters,
-    FilterState,
     filter_residuals,
     fit_pair,
     FitOptions,
