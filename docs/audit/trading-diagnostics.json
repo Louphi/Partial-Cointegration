@@ -1,0 +1,79 @@
+{
+  "versions": {
+    "vectorbt": "0.26.2",
+    "numba": "0.61.2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.0",
+    "scipy": "1.12.0"
+  },
+  "positive_beta": {
+    "orders": [
+      {
+        "Order Id": "0",
+        "Column": "A",
+        "Timestamp": "2023-01-02",
+        "Size": "0.045454545454545456",
+        "Price": "11.011",
+        "Fees": "0.0005005",
+        "Side": "Buy"
+      },
+      {
+        "Order Id": "1",
+        "Column": "A",
+        "Timestamp": "2023-01-04",
+        "Size": "0.045454545454545456",
+        "Price": "12.987",
+        "Fees": "0.0005903181818181819",
+        "Side": "Sell"
+      },
+      {
+        "Order Id": "2",
+        "Column": "B",
+        "Timestamp": "2023-01-02",
+        "Size": "0.045454545454545456",
+        "Price": "21.978",
+        "Fees": "0.000999",
+        "Side": "Sell"
+      },
+      {
+        "Order Id": "3",
+        "Column": "B",
+        "Timestamp": "2023-01-04",
+        "Size": "0.045454545454545456",
+        "Price": "17.017",
+        "Fees": "0.0007735",
+        "Side": "Buy"
+      }
+    ],
+    "group_lens": [
+      1,
+      1,
+      1
+    ],
+    "cash_sharing": false,
+    "initial_cash": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "last_assets": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "warnings": [
+      "Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value 'False' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.",
+      "Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '0' has dtype incompatible with bool, please explicitly cast to a compatible dtype first.",
+      "Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '[0.04545455]' has dtype incompatible with int64, please explicitly cast to a compatible dtype first."
+    ]
+  },
+  "negative_beta": {
+    "error": "ValueError: Negative size is not allowed. You must express direction using signals.",
+    "warnings": [
+      "Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value 'False' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.",
+      "Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '0' has dtype incompatible with bool, please explicitly cast to a compatible dtype first.",
+      "Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '[0.04545455]' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.",
+      "Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '[-0.04545455]' has dtype incompatible with int64, please explicitly cast to a compatible dtype first."
+    ]
+  }
+}

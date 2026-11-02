@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "fixtures": 60,
+  "seed": 20261025,
+  "runtime": "R version 4.3.2 (2023-10-31 ucrt)",
+  "zoo_version": "1.8.12",
+  "source_urls": {
+    "fit_par.R": "https://raw.githubusercontent.com/cran/partialAR/520fba1babeb85507c509234fcbccd87b60f9dd9/R/fit.R",
+    "lr_pci.R": "https://raw.githubusercontent.com/cran/partialCI/a46db513f4526c27b953196726d001b88e0a76ae/R/lr_pci.R"
+  },
+  "source_sha256": {
+    "fit_par.R": "7962b10ea00e1a54c0696fc1e4c291afe79498a4ac45795f988b20d7d4177861",
+    "lr_pci.R": "7a0178b6dcee2f39e83174c527f448b256aa9c869005c671c4ddddeac01bf192"
+  },
+  "max_absolute_score_error": 5.115907697472721e-13,
+  "max_absolute_gain_error": 4.440892098500626e-16,
+  "comparison": "Author steady-state scorer with explicit matching initial level; first density retained in R and added to conditional Python score",
+  "author_optimizer_executed": false,
+  "full_algorithm_parity": false,
+  "exact_model_parity_claimed": false
+}

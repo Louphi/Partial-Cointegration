@@ -1,0 +1,29 @@
+{
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "estimator_fingerprint": "90ca50c2f831b05f40c0afe1ee273c4bfd32cd94b2668561b0eee6f1ce553a6f",
+  "package_fingerprint": "c26233607258451e57443b05770bbfb7cf2e1032244db956502ee8c93f8fee1b",
+  "tests_fingerprint": "67445397bb807eda226b3841e965c735f3ed881406bdc6e1aa2eecd6f4c27f4e",
+  "tests_passed": 193,
+  "line_coverage": "96%",
+  "test_log_sha256": "56ff9c5ebdd4132eb22482e3279ce1dcd4555597e40a5cbb74af8f8833d17060",
+  "checks": {
+    "strict_mypy": "passed, 13 modules",
+    "black": "passed, 33 active Python files",
+    "ruff": "passed, F checks excluding F401/E402",
+    "pip_check": "passed"
+  },
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.0",
+    "scipy": "1.12.0",
+    "numba": "0.61.2",
+    "vectorbt": "0.26.2",
+    "plotly": "5.18.0",
+    "streamlit": "1.40.2",
+    "pytest": "8.3.5",
+    "mypy": "1.15.0",
+    "black": "25.1.0",
+    "ruff": "0.11.0"
+  }
+}

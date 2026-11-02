@@ -1,0 +1,20 @@
+{
+  "created_utc": "2026-10-26T02:23:25.676935+00:00",
+  "scope": "Optional cash distributions and fixed PEP/KO example; older verification files remain historical snapshots",
+  "tests_passed": 196,
+  "checks": {
+    "mypy": "passed, 13 modules",
+    "black": "passed, modified files",
+    "ruff": "passed, modified files",
+    "original_GOOG_daily_and_minute_equity": "unchanged within $1e-8",
+    "PEP_KO_accounting": "independent reconstruction including dividend entitlements within $1e-8",
+    "calibration_banks": "all 12 cutoffs/counts still match"
+  },
+  "dividend_convention": "Accrue per-share vendor ex-date amounts before executions using prior-row holdings; longs receive, shorts owe; not a payment-date receivables model",
+  "new_tests": [
+    "test_dividend_entitlements_follow_previous_holdings_and_short_liability",
+    "test_ex_dividend_price_drop_and_cash_entitlement_do_not_create_profit"
+  ],
+  "estimator_fingerprint": "90ca50c2f831b05f40c0afe1ee273c4bfd32cd94b2668561b0eee6f1ce553a6f",
+  "package_fingerprint": "fdd6dd50c94b4a7152aa523074cf96d343ec2d2f2c5214f4af639a4ad9325f33"
+}

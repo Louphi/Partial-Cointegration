@@ -1,0 +1,74 @@
+[
+  {
+    "mode": "exact",
+    "n": 100,
+    "alpha": 0.01,
+    "status": "passed"
+  },
+  {
+    "mode": "exact",
+    "n": 100,
+    "alpha": 0.05,
+    "status": "passed"
+  },
+  {
+    "mode": "exact",
+    "n": 100,
+    "alpha": 0.1,
+    "status": "passed"
+  },
+  {
+    "mode": "exact",
+    "n": 1000,
+    "alpha": 0.01,
+    "status": "passed"
+  },
+  {
+    "mode": "exact",
+    "n": 1000,
+    "alpha": 0.05,
+    "status": "passed"
+  },
+  {
+    "mode": "exact",
+    "n": 1000,
+    "alpha": 0.1,
+    "status": "passed"
+  },
+  {
+    "mode": "exact",
+    "n": 10000,
+    "alpha": 0.01,
+    "status": "passed"
+  },
+  {
+    "mode": "exact",
+    "n": 10000,
+    "alpha": 0.05,
+    "status": "passed"
+  },
+  {
+    "mode": "exact",
+    "n": 10000,
+    "alpha": 0.1,
+    "status": "passed"
+  },
+  {
+    "mode": "legacy",
+    "n": 100,
+    "alpha": 0.05,
+    "status": "passed"
+  },
+  {
+    "mode": "legacy",
+    "n": 1000,
+    "alpha": 0.05,
+    "status": "passed"
+  },
+  {
+    "mode": "legacy",
+    "n": 10000,
+    "alpha": 0.05,
+    "status": "passed"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "created_utc": "2026-10-26T01:54:08.594133+00:00",
+  "scope": "Execution frequency extension; original software-verification.json remains the historical pre-extension snapshot",
+  "tests_passed": 194,
+  "checks": {
+    "strict_mypy": "passed: 13 package modules",
+    "ruff": "passed: modified/new Python files",
+    "black": "passed: modified/new Python files",
+    "accounting_oracles": "daily ten cohorts and two minute sessions independently reconciled within $1e-8",
+    "calibration_banks": "all 12 cutoffs/counts still match"
+  },
+  "new_test": "test_declared_minute_borrow_frequency_matches_hand_worked_charge",
+  "daily_borrow_default": 252,
+  "minute_borrow_observations_per_year": 98280,
+  "minute_policy": "Complete regular sessions only; flat every night; not valid for overnight-held minute portfolios",
+  "estimator_fingerprint": "90ca50c2f831b05f40c0afe1ee273c4bfd32cd94b2668561b0eee6f1ce553a6f",
+  "package_fingerprint": "32edd17fafbc57e02c5594de01b07561b70428bd0239ac499642beef1e4142a5",
+  "monte_carlo_refit_required": false,
+  "reason": "Only execution borrowing frequency changed; model/likelihood/estimation/simulation numerical-source fingerprint is unchanged"
+}
